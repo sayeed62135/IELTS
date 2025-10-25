@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IELTS Masterclass | Elite Pathway to Success</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#c9a961;--gold2:#f6e8a6;--accent:#8b0000;
+      --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
+      --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
+      --grad1:linear-gradient(135deg,#c9a961,#f6e8a6);
+      --grad2:linear-gradient(135deg,#8b0000,#c9184a);
+      --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;cursor:none}
+    h1,h2,h3,h4,h5{font-family:Montserrat,sans-serif;letter-spacing:-.4px}
+
+    /* Custom Cursor */
+    .custom-cursor{width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:.12s}
+    .cursor-trailer{width:40px;height:40px;border:1px solid rgba(201,169,97,.35);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:.35s cubic-bezier(.22,1,.36,1)}
+    .cursor-grow{transform:translate(-50%,-50%) scale(2);background:rgba(201,169,97,.25);border-color:transparent}
+
+    /* Loader */
+    .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s}
+    .page-transition.hide{opacity:0;pointer-events:none}
+    .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(201,169,97,.25);border-top:3px solid var(--gold);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
+
+    /* Navbar */
+    .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
+    .navbar-brand img{height:40px;width:auto}
+    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
+    .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
+    .nav-link:hover:after{left:0;width:100%}
+    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
+    .dropdown-item{color:var(--text);font-size:.9rem;padding:.5rem 1.25rem}
+    .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)}
+    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem}
+    .btn-pill:hover{transform:translateY(-1px)}
+
+    /* Utilities */
+    .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
+    section{padding:90px 0;position:relative;overflow:hidden}
+    .title{font-size:2.8rem;font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+    .subtitle{max-width:720px;margin:0 auto 32px;color:var(--muted);font-size:1rem}
+
+    /* SECTION RUNNING GLOW EFFECT - প্রতিটি সেকশনে */
+    section::before, section::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(180px);
+      opacity: 0.08;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatGlow 12s infinite ease-in-out;
+    }
+    section::before {
+      background: radial-gradient(circle, var(--gold), transparent 70%);
+      top: -20%;
+      left: -20%;
+    }
+    section::after {
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      bottom: -20%;
+      right: -20%;
+      animation-delay: -6s;
+    }
+    @keyframes floatGlow {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-60px) scale(1.1); }
+    }
+
+    /* HERO */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 100px}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;transform:scale(1.1)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.85),rgba(10,10,10,.95))}
+    .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
+    .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
+    .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
+    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
+    .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
+    .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
+
+    /* Hero Glass Metrics */
+    .hero-glass-metrics {margin-top: 2rem;position: relative;z-index: 2;}
+    .glass-metric-card {
+      background: rgba(255, 255, 255, .07);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 16px;
+      padding: .85rem 1.2rem;
+      min-width: 160px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, .3);
+      transition: all .35s ease;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+    .glass-metric-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--grad1); opacity: 0; border-radius: 16px;
+      transition: opacity .4s ease; z-index: -1;
+    }
+    .glass-metric-card:hover::before { opacity: 0.1; }
+    .glass-metric-card:hover { transform: translateY(-6px); border-color: rgba(201, 169, 97, .4); box-shadow: 0 12px 30px rgba(201, 169, 97, .15); }
+    .glass-metric-card .metric-value {font-size: 1.4rem;font-weight: 800;font-family: 'Montserrat', sans-serif;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;line-height: 1;}
+    .glass-metric-card .metric-label {font-size: .78rem;color: #cfd3d8;margin-top: 2px;letter-spacing: .3px;text-transform: uppercase;}
+    @media (max-width: 768px) {.glass-metric-card {min-width: 140px;padding: .7rem 1rem;}.glass-metric-card .metric-value {font-size: 1.2rem;}.glass-metric-card .metric-label {font-size: .7rem;}}
+    @media (max-width: 576px) {.hero-glass-metrics {gap: 1rem;}.glass-metric-card {flex: 1;min-width: auto;}}
+
+    /* Stats */
+    .stats {background: rgba(10,10,10,.98);border-top: 1px solid rgba(201,169,97,.15);border-bottom: 1px solid rgba(201,169,97,.15);}
+    .stats .stat-num {font-family: 'Montserrat', sans-serif;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;min-height: 1.2em;display: inline-block;}
+    @media (max-width: 768px) {.stats .stat-num {font-size: 2rem !important;}.stats i {font-size: 2rem !important;}}
+
+    /* MODULES - Hover Icon Rotate */
+    .card-mod{transition:.45s;overflow:hidden;padding:1.5rem;position:relative}
+    .card-mod .icon{font-size:32px;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:.5rem;transition:transform .4s ease}
+    .card-mod .icon-bg{position:absolute;top:0;right:0;width:80px;height:80px;background:rgba(201,169,97,.08);border-radius:50%;transform:translate(30%,-30%);transition:transform .4s ease}
+    .card-mod:hover .icon{transform:rotate(15deg) scale(1.15)}
+    .card-mod:hover .icon-bg{transform:translate(20%,-40%) rotate(-20deg)}
+    .card-mod:hover{transform:translateY(-8px)}
+    .card-mod .btn{background:var(--grad1);color:#111;border:none;border-radius:999px;font-weight:700;font-size:.85rem;padding:6px 14px}
+
+    /* Student Journey Roadmap */
+    .journey-timeline {position: relative;padding-left: 50px;}
+    .journey-step {position: relative;display: flex;align-items: flex-start;margin-bottom: 1.5rem;}
+    .step-circle {position: absolute;left: -50px;width: 46px;height: 46px;background: var(--grad1);border-radius: 50%;display: flex;align-items: center;justify-content: center;flex-shrink: 0;box-shadow: 0 8px 20px rgba(201,169,97,.3);z-index: 2;transition: all .4s ease;}
+    .step-number {color: #000;font-weight: 800;font-size: 1.1rem;font-family: 'Montserrat', sans-serif;}
+    .step-content {margin-left: 1rem;min-height: 80px;background: rgba(30,30,30,.9) !important;backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);box-shadow: 0 10px 30px rgba(0,0,0,.4);transition: all .4s ease;}
+    .step-connector {position: absolute;left: -27px;top: 46px;width: 2px;height: 60px;background: linear-gradient(to bottom, var(--gold), transparent);opacity: .6;}
+    .journey-step:hover .step-circle {transform: scale(1.15);box-shadow: 0 12px 30px rgba(201,169,97,.5);}
+    .journey-step:hover .step-content {border-color: var(--gold);transform: translateX(8px);box-shadow: 0 15px 40px rgba(201,169,97,.15);}
+    .journey-step.active .step-circle {background: #fff;animation: pulse 2s infinite;}
+    @keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(201,169,97,.7); }70% { box-shadow: 0 0 0 12px rgba(201,169,97,0); } moest% { box-shadow: 0 0 0 0 rgba(201,169,97,0); }}
+    @media (max-width: 992px) {.journey-timeline {padding-left: 40px;}.step-circle {left: -40px;width: 40px;height: 40px;}.step-number {font-size: 1rem;}.step-connector {left: -20px;height: 50px;}}
+    @media (max-width: 768px) {.journey-timeline {padding-left: 0;display: flex;flex-direction: column;align-items: center;}.journey-step {flex-direction: column;align-items: center;text-align: center;margin-bottom: 2rem;}.step-circle {position: static;margin-bottom: .5rem;}.step-content {margin-left: 0;width: 100%;max-width: 320px;}.step-connector {display: none;}}
+
+    /* Mock Test */
+    .mock-preview {background: rgba(20,20,20,.95) !important;backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);box-shadow: 0 20px 50px rgba(0,0,0,.6);}
+    .mock-preview .mock-content {border: 1px solid rgba(255,255,255,.08);min-height: 220px;}
+    .mock-preview u {border-bottom: 2px dotted rgba(201,169,97,.5);color: transparent;}
+    .icon-box {width: 50px;height: 50px;background: rgba(201,169,97,.15);border-radius: 12px;display: flex;align-items: center;justify-content: center;flex-shrink: 0;transition: transform .4s ease;}
+    .glass.d-flex:hover .icon-box {transform: rotate(-12deg) scale(1.1);}
+    #mockTimer {font-family: 'Montserrat', sans-serif;font-weight: 700;letter-spacing: 1px;}
+    @media (max-width: 992px) {.mock-preview {max-width: 100% !important;margin-top: 2rem;}.mock-content {min-height: 180px !important;}}
+    @media (max-width: 576px) {.btn-pill, .btn-ghost {font-size: .9rem;padding: .6rem 1rem;}.icon-box {width: 42px;height: 42px;}}
+
+    .btn-ghost {background: transparent !important;color: #fff !important;border: 1.5px solid rgba(255, 255, 255, .4) !important;border-radius: 999px;padding: .6rem 1.2rem;font-weight: 600;font-size: .95rem;transition: all .35s ease;display: flex;align-items: center;justify-content: center;gap: .5rem;box-shadow: 0 4px 12px rgba(0,0,0,.3);}
+    .btn-ghost:hover {background: rgba(255, 255, 255, .1) !important;border-color: var(--gold) !important;color: var(--gold) !important;transform: translateY(-2px);box-shadow: 0 8px 20px rgba(201,169,97,.25);}
+    .btn-ghost i {font-size: 1.1rem;}
+
+    /* PRICING */
+    .price-display .price{font-size:2.2rem;font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .text-gold{color:var(--gold);text-decoration:none}
+    .text-gold:hover{text-decoration:underline}
+    .toggle-switch{position:relative;display:inline-block;width:56px;height:28px}
+    .toggle-switch input{opacity:0;width:0;height:0}
+    .toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.1);transition:.4s;border-radius:34px}
+    .toggle-slider:before{position:absolute;content:"";height:22px;width:22px;left:3px;bottom:3px;background:var(--bg2);transition:.4s;border-radius:50%}
+    input:checked + .toggle-slider{background:var(--grad1)}
+    input:checked + .toggle-slider:before{transform:translateX(28px)}
+    .popular-badge{position:absolute;top:30px;right:-5%;transform:rotate(45deg);background:var(--gold);color:#111;padding:4px 16px;border-radius:999px;font-size:.75rem;font-weight:700;z-index:2}
+
+    /* Trial */
+    #trial .glass {background: rgba(20, 20, 20, 0.9);backdrop-filter: blur(20px);border: 1px solid rgba(201,169,97,.2);box-shadow: 0 20px 40px rgba(0,0,0,.5);}
+    #trial .badge {animation: pulse 2s infinite;}
+    @keyframes pulse {0%, 100% { transform: scale(1); }50% { transform: scale(1.05); }}
+    #trial .bg-dark.bg-opacity-70 {background-color: rgba(30,30,30,.9) !important;}
+    #trial .text-gold {color: var(--gold) !important;}
+    #countdown-hours, #countdown-minutes, #countdown-seconds {min-width: 50px;font-family: 'Montserrat', sans-serif;}
+    @media (max-width: 768px) {#trial .glass { padding: 1.5rem !important; }#countdown-hours, #countdown-minutes, #countdown-seconds { font-size: 1.2rem !important; padding: .5rem !important; }}
+
+    .text-muted {color: #f8f9fa !important;}
+
+    /* FAQ */
+    .faq .accordion-item{border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03);margin-bottom:12px}
+    .faq .accordion-button{background:transparent;color:#c9a961;font-weight:600;font-size:1rem;padding:1rem 1.25rem}
+    .faq .accordion-button:not(.collapsed){background:var(--grad1);color:#111}
+    .accordion-body {padding: var(--bs-accordion-body-padding-y) var(--bs-accordion-body-padding-x);color: white !important;}
+
+    /* CTA */
+    .cta-banner{border-radius:22px;background:linear-gradient(135deg,#8a1d1d,#5a1313);border:1px solid rgba(255,255,255,.06);padding:2.5rem}
+    .cta-banner .btn{background:#fff;color:#111;border:none;border-radius:999px;font-weight:800;padding:10px 24px;font-size:1rem}
+
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
+    footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
+    footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
+    footer a:hover{color:var(--gold)}
+    footer .footer-logo img{height:100px;width:auto}
+
+    /* CONSULTANCY SECTION STYLES */
+    .consultancy-card {background: rgba(20,20,20,.95);backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);border-radius: 20px;padding: 2rem;transition: all .4s ease;height: 100%;display: flex;flex-direction: column;justify-content: space-between;}
+    .consultancy-card:hover {transform: translateY(-10px);border-color: var(--gold);box-shadow: 0 20px 50px rgba(201,169,97,.2);}
+    .country-flag {width: 60px;height: 40px;border-radius: 8px;margin-bottom: 1rem;}
+    .university-grid {display: grid;grid-template-columns: 1fr 1fr;gap: .75rem;font-size: .9rem;}
+    .university-grid li {padding: .4rem 0;border-bottom: 1px solid rgba(255,255,255,.05);}
+
+    /* Back to top */
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
+    #backToTop.show{opacity:1;visibility:visible}
+
+    /* RESPONSIVE */
+    @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
+    @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
+    @media (max-width:768px){.hero{padding:120px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.stat .num{font-size:2rem}.card-mod{padding:1.2rem}.cta-banner{padding:2rem;text-align:center}#trial-form {max-width: 100% !important;padding: 1.5rem !important;}}
+    @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill,.btn-ghost{font-size:.8rem;padding:6px 14px}.hero-metrics{flex-direction:column;align-items:center}.hero-metrics .metric{width:90%;justify-content:center;margin:6px 0}.stat .num{font-size:1.8rem}#backToTop{width:40px;height:40px;right:12px;bottom:12px}.popular-badge{font-size:.7rem;padding:3px 12px}}
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="page-transition" id="preloader">
+    <div class="text-center">
+      <div class="loader-logo">IELTS Masterclass</div>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="cursor-trailer"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="img/logo.png" alt="IELTS Masterclass Logo">
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#modules">IELTS Modules</a></li>
+              <li><a class="dropdown-item" href="#consultancy">Student Consultancy</a></li>
+              <li><a class="dropdown-item" href="#mock">Mock Test</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#journey">Student Journey</a></li>
+          <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="#trial">Free Class</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-pill" href="#cta">Get Started</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <span class="hero-dot gold"></span>
+    <span class="hero-dot red"></span>
+
+    <div class="container position-relative">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-10 mx-auto text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" style="height:100px;">
+          </div>
+          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-mortarboard"></i> IELTS Masterclass & Study Abroad</div>
+          <h1 class="mb-3" data-aos="fade-up">Your IELTS journey starts here</h1>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Structured courses, flexible schedules, and realistic mock tests designed to help you hit your target band faster.</p>
+          <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5" data-aos="zoom-in">
+            <a href="#cta" class="btn btn-pill"><span class="me-1">Get started</span> <i class="bi bi-arrow-right"></i></a>
+            <a href="#trial" class="btn btn-ghost">Try a free class</a>
+          </div>
+          <div class="hero-glass-metrics d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="150">
+            <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-graph-up-arrow text-gold"></i><div><div class="metric-value">+1.5</div><div class="metric-label">Avg. Band Increase</div></div></div></div>
+            <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-clipboard-check text-gold"></i><div><div class="metric-value">500+</div><div class="metric-label">Mock Tests / mo</div></div></div></div>
+            <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-emoji-smile text-gold"></i><div><div class="metric-value">97%</div><div class="metric-label">Student Satisfaction</div></div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATS SECTION -->
+  <section class="stats py-5 position-relative overflow-hidden">
+    <div class="position-absolute inset-0" style="background: var(--grad-dark); opacity: .95;"></div>
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px; height:800px; filter: blur(180px); opacity: .08; background: radial-gradient(circle, var(--gold), transparent 70%); pointer-events: none;"></div>
+    <div class="container position-relative z-1">
+      <div class="row text-center g-4 g-md-5">
+        <div class="col-6 col-md-3" data-aos="fade-up"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-trophy-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="98" data-suffix="%">0%</div><div class="text-muted small text-uppercase">Success Rate</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-people-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="15000" data-suffix="+">0</div><div class="text-muted small text-uppercase">Students</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-person-badge-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="25">0</div><div class="text-muted small text-uppercase">Instructors</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-graph-up-arrow text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="8.0">0.0</div><div class="text-muted small text-uppercase">Avg Band</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULES -->
+  <section id="modules">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Master the four modules</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Learn with bite-sized lessons, live feedback, and exam-style drills.</p>
+      <div class="row g-3 g-md-4">
+        <div class="col-6 col-md-3" data-aos="fade-up"><div class="glass card-mod h-100 d-flex flex-column"><div class="icon-bg"></div><div class="icon mb-2"><i class="bi bi-headphones"></i></div><h5 class="mb-1">Listening</h5><p class="text-secondary mb-3 flex-grow-1">Targeted drills + band descriptors.</p><button class="btn btn-sm btn-pill mt-auto">Explore</button></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="60"><div class="glass card-mod h-100 d-flex flex-column"><div class="icon-bg"></div><div class="icon mb-2"><i class="bi bi-book"></i></div><h5 class="mb-1">Reading</h5><p class="text-secondary mb-3 flex-grow-1">Skimming, scanning, time mastery.</p><button class="btn btn-sm btn-pill mt-auto">Explore</button></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="120"><div class="glass card-mod h-100 d-flex flex-column"><div class="icon-bg"></div><div class="icon mb-2"><i class="bi bi-pen"></i></div><h5 class="mb-1">Writing</h5><p class="text-secondary mb-3 flex-grow-1">Task 1 & 2 structures with review.</p><button class="btn btn-sm btn-pill mt-auto">Explore</button></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="180"><div class="glass card-mod h-100 d-flex flex-column"><div class="icon-bg"></div><div class="icon mb-2"><i class="bi bi-mic"></i></div><h5 class="mb-1">Speaking</h5><p class="text-secondary mb-3 flex-grow-1">Daily club + live feedback.</p><button class="btn btn-sm btn-pill mt-auto">Explore</button></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT CONSULTANCY SECTION -->
+  <section id="consultancy">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Student Consultancy Services</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">We have successfully placed over 500 students in renowned universities across the globe. Our success rate stands at an impressive 92%, ensuring your dream study abroad journey becomes a reality.</p>
+      <div class="row g-4">
+        <div class="col-lg-4" data-aos="fade-up">
+          <div class="consultancy-card text-center">
+            <i class="bi bi-people-fill text-gold fs-1 mb-3"></i>
+            <h4 class="mb-3">Total Students Placed</h4>
+            <div class="stat-num display-4 fw-bold text-white mb-2" data-target="500" data-suffix="+">0</div>
+            <p class="text-muted">Students sent abroad since 2020</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="consultancy-card text-center">
+            <i class="bi bi-award-fill text-gold fs-1 mb-3"></i>
+            <h4 class="mb-3">Success Rate</h4>
+            <div class="stat-num display-4 fw-bold text-white mb-2" data-target="92" data-suffix="%">0%</div>
+            <p class="text-muted">Visa & Admission Approval</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="consultancy-card text-center">
+            <i class="bi bi-graph-up-arrow text-gold fs-1 mb-3"></i>
+            <h4 class="mb-3">Countries Served</h4>
+            <div class="stat-num display-4 fw-bold text-white mb-2" data-target="5">0</div>
+            <p class="text-muted">USA, UK, Canada, Australia, Germany</p>
+          </div>
+        </div>
+      </div>
+      <div class="row g-4 mt-5">
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="consultancy-card">
+            <h5 class="mb-3">Our Success Stories by Country</h5>
+            <ul class="university-grid list-unstyled mb-0">
+              <li><strong>USA (150+):</strong> University of Illinois at Urbana-Champaign, Northeastern University, Arizona State University</li>
+              <li><strong>UK (120+):</strong> Imperial College London, University College London, University of Edinburgh</li>
+              <li><strong>Canada (100+):</strong> University of Toronto, University of British Columbia, McGill University</li>
+              <li><strong>Australia (80+):</strong> University of Melbourne, University of Sydney, Australian National University</li>
+              <li><strong>Germany (50+):</strong> Technical University of Munich, LMU Munich, Heidelberg University</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="consultancy-card">
+            <h5 class="mb-3">How We Help</h5>
+            <ul class="list-unstyled mb-4">
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Personalized university matching</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Visa application guidance</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Scholarship assistance (95% success)</li>
+              <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Pre-departure orientation</li>
+            </ul>
+            <a href="#cta" class="btn btn-pill mt-auto">Get Free Consultation</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STUDENT JOURNEY -->
+  <section id="journey" class="py-6 position-relative overflow-hidden">
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:900px;height:900px;filter:blur(200px);opacity:.08;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;"></div>
+    <div class="container position-relative z-1">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5" data-aos="fade-right">
+          <h2 class="title mb-3">Student journey</h2>
+          <p class="text-muted lead mb-4">From first assessment to your final mock, we guide you step-by-step.</p>
+          <div class="d-flex flex-column flex-sm-row gap-3">
+            <a href="#assessment" class="btn btn-pill">Create my plan</a>
+            <a href="#schedule" class="btn btn-ghost">See live class schedule</a>
+          </div>
+        </div>
+        <div class="col-lg-7" data-aos="fade-left">
+          <div class="journey-timeline">
+            <div class="journey-step" data-step="1"><div class="step-circle"><span class="step-number">1</span></div><div class="step-content glass p-3 p-md-4 rounded-4"><h5 class="mb-1 text-white">Initial assessment & placement</h5><p class="small text-muted mb-0">~ 15 min</p></div><div class="step-connector"></div></div>
+            <div class="journey-step" data-step="2"><div class="step-circle"><span class="step-number">2</span></div><div class="step-content glass p-3 p-md-4 rounded-4"><h5 class="mb-1 text-white">Personalized study plan</h5><p class="small text-muted mb-0">~ 30 min</p></div><div class="step-connector"></div></div>
+            <div class="journey-step" data-step="3"><div class="step-circle"><span class="step-number">3</span></div><div class="step-content glass p-3 p-md-4 rounded-4"><h5 class="mb-1 text-white">Live classes and practice sets</h5><p class="small text-muted mb-0">~ 30 min per session</p></div><div class="step-connector"></div></div>
+            <div class="journey-step" data-step="4"><div class="step-circle"><span class="step-number">4</span></div><div class="step-content glass p-3 p-md-4 rounded-4"><h5 class="mb-1 text-white">Weekly progress checks</h5><p class="small text-muted mb-0">~ 30 min</p></div><div class="step-connector"></div></div>
+            <div class="journey-step" data-step="5"><div class="step-circle"><span class="step-number Ibrahim">5</span></div><div class="step-content glass p-3 p-md-4 rounded-4"><h5 class="mb-1 text-white">Mock test booking & feedback</h5><p class="small text-muted mb-0">~ 1 hr</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOCK TEST -->
+  <section id="mock" class="py-5 position-relative overflow-hidden">
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px;height:800px;filter:blur(180px);opacity:.1;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;"></div>
+    <div class="container position-relative z-1">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="text-center text-lg-start mb-4">
+            <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill small">EXAM PREPARATION</span>
+            <h2 class="title mt-2 mb-3">Premium Mock Tests</h2>
+            <p class="text-muted lead">Experience real exam conditions with our advanced simulation platform</p>
+          </div>
+          <div class="row g-3">
+            <div class="col-12" data-aos="fade-up" data-aos-delay="100"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-display text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Real Exam Interface</h5><p class="text-muted small mb-0">Authentic computer-delivered test experience</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="200"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-clock-fill text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Timed Conditions</h5><p class="text-muted small mb-0">Practice under real exam time constraints</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="300"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-graph-up-arrow text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Instant Analytics</h5><p class="text-muted small mb-0">Detailed performance breakdown and insights</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="400"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-person-check-fill text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Expert Evaluation</h5><p class="text-muted small mb-0">Personalized feedback from certified trainers</p></div></div></div>
+          </div>
+          <div class="d-flex flex-column flex-sm-row gap-3 mt-4" data-aos="fade-up" data-aos-delay="500">
+            <a href="#cta" class="btn btn-pill btn-lg d-flex align-items-center justify-content-center gap-2"><i class="bi bi-calendar-check"></i> Book Mock Test</a>
+            <a href="#pricing" class="btn btn-ghost btn-lg d-flex align-items-center justify-content-center gap-2"><i class="bi bi-tag"></i> View Pricing</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="mock-preview glass p-4 rounded-4 shadow-lg" style="max-width: 460px; margin: 0 auto;">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <h6 class="text-white mb-0">IELTS Listening Test</h6>
+              <span class="text-danger fw-bold" id="mockTimer">00:45:23</span>
+            </div>
+            <div class="mock-content p-3 rounded-3" style="background:rgba(0,0,0,.3);">
+              <p class="text-white small mb-2"><strong>Questions 1-10</strong></p>
+              <p class="text-white small mb-3">Complete the notes below</p>
+              <p class="text-white small mb-3">Write no more than three words and/or a number for each answer.</p>
+              <div class="mb-3"><p class="text-white small mb-1">Example: <u>______</u> Centre</p></div>
+              <div class="mb-2"><p class="text-white small mb-1">1. Date of <u>______</u></p></div>
+              <div class="mb-2"><p class="text-white small mb-1">2. Preferred <u>______</u></p></div>
+              <div class="mb-2"><p class="text-white small mb-1">3. <u>______</u> required</p></div>
+            </div>
+            <div class="mt-3 text-center">
+              <div class="progress" style="height:4px;">
+                <div class="progress-bar bg-warning" style="width:65%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Choose your plan</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Flexible pricing for every learner. Start free, upgrade anytime.</p>
+      <div class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">
+        <div class="d-inline-flex align-items-center gap-3 bg-glass p-2 rounded-pill">
+          <span class="text-white fw-medium">Monthly</span>
+          <label class="toggle-switch"><input type="checkbox" id="priceToggle"><span class="toggle-slider"></span></label>
+          <span class="text-white fw-medium">Yearly <span class="text-success small">(Save up to 33%)</span></span>
+        </div>
+      </div>
+      <div class="row g-4 justify-content-center">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up"><div class="glass p-4 h-100 d-flex flex-column card-mod"><div class="text-center mb-4"><h4 class="mb-1">Basic</h4><div class="price-display"><span class="price monthly">৳2,999</span><span class="price yearly d-none">৳29,999</span><span class="text-secondary small period">/month</span></div></div><ul class="list-unstyled mb-4 flex-grow-1"><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 20+ Video Lessons</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 50 Practice Sets</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Weekly Live Q&A</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> 1:1 Mentoring</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Full Mock Tests</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Band Score Report</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Priority Support</li></ul><a href="#cta" class="btn btn-ghost w-100 mt-auto">Get Started</a></div></div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100"><div class="glass p-4 h-100 d-flex flex-column position-relative card-mod border border-warning" style="border-image: var(--grad1) 1;"><div class="popular-badge">MOST POPULAR</div><div class="text-center mb-4"><h4 class="mb-1">Advanced</h4><div class="price-display"><span class="price monthly">৳5,999</span><span class="price yearly d-none">৳47,999</span><span class="text-secondary small period">/month</span></div><small class="text-success d-block mt-1 save-text">Save ৳24,000 if paid yearly</small></div><ul class="list-unstyled mb-4 flex-grow-1"><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 60+ Video Lessons</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 150 Practice Sets</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Daily Live Classes</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 2 Full Mock Tests/mo</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Band Score Report</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 1:1 Speaking Review</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Priority Support</li></ul><a href="#cta" class="btn btn-pill w-100 mt-auto">Choose Advanced</a></div></div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200"><div class="glass p-4 h-100 d-flex flex-column card-mod"><div class="text-center mb-4"><h4 class="mb-1">Premium</h4><div class="price-display"><span class="price monthly">৳9,999</span><span class="price yearly d-none">৳83,999</span><span class="text-secondary small period">/month</span></div><small class="text-success d-block mt-1 save-text">Save ৳36,000 if paid yearly</small></div><ul class="list-unstyled mb-4 flex-grow-1"><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 100+ Video Lessons</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Unlimited Practice</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Daily Live + Recorded</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 4 Full Mock Tests/mo</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Full Band Report + AI</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 1:1 Writing & Speaking</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 24/7 Priority Support</li></ul><a href="#cta" class="btn btn-pill w-100 mt-auto">Go Premium</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE TRIAL -->
+  <section id="trial" class="py-5 position-relative overflow-hidden">
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:600px;height:600px;filter:blur(120px);opacity:.12;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;z-index:0;"></div>
+    <div class="container position-relative z-1">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="d-inline-flex align-items-center gap-2 mb-3">
+            <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill animate__animated animate__pulse animate__infinite" style="animation-duration:2s;">HURRY! LIMITED SEATS</span>
+          </div>
+          <h2 class="title mb-3">Try a free class today</h2>
+          <p class="subtitle mb-4">Join a live 60-minute demo class with our expert instructors. No commitment, no cost—just real IELTS learning.</p>
+          <div class="row g-3 mb-4">
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-clock-fill text-gold fs-4 me-2"></i><div><strong>60-minute</strong><br><small class="text-muted">Live session</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-people-fill text-gold fs-4 me-2"></i><div><strong>Interactive</strong><br><small class="text-muted">15+ students</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-award-fill text-gold fs-4 me-2"></i><div><strong>Certificate</strong><br><small class="text-muted">of participation</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-headset text-gold fs-4 me-2"></i><div><strong>Doubt clearing</strong><br><small class="text-muted">after class</small></div></div></div>
+          </div>
+          <div class="d-flex flex-column flex-sm-row gap-2">
+            <a href="#trial-form" class="btn btn-pill">Book Free Class Now</a>
+            <a href="#mock" class="btn btn-ghost">Or try a mock test</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="glass p-4 p-md-5 rounded-4 shadow-lg" id="trial-form" style="max-width: 440px; margin: 0 auto; position:relative;">
+            <div class="text-center mb-3">
+              <div class="d-inline-flex align-items-center gap-2 bg-dark bg-opacity-50 px-3 py-1 rounded-pill">
+                <i class="bi bi-person-fill text-warning"></i>
+                <span class="text-white fw-bold" id="seatsLeft">12</span>
+                <span class="text-muted">/ 20 seats left</span>
+              </div>
+            </div>
+            <div class="text-center mb-4">
+              <p class="text-gold small mb-1">Next class starts in</p>
+              <div class="d-flex justify-content-center gap-2 gap-md-3">
+                <div class="text-center"><div class="bg-dark bg-opacity-70 text-white rounded p-2 px-3 fs-5 fw-bold" id="countdown-hours">00</div><small class="text-muted">Hours</small></div>
+                <span class="text-gold align-self-center fs-4">:</span>
+                <div class="text-center"><div class="bg-dark bg-opacity-70 text-white rounded p-2 px-3 fs-5 fw-bold" id="countdown-minutes">15</div><small class="text-muted">Minutes</small></div>
+                <span class="text-gold align-self-center fs-4">:</span>
+                <div class="text-center"><div class="bg-dark bg-opacity-70 text-white rounded p-2 px-3 fs-5 fw-bold" id="countdown-seconds">00</div><small class="text-muted">Seconds</small></div>
+              </div>
+            </div>
+            <h4 class="mb-3 text-center text-white">Register for Free Class</h4>
+            <form id="trialForm" class="needs-validation" novalidate>
+              <div class="mb-3"><label for="name" class="form-label small text-light">Full Name</label><input type="text" class="form-control form-control-lg trial-input" id="name" placeholder="John Doe" required><div class="invalid-feedback">Please enter your name.</div></div>
+              <div class="mb-3"><label for="email" class="form-label small text-light">Email Address</label><input type="email" class="form-control form-control-lg trial-input" id="email" placeholder="you@example.com" required><div class="invalid-feedback">Please enter a valid email.</div></div>
+              <div class="mb-3"><label for="phone" class="form-label small text-light">Phone (Optional)</label><input type="tel" class="form-control form-control-lg trial-input" id="phone" placeholder="+880 1XXX-XXXXXX"></div>
+              <div class="mb-3"><label for="target" class="form-label small text-light">Target Band</label><select class="form-select form-select-lg trial-input" id="target"><option value="">Select...</option><option>6.0</option><option>6.5</option><option>7.0</option><option>7.5</option><option>8.0+</option></select></div>
+              <button type="submit" class="btn btn-pill w-100 mt-2 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-sparkles"></i><span>Claim Free Class Now</span></button>
+              <p class="text-center small text-muted mt-3 mb-0"><i class="bi bi-calendar-check"></i> Next class: <strong>Tomorrow, 7:00 PM</strong></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="faq">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Frequently asked questions</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Everything you need to know about classes, schedules, and mock tests.</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-9">
+          <div class="accordion" id="faqAcc">
+            <div class="accordion-item" data-aos="fade-up">
+              <h2 class="accordion-header"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">What is the IELTS and how do you prepare students?</button></h2>
+              <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#faqAcc"><div class="accordion-body">We combine expert-led classes, targeted drills, and authentic mock tests that mirror the real exam—so you build skills and confidence quickly.</div></div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="60">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">Can I choose class schedules?</button></h2>
+              <div id="f2" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Yes—join weekday or weekend cohorts, morning or evening batches. You can reschedule missed sessions from your dashboard.</div></div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="60">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">Do you provide mock tests?</button></h2>
+              <div id="f3" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Absolutely. Students can book computer-delivered or paper-based mock tests and receive detailed band-wise feedback.</div></div>
+            </div>
+            <div class="accordion-item" data-aos="fade-up" data-aos-delay="60">
+              <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">Is there one-to-one mentoring?</button></h2>
+              <div id="f4" class="accordion-collapse collapse" data-bs-parent="#faqAcc"><div class="accordion-body">Premium and Pro plans include 1:1 mentoring with expert trainers for writing and speaking.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="cta">
+    <div class="container">
+      <div class="cta-banner text-white text-center text-sm-start" data-aos="zoom-in">
+        <h2 class="mb-2">Ready to boost your IELTS band score?</h2>
+        <p class="mb-3">Join thousands of students who reached their goals with us.</p>
+        <a href="#contact" class="btn">Enroll now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="footer-logo mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" >
+          </div>
+          <h5>IELTS Pathway</h5>
+          <p class="text-secondary mb-3">Guiding students to top IELTS scores with expert mentors, flexible classes, and mock tests.</p>
+        </div>
+        <div class="col-md-3"><h5>Explore</h5><ul class="list-unstyled"><li><a href="#modules">Services</a></li><li><a href="#consultancy">Consultancy</a></li><li><a href="#journey">Student Journey</a></li><li><a href="#mock">Mock Test</a></li></ul></div>
+        <div class="col-md-3"><h5>Support</h5><ul class="list-unstyled"><li><a href="#contact">Contact Us</a></li><li><a href="#cta">Enroll</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
+      </div>
+      <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
+        © 2025 IELTS Pathway. All rights reserved. <span class="ms-2">Developed by Maptoway Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:1000,once:true,offset:80,easing:'ease-out-quart'});
+
+    // Navbar shrink
+    window.addEventListener('scroll',()=>document.querySelector('.navbar').classList.toggle('scrolled',window.scrollY>50));
+
+    // Back to top
+    const btt=document.getElementById('backToTop');
+    window.addEventListener('scroll',()=>btt.classList.toggle('show',window.scrollY>300));
+    btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Preloader
+    function hideLoader(){document.getElementById('preloader')?.classList.add('hide')}
+    window.addEventListener('load',()=>setTimeout(hideLoader,800));
+    setTimeout(hideLoader,4000);
+
+    // Custom cursor
+    const cur=document.querySelector('.custom-cursor'), trail=document.querySelector('.cursor-trailer');
+    let mouseX=0, mouseY=0, trailX=0, trailY=0;
+    document.addEventListener('mousemove',e=>{mouseX=e.clientX; mouseY=e.clientY; cur.style.left=mouseX+'px'; cur.style.top=mouseY+'px';});
+    function animateTrail(){trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15; trail.style.left=trailX+'px'; trail.style.top=trailY+'px'; requestAnimationFrame(animateTrail);}
+    animateTrail();
+    document.querySelectorAll('a,button,.glass,.card-mod,.btn').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('cursor-grow')); el.addEventListener('mouseleave',()=>cur.classList.remove('cursor-grow'));});
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href')); if(t){e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'});}});});
+
+    // Journey step active
+    const journeySteps = document.querySelectorAll('.journey-step');
+    const observer = new IntersectionObserver((entries) => {entries.forEach(entry => {if (entry.isIntersecting) {journeySteps.forEach(s => s.classList.remove('active')); entry.target.classList.add('active');}});}, { threshold: 0.6 });
+    journeySteps.forEach(step => observer.observe(step));
+
+    // Mock Timer
+    function startMockTimer() {
+      let time = 45 * 60 + 23;
+      const timerEl = document.getElementById('mockTimer');
+      const updateTimer = () => {
+        if (time <= 0) {timerEl.textContent = "00:00:00"; timerEl.classList.replace('text-danger', 'text-success'); return;}
+        const hours = Math.floor(time / 3600); const minutes = Math.floor((time % 3600) / 60); const seconds = time % 60;
+        timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        time--;
+      };
+      updateTimer(); setInterval(updateTimer, 1000);
+    }
+    const mockSection = document.getElementById('mock');
+    const mockObs = new IntersectionObserver((entries) => {entries.forEach(entry => {if (entry.isIntersecting) {startMockTimer(); mockObs.unobserve(entry.target);}});}, { threshold: 0.3 });
+    if (mockSection) mockObs.observe(mockSection);
+
+    // Counter - Extended for consultancy section
+    function animateCounter(el) {
+      const target = parseFloat(el.getAttribute('data-target'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      const isFloat = target % 1 !== 0;
+      const duration = 3500; const frameDuration = 1000 / 60; const totalFrames = Math.round(duration / frameDuration);
+      let frame = 0; const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+      const count = () => {
+        frame++;
+        const progress = easeOutQuart(frame / totalFrames);
+        const current = isFloat ? (target * progress).toFixed(1) : Math.floor(target * progress);
+        el.textContent = current + suffix;
+        if (frame < totalFrames) requestAnimationFrame(count); else el.textContent = target + suffix;
+      };
+      count();
+    }
+    const statsSection = document.querySelector('.stats');
+    let counted = false;
+    function runCounter() {
+      if (!counted && statsSection) {
+        const stats = statsSection.querySelectorAll('.stat-num');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting && !counted) {
+              let delay = 0;
+              stats.forEach(stat => {setTimeout(() => animateCounter(stat), delay); delay += 300;});
+              counted = true;
+            }
+          });
+        }, { threshold: 0.5 });
+        observer.observe(statsSection);
+      }
+    }
+    window.addEventListener('load', runCounter);
+    window.addEventListener('scroll', runCounter);
+
+    // Consultancy Counters
+    const consultancySection = document.getElementById('consultancy');
+    let consultancyCounted = false;
+    const consultancyObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !consultancyCounted) {
+          const consultancyStats = entry.target.querySelectorAll('.stat-num');
+          let delay = 0;
+          consultancyStats.forEach(stat => {setTimeout(() => animateCounter(stat), delay); delay += 300;});
+          consultancyCounted = true;
+        }
+      });
+    }, { threshold: 0.5 });
+    if (consultancySection) consultancyObs.observe(consultancySection);
+
+    // Pricing Toggle
+    const toggle = document.getElementById('priceToggle');
+    const monthlyPrices = document.querySelectorAll('.price.monthly');
+    const yearlyPrices = document.querySelectorAll('.price.yearly');
+    const period = document.querySelectorAll('.period');
+    const saveTexts = document.querySelectorAll('.save-text');
+    toggle.addEventListener('change', function() {
+      if (this.checked) {
+        monthlyPrices.forEach(p => p.classList.add('d-none'));
+        yearlyPrices.forEach(p => p.classList.remove('d-none'));
+        period.forEach(p => p.textContent = '/year');
+        saveTexts.forEach(s => s.style.display = 'block');
+      } else {
+        monthlyPrices.forEach(p => p.classList.remove('d-none'));
+        yearlyPrices.forEach(p => p.classList.add('d-none'));
+        period.forEach(p => p.textContent = '/month');
+        saveTexts.forEach(s => s.style.display = 'none');
+      }
+    });
+
+    // Trial Countdown
+    function updateCountdown() {
+      const now = new Date();
+      const tomorrow = new Date(now);
+      tomorrow.setDate(now.getDate() + 1);
+      tomorrow.setHours(19, 0, 0, 0);
+      const diff = tomorrow - now;
+      if (diff <= 0) {document.querySelectorAll('#countdown-hours, #countdown-minutes, #countdown-seconds').forEach(el => el.textContent = '00'); return;}
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      document.getElementById('countdown-hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('countdown-minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('countdown-seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Seat reduction
+    let seats = 12;
+    setInterval(() => {
+      if (seats > 3) {
+        seats--;
+        document.getElementById('seatsLeft').textContent = seats;
+        if (seats <= 5) {
+          document.querySelector('.badge').classList.replace('bg-warning', 'bg-danger');
+          document.querySelector('.badge').textContent = 'ALMOST FULL!';
+        }
+      }
+    }, 30000);
+  </script>
+</body>
+</html>
