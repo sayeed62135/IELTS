@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mock Test | IELTS Masterclass</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#c9a961;--gold2:#f6e8a6;--accent:#8b0000;
+      --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
+      --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
+      --grad1:linear-gradient(135deg,#c9a961,#f6e8a6);
+      --grad2:linear-gradient(135deg,#8b0000,#c9184a);
+      --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;cursor:none}
+    h1,h2,h3,h4,h5{font-family:Montserrat,sans-serif;letter-spacing:-.4px}
+
+    /* Custom Cursor */
+    .custom-cursor{width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:.12s}
+    .cursor-trailer{width:40px;height:40px;border:1px solid rgba(201,169,97,.35);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:.35s cubic-bezier(.22,1,.36,1)}
+    .cursor-grow{transform:translate(-50%,-50%) scale(2);background:rgba(201,169,97,.25);border-color:transparent}
+
+    /* Loader */
+    .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
+    .page-transition.hide{opacity:0;pointer-events:none}
+    .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(201,169,97,.25);border-top:3px solid var(--gold);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
+
+    /* Navbar */
+    .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
+    .navbar-brand img{height:40px;width:auto}
+    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
+    .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
+    .nav-link:hover:after{left:0;width:100%}
+    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
+    .dropdown-item{color:var(--text);font-size:.9rem;padding:.5rem 1.25rem}
+    .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)}
+    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem}
+    .btn-pill:hover{transform:translateY(-1px)}
+
+    /* Utilities */
+    .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
+    section{padding:90px 0;position:relative;overflow:hidden}
+    .title{font-size:2.8rem;font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+    .subtitle{max-width:720px;margin:0 auto 32px;color:var(--muted);font-size:1rem}
+
+    /* FLOATING GLOW OVERLAY */
+    section { position: relative; overflow: hidden; }
+    section > * { position: relative; z-index: 1; }
+    section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(201,169,97,.08)) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatingGlow 22s ease-in-out infinite;
+    }
+    #mock-hero::before { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
+    #test-types::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
+    #features::before { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
+    #booking::before { --glow-color: rgba(255,215,0,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
+    @keyframes floatingGlow {
+      0%   { transform: translate(-5%, 10%) rotate(0deg); opacity: 0.6; }
+      25%  { transform: translate(8%, -8%) rotate(90deg); opacity: 0.8; }
+      50%  { transform: translate(-8%, 5%) rotate(180deg); opacity: 0.5; }
+      75%  { transform: translate(5%, -10%) rotate(270deg); opacity: 0.75; }
+      100% { transform: translate(-5%, 10%) rotate(360deg); opacity: 0.6; }
+    }
+
+    /* HERO */
+    .hero{min-height:60vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 100px}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;transform:scale(1.1)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.85),rgba(10,10,10,.95))}
+    .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
+    .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
+    .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
+    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
+    .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
+    .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
+
+    /* Test Types */
+    .test-type-card {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .test-type-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+    }
+    .test-type-card .test-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .test-type-card .test-icon i {
+      font-size: 2.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .test-type-card .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .test-type-card .features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .test-type-card .features li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .test-type-card .features li i {
+      color: var(--gold);
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    /* Features */
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .feature-item .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    .feature-item .feature-icon i {
+      font-size: 1.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .feature-item .feature-content h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .feature-item .feature-content p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Booking Form */
+    .booking-form {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .form-control, .form-select {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+    }
+    .form-control:focus, .form-select:focus {
+      background: rgba(255,255,255,0.08);
+      border-color: var(--gold);
+      color: var(--text);
+      box-shadow: 0 0 0 0.2rem rgba(201,169,97,0.25);
+    }
+    .form-label {
+      color: var(--text);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Mock Test Preview */
+    .mock-preview {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+    }
+    .mock-preview .timer {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    .mock-preview .question-box {
+      background: rgba(0,0,0,0.3);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .mock-preview .progress {
+      height: 8px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .mock-preview .progress-bar {
+      background: var(--grad1);
+      transition: width 0.3s ease;
+    }
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
+    footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
+    footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
+    footer a:hover{color:var(--gold)}
+    footer .footer-logo img{height:100px;width:auto}
+    
+    /* Back to top */
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
+    #backToTop.show{opacity:1;visibility:visible}
+
+    /* RESPONSIVE */
+    @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
+    @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
+    @media (max-width:768px){.hero{padding:120px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.feature-item {flex-direction: column;text-align: center;}.feature-item .feature-icon {margin-right: 0;margin-bottom: 1rem;}}
+    @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill{font-size:.8rem;padding:6px 14px}#backToTop{width:40px;height:40px;right:12px;bottom:12px}.booking-form {padding: 1.5rem;}}
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="page-transition" id="preloader">
+    <div class="text-center">
+      <div class="loader-logo">IELTS Masterclass</div>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+
+  <!-- Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="cursor-trailer"></div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" alt="IELTS Masterclass Logo">
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="modules.html">IELTS Modules</a></li>
+              <li><a class="dropdown-item" href="consultancy.html">Student Consultancy</a></li>
+              <li><a class="dropdown-item active" href="mock.html">Mock Test</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
+          <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="mock-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <span class="hero-dot gold"></span>
+    <span class="hero-dot red"></span>
+
+    <div class="container position-relative">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-10 mx-auto text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" style="height:100px;">
+          </div>
+          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-clipboard-check"></i> Mock Tests</div>
+          <h1 class="mb-3" data-aos="fade-up">Practice with real exam conditions</h1>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Experience authentic IELTS test conditions with our comprehensive mock tests. Get detailed feedback and improve your score.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TEST TYPES SECTION -->
+  <section id="test-types">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Choose Your Mock Test</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Select from our range of mock tests designed to simulate real exam conditions.</p>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="test-type-card">
+            <div class="test-icon">
+              <i class="bi bi-laptop"></i>
+            </div>
+            <h3>Computer-Delivered</h3>
+            <div class="price">৳2,999</div>
+            <p>Experience the computer-based IELTS test with our advanced simulation platform.</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> Full 4-module test</li>
+              <li><i class="bi bi-check-circle-fill"></i> Real exam interface</li>
+              <li><i class="bi bi-check-circle-fill"></i> Timed conditions</li>
+              <li><i class="bi bi-check-circle-fill"></i> Instant results</li>
+              <li><i class="bi bi-check-circle-fill"></i> Detailed feedback</li>
+            </ul>
+            <a href="#booking" class="btn btn-pill w-100">Book Now</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="test-type-card">
+            <div class="test-icon">
+              <i class="bi bi-file-earmark-text"></i>
+            </div>
+            <h3>Paper-Based</h3>
+            <div class="price">৳2,499</div>
+            <p>Traditional paper-based IELTS test experience with answer sheets and timing.</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> Full 4-module test</li>
+              <li><i class="bi bi-check-circle-fill"></i> Paper answer sheets</li>
+              <li><i class="bi bi-check-circle-fill"></i> Timed conditions</li>
+              <li><i class="bi bi-check-circle-fill"></i> Manual evaluation</li>
+              <li><i class="bi bi-check-circle-fill"></i> Detailed feedback</li>
+            </ul>
+            <a href="#booking" class="btn btn-pill w-100">Book Now</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="test-type-card">
+            <div class="test-icon">
+              <i class="bi bi-mic"></i>
+            </div>
+            <h3>Speaking Only</h3>
+            <div class="price">৳999</div>
+            <p>Focus on improving your speaking skills with dedicated speaking mock tests.</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> 3-part speaking test</li>
+              <li><i class="bi bi-check-circle-fill"></i> Live examiner</li>
+              <li><i class="bi bi-check-circle-fill"></i> Real-time feedback</li>
+              <li><i class="bi bi-check-circle-fill"></i> Band score assessment</li>
+              <li><i class="bi bi-check-circle-fill"></i> Improvement tips</li>
+            </ul>
+            <a href="#booking" class="btn btn-pill w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Why Choose Our Mock Tests?</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Our mock tests are designed to give you the most authentic IELTS experience.</p>
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-display"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Real Exam Interface</h4>
+              <p>Practice with the exact same interface you'll encounter in the actual IELTS test.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-clock-history"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Timed Conditions</h4>
+              <p>Experience real exam timing to improve your time management skills.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Performance Analytics</h4>
+              <p>Get detailed insights into your performance with comprehensive analytics.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-person-check"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Expert Evaluation</h4>
+              <p>Receive personalized feedback from certified IELTS trainers.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-arrow-repeat"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Unlimited Retakes</h4>
+              <p>Practice as many times as you need until you're confident.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-certificate"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Band Score Certificate</h4>
+              <p>Receive an official band score certificate upon completion.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING SECTION -->
+  <section id="booking">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Book Your Mock Test</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Schedule your mock test at a convenient time and start preparing.</p>
+      <div class="row g-4">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="booking-form">
+            <h3 class="mb-4">Book Your Test</h3>
+            <form id="mockTestForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">First Name</label>
+                  <input type="text" class="form-control" id="firstName" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Last Name</label>
+                  <input type="text" class="form-control" id="lastName" required>
+                </div>
+                <div class="col-12">
+                  <label for="email" class="form-label">Email Address</label>
+                  <input type="email" class="form-control" id="email" required>
+                </div>
+                <div class="col-12">
+                  <label for="phone" class="form-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="phone" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="testType" class="form-label">Test Type</label>
+                  <select class="form-select" id="testType" required>
+                    <option value="">Select test type</option>
+                    <option value="computer">Computer-Delivered</option>
+                    <option value="paper">Paper-Based</option>
+                    <option value="speaking">Speaking Only</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="testDate" class="form-label">Preferred Date</label>
+                  <input type="date" class="form-control" id="testDate" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="testTime" class="form-label">Preferred Time</label>
+                  <select class="form-select" id="testTime" required>
+                    <option value="">Select time</option>
+                    <option value="09:00">9:00 AM</option>
+                    <option value="11:00">11:00 AM</option>
+                    <option value="14:00">2:00 PM</option>
+                    <option value="16:00">4:00 PM</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="targetBand" class="form-label">Target Band</label>
+                  <select class="form-select" id="targetBand" required>
+                    <option value="">Select target band</option>
+                    <option value="6.0">6.0</option>
+                    <option value="6.5">6.5</option>
+                    <option value="7.0">7.0</option>
+                    <option value="7.5">7.5</option>
+                    <option value="8.0">8.0+</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="message" class="form-label">Additional Notes (Optional)</label>
+                  <textarea class="form-control" id="message" rows="3"></textarea>
+                </div>
+                <div class="col-12">
+                  <button type="submit" class="btn btn-pill w-100">Book Mock Test</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="mock-preview">
+            <h3 class="mb-4">Test Preview</h3>
+            <div class="timer" id="mockTimer">00:45:23</div>
+            <div class="question-box">
+              <h5>Listening Section</h5>
+              <p class="mb-3">Questions 1-10</p>
+              <p class="mb-2">Complete the notes below.</p>
+              <p class="mb-3">Write no more than three words and/or a number for each answer.</p>
+              <div class="mb-2">
+                <strong>Example:</strong> Riverside ______ Centre
+              </div>
+              <div class="mb-2">
+                <strong>1.</strong> Date of ______
+              </div>
+              <div class="mb-2">
+                <strong>2.</strong> Preferred ______
+              </div>
+              <div class="mb-2">
+                <strong>3.</strong> ______ required
+              </div>
+            </div>
+            <div class="progress">
+              <div class="progress-bar" style="width: 65%"></div>
+            </div>
+            <p class="text-center mt-3 mb-0">Progress: 65% Complete</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="footer-logo mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" >
+          </div>
+          <h5>IELTS Pathway</h5>
+          <p class="text-secondary mb-3">Guiding students to top IELTS scores with expert mentors, flexible classes, and mock tests.</p>
+        </div>
+        <div class="col-md-3"><h5>Explore</h5><ul class="list-unstyled"><li><a href="#modules">Services</a></li><li><a href="#consultancy">Consultancy</a></li><li><a href="#journey">Student Journey</a></li><li><a href="#mock">Mock Test</a></li></ul></div>
+        <div class="col-md-3"><h5>Support</h5><ul class="list-unstyled"><li><a href="#contact">Contact Us</a></li><li><a href="#cta">Enroll</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
+      </div>
+      <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
+        © 2025 IELTS Pathway. All rights reserved. <span class="ms-2">Developed by Maptoway Inc.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:1000,once:true,offset:80,easing:'ease-out-quart'});
+
+    // Navbar shrink
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 300));
+    btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Preloader
+    function hideLoader() {
+      const loader = document.getElementById('preloader');
+      if (loader) {
+        loader.classList.add('hide');
+        setTimeout(() => loader.style.display = 'none', 800);
+      }
+    }
+    window.addEventListener('load', () => setTimeout(hideLoader, 800));
+    setTimeout(hideLoader, 4000); // Fallback
+
+    // Custom cursor
+    const cur = document.querySelector('.custom-cursor'), trail = document.querySelector('.cursor-trailer');
+    let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; cur.style.left = mouseX + 'px'; cur.style.top = mouseY + 'px'; });
+    function animateTrail() {
+      trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15;
+      trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
+      requestAnimationFrame(animateTrail);
+    }
+    animateTrail();
+    document.querySelectorAll('a,button,.glass,.test-type-card,.booking-form,.mock-preview').forEach(el => {
+      el.addEventListener('mouseenter', () => cur.classList.add('cursor-grow'));
+      el.addEventListener('mouseleave', () => cur.classList.remove('cursor-grow'));
+    });
+
+    // Mock Timer
+    function startMockTimer() {
+      let time = 45 * 60 + 23;
+      const timerEl = document.getElementById('mockTimer');
+      const updateTimer = () => {
+        if (time <= 0) { timerEl.textContent = "00:00:00"; return; }
+        const hours = Math.floor(time / 3600);
+        const minutes = Math.floor((time % 3600) / 60);
+        const seconds = time % 60;
+        timerEl.textContent = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+        time--;
+      };
+      updateTimer();
+      setInterval(updateTimer, 1000);
+    }
+    startMockTimer();
+
+    // Form submission
+    document.getElementById('mockTestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for booking! We will contact you soon to confirm your mock test schedule.');
+      this.reset();
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>
