@@ -184,17 +184,38 @@
       color: var(--text);
       border-radius: 10px;
       padding: 0.75rem 1rem;
+      transition: all 0.3s ease;
     }
     .form-control:focus, .form-select:focus {
       background: rgba(255,255,255,0.08);
       border-color: var(--gold);
       color: var(--text);
       box-shadow: 0 0 0 0.2rem rgba(201,169,97,0.25);
+      outline: none;
     }
     .form-label {
       color: var(--text);
       font-weight: 500;
       margin-bottom: 0.5rem;
+    }
+    /* Custom Select Styling */
+    .form-select {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23c9a961' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 16px 12px;
+      padding-right: 2.5rem;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+    .form-select option {
+      background: var(--bg2);
+      color: var(--text);
+      padding: 0.5rem;
+    }
+    .form-select option:hover {
+      background: rgba(201,169,97,0.2);
     }
 
     /* Countdown */
@@ -227,7 +248,6 @@
     footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
     footer a:hover{color:var(--gold)}
     footer .footer-logo img{height:100px;width:auto}
-
     /* Back to top */
     #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
     #backToTop.show{opacity:1;visibility:visible}
@@ -524,7 +544,6 @@
       </div>
     </div>
   </footer>
-
   <!-- Back to top -->
   <button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
