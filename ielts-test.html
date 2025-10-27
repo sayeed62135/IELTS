@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Your IELTS Test | IELTS Masterclass</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#c9a961;--gold2:#f6e8a6;--accent:#8b0000;
+      --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
+      --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
+      --grad1:linear-gradient(135deg,#c9a961,#f6e8a6);
+      --grad2:linear-gradient(135deg,#8b0000,#c9184a);
+      --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
+    h1,h2,h3,h4,h5{font-family:Montserrat,sans-serif;letter-spacing:-.4px}
+
+    /* Loader */
+    .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
+    .page-transition.hide{opacity:0;pointer-events:none}
+    .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(201,169,97,.25);border-top:3px solid var(--gold);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
+
+    /* Navbar */
+    .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
+    .navbar-brand img{height:40px;width:auto}
+    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
+    .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
+    .nav-link:hover:after{left:0;width:100%}
+    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
+    .dropdown-item{color:var(--text)!important;font-size:.9rem;padding:.5rem 1.25rem}
+    .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)!important}
+    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem;transition:all .3s ease}
+    .btn-pill:hover{transform:translateY(-1px);color:#111!important}
+
+    /* Ghost Button - Fixed Border */
+    .btn-ghost {
+      background: transparent !important;
+      color: #fff !important;
+      border: 2px solid rgba(201, 169, 97, 0.8) !important;
+      border-radius: 999px;
+      padding: .6rem 1.2rem;
+      font-weight: 600;
+      font-size: .95rem;
+      transition: all .35s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,.3);
+    }
+    .btn-ghost:hover {
+      background: rgba(201, 169, 97, 0.1) !important;
+      border-color: var(--gold) !important;
+      color: var(--gold) !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(201,169,97,.25);
+    }
+    .btn-ghost i {
+      font-size: 1.1rem;
+    }
+
+    /* Utilities */
+    .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
+    section{padding:90px 0;position:relative;overflow:hidden}
+    .title{font-size:2.8rem;font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+    .subtitle{max-width:720px;margin:0 auto 32px;color:var(--muted);font-size:1rem}
+
+    /* FLOATING GLOW OVERLAY */
+    section { position: relative; overflow: hidden; }
+    section > * { position: relative; z-index: 1; }
+    section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(201,169,97,.08)) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatingGlow 22s ease-in-out infinite;
+    }
+    #test-hero::before { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
+    #test-types::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
+    #registration::before { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
+    #benefits::before { --glow-color: rgba(255,215,0,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
+    @keyframes floatingGlow {
+      0%   { transform: translate(-5%, 10%) rotate(0deg); opacity: 0.6; }
+      25%  { transform: translate(8%, -8%) rotate(90deg); opacity: 0.8; }
+      50%  { transform: translate(-8%, 5%) rotate(180deg); opacity: 0.5; }
+      75%  { transform: translate(5%, -10%) rotate(270deg); opacity: 0.75; }
+      100% { transform: translate(-5%, 10%) rotate(360deg); opacity: 0.6; }
+    }
+
+    /* HERO */
+    .hero{min-height:60vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 100px}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;transform:scale(1.1)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.85),rgba(10,10,10,.95))}
+    .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
+    .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
+    .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
+    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
+    .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
+    .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
+
+    /* Test Types */
+    .test-type-card {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .test-type-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+    }
+    .test-type-card .test-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .test-type-card .test-icon i {
+      font-size: 2.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .test-type-card .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 900;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .test-type-card .features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .test-type-card .features li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .test-type-card .features li i {
+      color: var(--gold);
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    /* Registration Form */
+    .registration-form {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2.5rem;
+    }
+    .form-control, .form-select {
+      background: rgba(255,255,255,.05) !important;
+      border: 1px solid rgba(255,255,255,.1) !important;
+      color: var(--text) !important;
+      border-radius: 10px;
+      padding: 0.75rem 1rem;
+      transition: all 0.3s ease;
+    }
+    .form-control:focus, .form-select:focus {
+      background: rgba(255,255,255,.08) !important;
+      border-color: var(--gold) !important;
+      box-shadow: 0 0 0 0.2rem rgba(201,169,97,.25) !important;
+      color: var(--text) !important;
+    }
+    .form-control::placeholder {
+      color: rgba(255,255,255,.5) !important;
+    }
+    .form-label {
+      color: var(--gold) !important;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .form-select option {
+      background: #1a1a1a !important;
+      color: var(--text) !important;
+    }
+    .form-check-label {
+      color: var(--muted) !important;
+    }
+
+    /* Benefits */
+    .benefit-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .benefit-item .benefit-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    .benefit-item .benefit-icon i {
+      font-size: 1.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .benefit-item .benefit-content h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text) !important;
+    }
+    .benefit-item .benefit-content p {
+      color: var(--muted) !important;
+      margin-bottom: 0;
+    }
+
+    /* Test Dates */
+    .test-date-card {
+      background: rgba(30,30,30,.9);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 15px;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+    }
+    .test-date-card:hover {
+      border-color: var(--gold);
+      transform: translateX(5px);
+    }
+    .test-date-card .date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .test-date-card .slots {
+      color: var(--muted) !important;
+      font-size: 0.9rem;
+    }
+    .test-date-card .badge {
+      background: var(--grad1);
+      color: #111;
+      padding: 0.35rem 0.75rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
+    footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
+    footer a{color:var(--muted)!important;text-decoration:none;font-size:.9rem}
+    footer a:hover{color:var(--gold)!important}
+    footer .footer-logo img{height:100px;width:auto}
+    
+    /* Back to top */
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
+    #backToTop.show{opacity:1;visibility:visible}
+
+    /* Responsive */
+    @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
+    @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
+    @media (max-width:768px){.hero{padding:120px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.benefit-item {flex-direction: column;text-align: center;}.benefit-item .benefit-icon {margin-right: 0;margin-bottom: 1rem;}}
+    @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill{font-size:.8rem;padding:6px 14px}#backToTop{width:40px;height:40px;right:12px;bottom:12px}}
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="page-transition" id="preloader">
+    <div class="text-center">
+      <div class="loader-logo">IELTS Masterclass</div>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" alt="IELTS Masterclass Logo">
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="courses.html">IELTS Courses</a></li>
+              <li><a class="dropdown-item" href="consultancy.html">Study Abroad</a></li>
+              <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
+              <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="test-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <span class="hero-dot gold"></span>
+    <span class="hero-dot red"></span>
+
+    <div class="container position-relative">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-10 mx-auto text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" style="height:100px;">
+          </div>
+          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-calendar-check"></i> Official IELTS Test Registration</div>
+          <h1 class="mb-3" data-aos="fade-up">Book Your Official IELTS Test</h1>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Register for your official IELTS test through our authorized registration center. Choose from multiple test dates and locations.</p>
+          <div class="d-flex flex-column flex-sm-row justify-content-center gap-3" data-aos="zoom-in">
+            <a href="#registration" class="btn btn-pill"><span class="me-1">Register Now</span> <i class="bi bi-arrow-right"></i></a>
+            <a href="#test-types" class="btn btn-ghost">View Test Types</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- TEST TYPES SECTION -->
+  <section id="test-types">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Choose Your Test Type</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Select the IELTS test that matches your requirements</p>
+      <div class="row g-4">
+        <div class="col-lg-6" data-aos="fade-up">
+          <div class="test-type-card">
+            <div class="test-icon">
+              <i class="bi bi-mortarboard"></i>
+            </div>
+            <h3>IELTS Academic</h3>
+            <div class="price">৳22,500</div>
+            <p>For higher education or professional registration</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> Computer-delivered or Paper-based</li>
+              <li><i class="bi bi-check-circle-fill"></i> Results in 3-5 days (Computer)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Results in 13 days (Paper)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Valid for 2 years</li>
+              <li><i class="bi bi-check-circle-fill"></i> Accepted by 11,000+ institutions</li>
+            </ul>
+            <a href="#registration" class="btn btn-pill w-100">Register for Academic</a>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="test-type-card">
+            <div class="test-icon">
+              <i class="bi bi-briefcase"></i>
+            </div>
+            <h3>IELTS General Training</h3>
+            <div class="price">৳21,500</div>
+            <p>For migration or work experience</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> Computer-delivered or Paper-based</li>
+              <li><i class="bi bi-check-circle-fill"></i> Results in 3-5 days (Computer)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Results in 13 days (Paper)</li>
+              <li><i class="bi bi-check-circle-fill"></i> Valid for 2 years</li>
+              <li><i class="bi bi-check-circle-fill"></i> Required for immigration visas</li>
+            </ul>
+            <a href="#registration" class="btn btn-pill w-100">Register for General</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UPCOMING TEST DATES -->
+  <section id="test-dates" class="py-5">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Upcoming Test Dates</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Choose from our available test dates</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="test-date-card" data-aos="fade-up">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <div class="date">December 15, 2024</div>
+                <div class="slots">10 slots available</div>
+              </div>
+              <div class="col-md-3">
+                <span class="badge">Academic</span>
+              </div>
+              <div class="col-md-3">
+                <span class="text-light">Computer-delivered</span>
+              </div>
+              <div class="col-md-3 text-end">
+                <button class="btn btn-pill btn-sm">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="test-date-card" data-aos="fade-up" data-aos-delay="50">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <div class="date">December 18, 2024</div>
+                <div class="slots">8 slots available</div>
+              </div>
+              <div class="col-md-3">
+                <span class="badge">General Training</span>
+              </div>
+              <div class="col-md-3">
+                <span class="text-light">Computer-delivered</span>
+              </div>
+              <div class="col-md-3 text-end">
+                <button class="btn btn-pill btn-sm">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="test-date-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <div class="date">December 22, 2024</div>
+                <div class="slots">15 slots available</div>
+              </div>
+              <div class="col-md-3">
+                <span class="badge">Academic</span>
+              </div>
+              <div class="col-md-3">
+                <span class="text-light">Paper-based</span>
+              </div>
+              <div class="col-md-3 text-end">
+                <button class="btn btn-pill btn-sm">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="test-date-card" data-aos="fade-up" data-aos-delay="150">
+            <div class="row align-items-center">
+              <div class="col-md-3">
+                <div class="date">December 25, 2024</div>
+                <div class="slots">12 slots available</div>
+              </div>
+              <div class="col-md-3">
+                <span class="badge">General Training</span>
+              </div>
+              <div class="col-md-3">
+                <span class="text-light">Paper-based</span>
+              </div>
+              <div class="col-md-3 text-end">
+                <button class="btn btn-pill btn-sm">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REGISTRATION FORM -->
+  <section id="registration">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Register for Your Test</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Fill in your details to book your IELTS test</p>
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="registration-form" data-aos="fade-up">
+            <form id="testRegistrationForm">
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <label for="firstName" class="form-label">First Name *</label>
+                  <input type="text" class="form-control" id="firstName" placeholder="Enter your first name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="lastName" class="form-label">Last Name *</label>
+                  <input type="text" class="form-control" id="lastName" placeholder="Enter your last name" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="email" class="form-label">Email Address *</label>
+                  <input type="email" class="form-control" id="email" placeholder="your@email.com" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="phone" class="form-label">Phone Number *</label>
+                  <input type="tel" class="form-control" id="phone" placeholder="+880 1XXX-XXXXXX" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="testType" class="form-label">Test Type *</label>
+                  <select class="form-select" id="testType" required>
+                    <option value="">Select Test Type</option>
+                    <option value="academic">IELTS Academic</option>
+                    <option value="general">IELTS General Training</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="testMode" class="form-label">Test Mode *</label>
+                  <select class="form-select" id="testMode" required>
+                    <option value="">Select Test Mode</option>
+                    <option value="computer">Computer-delivered</option>
+                    <option value="paper">Paper-based</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label for="testDate" class="form-label">Preferred Test Date *</label>
+                  <input type="date" class="form-control" id="testDate" required>
+                </div>
+                <div class="col-md-6">
+                  <label for="idType" class="form-label">ID Type *</label>
+                  <select class="form-select" id="idType" required>
+                    <option value="">Select ID Type</option>
+                    <option value="passport">Passport</option>
+                    <option value="nid">National ID</option>
+                    <option value="birth">Birth Certificate</option>
+                  </select>
+                </div>
+                <div class="col-12">
+                  <label for="idNumber" class="form-label">ID Number *</label>
+                  <input type="text" class="form-control" id="idNumber" placeholder="Enter your ID number" required>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label" for="terms">
+                      I agree to the terms and conditions and understand that this registration is subject to availability.
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <button type="submit" class="btn btn-pill btn-lg px-5">
+                    <i class="bi bi-calendar-check me-2"></i>Complete Registration
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS SECTION -->
+  <section id="benefits">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Why Register With Us?</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Experience hassle-free test registration with our authorized center</p>
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="bi bi-shield-check"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Authorized Test Center</h4>
+              <p>Official British Council authorized registration center ensuring authentic test booking.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="bi bi-headset"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>24/7 Support</h4>
+              <p>Dedicated support team to assist you throughout the registration process.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="bi bi-credit-card"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Secure Payment</h4>
+              <p>Multiple payment options with secure transaction processing.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="bi bi-calendar-event"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Flexible Dates</h4>
+              <p>Multiple test dates available every month to suit your schedule.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="bi bi-geo-alt"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Multiple Locations</h4>
+              <p>Choose from various test centers across the country.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="benefit-icon">
+              <i class="bi bi-file-earmark-text"></i>
+            </div>
+            <div class="benefit-content">
+              <h4>Instant Confirmation</h4>
+              <p>Receive immediate confirmation and test details upon successful registration.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="footer-logo mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" >
+          </div>
+          <h5>IELTS Masterclass</h5>
+          <p class="text-secondary mb-3">Guiding students to top IELTS scores with expert mentors, flexible classes, and mock tests.</p>
+        </div>
+        <div class="col-md-3"><h5>Explore</h5><ul class="list-unstyled"><li><a href="#modules">Services</a></li><li><a href="#consultancy">Consultancy</a></li><li><a href="#journey">Student Journey</a></li><li><a href="#mock">Mock Test</a></li></ul></div>
+        <div class="col-md-3"><h5>Support</h5><ul class="list-unstyled"><li><a href="#contact">Contact Us</a></li><li><a href="#cta">Enroll</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
+      </div>
+      <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
+        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #c9a961;">SWADESH IT</a>.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:1000,once:true,offset:80,easing:'ease-out-quart'});
+
+    // Navbar shrink
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 300));
+    btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Preloader
+    function hideLoader() {
+      const loader = document.getElementById('preloader');
+      if (loader) {
+        loader.classList.add('hide');
+        setTimeout(() => loader.style.display = 'none', 800);
+      }
+    }
+    window.addEventListener('load', () => setTimeout(hideLoader, 800));
+    setTimeout(hideLoader, 4000); // Fallback
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+
+    // Form submission
+    document.getElementById('testRegistrationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your registration! Our team will contact you soon with confirmation details.');
+      this.reset();
+    });
+
+    // Set minimum date for test date input
+    const today = new Date();
+    const minDate = new Date(today.setDate(today.getDate() + 7));
+    document.getElementById('testDate').setAttribute('min', minDate.toISOString().split('T')[0]);
+  </script>
+</body>
+</html>
