@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>IELTS Courses | IELTS Masterclass</title>
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold:#c9a961;--gold2:#f6e8a6;--accent:#8b0000;
+      --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
+      --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
+      --grad1:linear-gradient(135deg,#c9a961,#f6e8a6);
+      --grad2:linear-gradient(135deg,#8b0000,#c9184a);
+      --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
+    h1,h2,h3,h4,h5{font-family:Montserrat,sans-serif;letter-spacing:-.4px}
+
+    /* Loader */
+    .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
+    .page-transition.hide{opacity:0;pointer-events:none}
+    .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(201,169,97,.25);border-top:3px solid var(--gold);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
+
+    /* Navbar */
+    .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
+    .navbar-brand img{height:40px;width:auto}
+    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
+    .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
+    .nav-link:hover:after{left:0;width:100%}
+    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
+    .dropdown-item{color:var(--text);font-size:.9rem;padding:.5rem 1.25rem}
+    .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)}
+    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem}
+    .btn-pill:hover{transform:translateY(-1px)}
+
+    /* Utilities */
+    .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
+    section{padding:90px 0;position:relative;overflow:hidden}
+    .title{font-size:2.8rem;font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:10px}
+    .subtitle{max-width:720px;margin:0 auto 32px;color:var(--muted);font-size:1rem}
+
+    /* FLOATING GLOW OVERLAY */
+    section { position: relative; overflow: hidden; }
+    section > * { position: relative; z-index: 1; }
+    section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(201,169,97,.08)) 0%, transparent 70%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      animation: floatingGlow 22s ease-in-out infinite;
+    }
+    #course-hero::before { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
+    #courses::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
+    #schedule::before { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
+    #features::before { --glow-color: rgba(255,215,0,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
+    #curriculum::before { --glow-color: rgba(201,169,97,.07); opacity: 1; animation-duration: 26s; animation-delay: -8s; }
+    @keyframes floatingGlow {
+      0%   { transform: translate(-5%, 10%) rotate(0deg); opacity: 0.6; }
+      25%  { transform: translate(8%, -8%) rotate(90deg); opacity: 0.8; }
+      50%  { transform: translate(-8%, 5%) rotate(180deg); opacity: 0.5; }
+      75%  { transform: translate(5%, -10%) rotate(270deg); opacity: 0.75; }
+      100% { transform: translate(-5%, 10%) rotate(360deg); opacity: 0.6; }
+    }
+
+    /* HERO */
+    .hero{min-height:60vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 100px}
+    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;transform:scale(1.1)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.85),rgba(10,10,10,.95))}
+    .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
+    .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
+    .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
+    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
+    .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
+    .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
+
+    /* Course Cards */
+    .course-card {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+    }
+    .course-card .badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .course-card .course-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .course-card .course-icon i {
+      font-size: 2.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .course-card .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .course-card .features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .course-card .features li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .course-card .features li i {
+      color: var(--gold);
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    /* Schedule Table */
+    .schedule-table {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+    .schedule-table th {
+      background: var(--grad1);
+      color: #111;
+      font-weight: 700;
+      padding: 1rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .schedule-table td {
+      padding: 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
+    .schedule-table tr:hover {
+      background: rgba(201,169,97,0.05);
+    }
+    .schedule-table .badge {
+      padding: 0.5rem 0.75rem;
+      font-weight: 500;
+      font-size: 0.8rem;
+    }
+
+    /* Features */
+    .feature-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    .feature-item .feature-icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    .feature-item .feature-icon i {
+      font-size: 1.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .feature-item .feature-content h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .feature-item .feature-content p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    /* Curriculum */
+    .curriculum-card {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+    .curriculum-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 25px rgba(201,169,97,0.15);
+    }
+    .curriculum-card h5 {
+      color: var(--gold);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .curriculum-card .module-list {
+      list-style: none;
+      padding: 0;
+    }
+    .curriculum-card .module-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+    .curriculum-card .module-list li:last-child {
+      border-bottom: none;
+    }
+
+    /* FOOTER */
+    footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
+    footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
+    footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
+    footer a:hover{color:var(--gold)}
+    footer .footer-logo img{height:100px;width:auto}
+    
+    /* Back to top */
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
+    #backToTop.show{opacity:1;visibility:visible}
+
+    /* Responsive */
+    @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
+    @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
+    @media (max-width:768px){.hero{padding:120px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.feature-item {flex-direction: column;text-align: center;}.feature-item .feature-icon {margin-right: 0;margin-bottom: 1rem;}}
+    @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill{font-size:.8rem;padding:6px 14px}#backToTop{width:40px;height:40px;right:12px;bottom:12px}}
+  </style>
+</head>
+<body>
+
+  <!-- Loader -->
+  <div class="page-transition" id="preloader">
+    <div class="text-center">
+      <div class="loader-logo">IELTS Masterclass</div>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" alt="IELTS Masterclass Logo">
+      </a>
+      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item active" href="courses.html">IELTS Courses</a></li>
+              <li><a class="dropdown-item" href="consultancy.html">Study Abroad</a></li>
+              <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
+              <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
+          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+          <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
+          <li class="nav-item ms-lg-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="course-hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <span class="hero-dot gold"></span>
+    <span class="hero-dot red"></span>
+
+    <div class="container position-relative">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-10 mx-auto text-center">
+          <div class="d-flex justify-content-center mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" style="height:100px;">
+          </div>
+          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-book"></i> IELTS Courses</div>
+          <h1 class="mb-3" data-aos="fade-up">Master IELTS with Expert Guidance</h1>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Comprehensive IELTS preparation courses designed to help you achieve your target band score with confidence.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- COURSES SECTION -->
+  <section id="courses">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Choose Your Course</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Select the perfect course based on your learning preference</p>
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-5" data-aos="fade-up">
+          <div class="course-card">
+            <span class="badge bg-warning text-dark">POPULAR</span>
+            <div class="course-icon">
+              <i class="bi bi-building"></i>
+            </div>
+            <h3>Offline Private Batch</h3>
+            <div class="price">৳500/month</div>
+            <p>Learn in a traditional classroom setting with personalized attention</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> Unlimited Mock Tests</li>
+              <li><i class="bi bi-check-circle-fill"></i> 10 Students per Batch</li>
+              <li><i class="bi bi-check-circle-fill"></i> Flexible Class Time</li>
+              <li><i class="bi bi-check-circle-fill"></i> Personalized Attention</li>
+              <li><i class="bi bi-check-circle-fill"></i> Study Materials Included</li>
+              <li><i class="bi bi-check-circle-fill"></i> Certificate of Completion</li>
+            </ul>
+            <a href="#schedule" class="btn btn-pill w-100">Enroll Now</a>
+          </div>
+        </div>
+        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+          <div class="course-card">
+            <span class="badge bg-danger">BESTSELLER</span>
+            <div class="course-icon">
+              <i class="bi bi-laptop"></i>
+            </div>
+            <h3>Online Private Batch</h3>
+            <div class="price">৳2,800/month</div>
+            <p>Learn from the comfort of your home with live interactive classes</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> 36 Live Classes</li>
+              <li><i class="bi bi-check-circle-fill"></i> Friday & Saturday: 9 PM</li>
+              <li><i class="bi bi-check-circle-fill"></i> Wednesday: 8 PM</li>
+              <li><i class="bi bi-check-circle-fill"></i> Recorded Sessions Available</li>
+              <li><i class="bi bi-check-circle-fill"></i> Online Study Materials</li>
+              <li><i class="bi bi-check-circle-fill"></i> Certificate of Completion</li>
+            </ul>
+            <a href="#schedule" class="btn btn-pill w-100">Enroll Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE SECTION -->
+  <section id="schedule">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Class Schedule</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Flexible timing options to suit your needs</p>
+      <div class="schedule-table glass p-0" data-aos="fade-up">
+        <table class="table table-dark mb-0">
+          <thead>
+            <tr>
+              <th>Course Type</th>
+              <th>Days</th>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Batch Size</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge bg-warning">Offline</span></td>
+              <td>Sunday - Thursday</td>
+              <td>Flexible</td>
+              <td>Monthly</td>
+              <td>10 Students</td>
+              <td><button class="btn btn-sm btn-pill">Enroll</button></td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-danger">Online</span></td>
+              <td>Friday & Saturday</td>
+              <td>9:00 PM - 10:30 PM</td>
+              <td>Monthly</td>
+              <td>15 Students</td>
+              <td><button class="btn btn-sm btn-pill">Enroll</button></td>
+            </tr>
+            <tr>
+              <td><span class="badge bg-danger">Online</span></td>
+              <td>Wednesday</td>
+              <td>8:00 PM - 9:30 PM</td>
+              <td>Monthly</td>
+              <td>15 Students</td>
+              <td><button class="btn btn-sm btn-pill">Enroll</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section id="features">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Why Choose Our Courses?</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Experience the difference with our unique teaching approach</p>
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-people"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Expert Instructors</h4>
+              <p>Learn from certified IELTS trainers with 10+ years of experience and proven track records.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-camera-video"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Live Interactive Classes</h4>
+              <p>Real-time interaction with instructors and peers for an engaging learning experience.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-file-earmark-text"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Comprehensive Materials</h4>
+              <p>Access to extensive study materials, practice tests, and resources curated by experts.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-graph-up"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Progress Tracking</h4>
+              <p>Regular assessments and detailed progress reports to monitor your improvement.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-headset"></i>
+            </div>
+            <div class="feature-content">
+              <h4>24/7 Support</h4>
+              <p>Dedicated support team available round the clock to help with your queries.</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">
+              <i class="bi bi-patch-check"></i>
+            </div>
+            <div class="feature-content">
+              <h4>Guaranteed Improvement</h4>
+              <p>Proven methodology with guaranteed band score improvement or money back.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURRICULUM SECTION -->
+  <section id="curriculum">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Course Curriculum</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Comprehensive coverage of all IELTS modules</p>
+      <div class="row g-4">
+        <div class="col-md-6" data-aos="fade-up">
+          <div class="curriculum-card">
+            <h5><i class="bi bi-headphones me-2"></i>Listening Module</h5>
+            <ul class="module-list">
+              <li>Understanding question types</li>
+              <li>Note-taking techniques</li>
+              <li>Multiple choice strategies</li>
+              <li>Map/diagram labeling</li>
+              <li>Form/note/table completion</li>
+              <li>Practice with 50+ exercises</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="curriculum-card">
+            <h5><i class="bi bi-book me-2"></i>Reading Module</h5>
+            <ul class="module-list">
+              <li>Skimming and scanning techniques</li>
+              <li>Time management strategies</li>
+              <li>True/False/Not Given questions</li>
+              <li>Matching headings</li>
+              <li>Sentence completion</li>
+              <li>40+ practice passages</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="curriculum-card">
+            <h5><i class="bi bi-pen me-2"></i>Writing Module</h5>
+            <ul class="module-list">
+              <li>Task 1: Academic writing</li>
+              <li>Task 2: Essay writing</li>
+              <li>Graph interpretation</li>
+              <li>Letter writing (General)</li>
+              <li>Structuring and coherence</li>
+              <li>20+ writing samples</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="curriculum-card">
+            <h5><i class="bi bi-mic me-2"></i>Speaking Module</h5>
+            <ul class="module-list">
+              <li>Part 1: Introduction</li>
+              <li>Part 2: Cue card topics</li>
+              <li>Part 3: Discussion</li>
+              <li>Fluency techniques</li>
+              <li>Pronunciation practice</li>
+              <li>Mock speaking tests</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- FOOTER -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="footer-logo mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" >
+          </div>
+          <h5>IELTS Masterclass</h5>
+          <p class="text-secondary mb-3">Guiding students to top IELTS scores with expert mentors, flexible classes, and mock tests.</p>
+        </div>
+        <div class="col-md-3"><h5>Explore</h5><ul class="list-unstyled"><li><a href="#modules">Services</a></li><li><a href="#consultancy">Consultancy</a></li><li><a href="#journey">Student Journey</a></li><li><a href="#mock">Mock Test</a></li></ul></div>
+        <div class="col-md-3"><h5>Support</h5><ul class="list-unstyled"><li><a href="#contact">Contact Us</a></li><li><a href="#cta">Enroll</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
+      </div>
+      <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
+        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #c9a961;">SWADESH IT</a>.</span>
+      </div>
+    </div>
+  </footer>
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({duration:1000,once:true,offset:80,easing:'ease-out-quart'});
+
+    // Navbar shrink
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 300));
+    btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    // Preloader
+    function hideLoader() {
+      const loader = document.getElementById('preloader');
+      if (loader) {
+        loader.classList.add('hide');
+        setTimeout(() => loader.style.display = 'none', 800);
+      }
+    }
+    window.addEventListener('load', () => setTimeout(hideLoader, 800));
+    setTimeout(hideLoader, 4000); // Fallback
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const t = document.querySelector(a.getAttribute('href'));
+        if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>
