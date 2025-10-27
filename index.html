@@ -26,13 +26,8 @@
       --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;cursor:none}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
     h1,h2,h3,h4,h5{font-family:Montserrat,sans-serif;letter-spacing:-.4px}
-
-    /* Custom Cursor */
-    .custom-cursor{width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:.12s}
-    .cursor-trailer{width:40px;height:40px;border:1px solid rgba(201,169,97,.35);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:.35s cubic-bezier(.22,1,.36,1)}
-    .cursor-grow{transform:translate(-50%,-50%) scale(2);background:rgba(201,169,97,.25);border-color:transparent}
 
     /* Loader */
     .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
@@ -52,8 +47,8 @@
     .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
     .dropdown-item{color:var(--text);font-size:.9rem;padding:.5rem 1.25rem}
     .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)}
-    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem}
-    .btn-pill:hover{transform:translateY(-1px)}
+    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem;transition:all .3s ease}
+    .btn-pill:hover{transform:translateY(-1px);color:#111!important}
 
     /* Utilities */
     .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
@@ -217,6 +212,61 @@
     #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
     #backToTop.show{opacity:1;visibility:visible}
 
+    /* SERVICES */
+    .service-card {
+      transition: all 0.4s ease;
+      height: 100%;
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 20px 40px rgba(201,169,97,.2);
+    }
+    .service-card .icon-box {
+      width: 80px;
+      height: 80px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.4s ease;
+    }
+    .service-card:hover .icon-box {
+      transform: scale(1.1);
+      background: rgba(201,169,97,.25);
+    }
+
+    /* Service Button Styles */
+    .service-btn {
+      color: #111 !important;
+      background: var(--grad1);
+      border: none;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-weight: 700;
+      font-size: .9rem;
+      box-shadow: 0 6px 18px rgba(201,169,97,.35);
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+
+    .service-btn:hover {
+      color: #111 !important;
+      background: var(--grad1);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(201,169,97,.4);
+    }
+
+    /* Prevent link color changes */
+    .service-card a {
+      color: inherit !important;
+    }
+
+    .service-card a:hover {
+      color: inherit !important;
+    }
+
     /* RESPONSIVE */
     @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
     @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
@@ -233,10 +283,6 @@
       <div class="loader-ring"></div>
     </div>
   </div>
-
-  <!-- Cursor -->
-  <div class="custom-cursor"></div>
-  <div class="cursor-trailer"></div>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
@@ -298,6 +344,72 @@
       </div>
     </div>
   </header>
+
+  <!-- SERVICES SECTION -->
+  <section id="services" class="py-5 position-relative overflow-hidden">
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px;height:800px;filter:blur(180px);opacity:.08;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;"></div>
+    <div class="container position-relative z-1">
+      <h2 class="title text-center mb-5" data-aos="fade-up">Our Services</h2>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3" data-aos="fade-up">
+          <a href="courses.html" class="text-decoration-none">
+            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
+              <div class="icon-box mb-3">
+                <i class="bi bi-book-half text-gold fs-1"></i>
+              </div>
+              <h4 class="text-white mb-3">OUR COURSES</h4>
+              <p class="text-muted mb-4">Comprehensive IELTS preparation courses designed to help you achieve your target band score.</p>
+              <div class="mt-auto">
+                <span class="btn btn-pill service-btn">Explore Courses</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+          <a href="study-abroad.html" class="text-decoration-none">
+            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
+              <div class="icon-box mb-3">
+                <i class="bi bi-globe text-gold fs-1"></i>
+              </div>
+              <h4 class="text-white mb-3">Study Abroad</h4>
+              <p class="text-muted mb-4">Expert guidance for university admissions, visa applications, and scholarship opportunities.</p>
+              <div class="mt-auto">
+                <span class="btn btn-pill service-btn">Learn More</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+          <a href="mock-test.html" class="text-decoration-none">
+            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
+              <div class="icon-box mb-3">
+                <i class="bi bi-clipboard-check text-gold fs-1"></i>
+              </div>
+              <h4 class="text-white mb-3">Book a Mock Test</h4>
+              <p class="text-muted mb-4">Practice under real exam conditions with our authentic IELTS mock tests.</p>
+              <div class="mt-auto">
+                <span class="btn btn-pill service-btn">Book Now</span>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+          <a href="ielts-test.html" class="text-decoration-none">
+            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
+              <div class="icon-box mb-3">
+                <i class="bi bi-calendar-check text-gold fs-1"></i>
+              </div>
+              <h4 class="text-white mb-3">Book Your IELTS Test</h4>
+              <p class="text-muted mb-4">Register for your official IELTS test through our authorized registration center.</p>
+              <div class="mt-auto">
+                <span class="btn btn-pill service-btn">Register Now</span>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- STATS SECTION -->
   <section class="stats py-5 position-relative overflow-hidden">
@@ -524,10 +636,11 @@
             </div>
             <h4 class="mb-3 text-center text-white">Register for Free Class</h4>
             <form id="trialForm" class="needs-validation" novalidate>
-              <div class="mb-3"><label for="name" class="form-label small text-light">Full Name</label><input type="text" class="form-control form-control-lg trial-input" id="name" placeholder="John Doe" required><div class="invalid-feedback">Please enter your name.</div></div>
+              <!--<div class="mb-3"><label for="name" class="form-label small text-light">Full Name</label><input type="text" class="form-control form-control-lg trial-input" id="name" placeholder="John Doe" required><div class="invalid-feedback">Please enter your name.</div></div>
               <div class="mb-3"><label for="email" class="form-label small text-light">Email Address</label><input type="email" class="form-control form-control-lg trial-input" id="email" placeholder="you@example.com" required><div class="invalid-feedback">Please enter a valid email.</div></div>
               <div class="mb-3"><label for="phone" class="form-label small text-light">Phone (Optional)</label><input type="tel" class="form-control form-control-lg trial-input" id="phone" placeholder="+880 1XXX-XXXXXX"></div>
-              <div class="mb-3"><label for="target" class="form-label small text-light">Target Band</label><select class="form-select form-select-lg trial-input" id="target"><option value="">Select...</option><option>6.0</option><option>6.5</option><option>7.0</option><option>7.5</option><option>8.0+</option></select></div>
+              <div class="mb-3"><label for="target" class="form-label small text-light">Target Band</label><select class="form-select form-select-lg trial-input" id="target"><option value="">Select...</option><option>6.0</option><option>6.5</option><option>7.0</option><option>7.5</option><option>8.0+</option></select></div>-->
+
               <button type="submit" class="btn btn-pill w-100 mt-2 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-sparkles"></i><span>Claim Free Class Now</span></button>
               <p class="text-center small text-muted mt-3 mb-0"><i class="bi bi-calendar-check"></i> Next class: <strong>Tomorrow, 7:00 PM</strong></p>
             </form>
@@ -628,21 +741,6 @@
     }
     window.addEventListener('load', () => setTimeout(hideLoader, 800));
     setTimeout(hideLoader, 4000); // Fallback
-
-    // Custom cursor
-    const cur = document.querySelector('.custom-cursor'), trail = document.querySelector('.cursor-trailer');
-    let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
-    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; cur.style.left = mouseX + 'px'; cur.style.top = mouseY + 'px'; });
-    function animateTrail() {
-      trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15;
-      trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
-      requestAnimationFrame(animateTrail);
-    }
-    animateTrail();
-    document.querySelectorAll('a,button,.glass,.card-mod,.btn').forEach(el => {
-      el.addEventListener('mouseenter', () => cur.classList.add('cursor-grow'));
-      el.addEventListener('mouseleave', () => cur.classList.remove('cursor-grow'));
-    });
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -792,10 +890,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
