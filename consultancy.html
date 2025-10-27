@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Student Consultancy | IELTS Masterclass</title>
+  <title>Study Abroad | IELTS Masterclass</title>
 
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -74,11 +74,11 @@
       z-index: 0;
       animation: floatingGlow 22s ease-in-out infinite;
     }
-    #consultancy-hero::before { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
-    #services::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
-    #countries::before { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
-    #process::before { --glow-color: rgba(255,215,0,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
-    #testimonials::before { --glow-color: rgba(201,169,97,.07); opacity: 1; animation-duration: 26s; animation-delay: -8s; }
+    #study-hero::before { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
+    #destinations::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
+    #programs::before { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
+    #benefits::before { --glow-color: rgba(255,215,0,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
+    #process::before { --glow-color: rgba(201,169,97,.07); opacity: 1; animation-duration: 26s; animation-delay: -8s; }
     @keyframes floatingGlow {
       0%   { transform: translate(-5%, 10%) rotate(0deg); opacity: 0.6; }
       25%  { transform: translate(8%, -8%) rotate(90deg); opacity: 0.8; }
@@ -103,40 +103,8 @@
     .stats .stat-num {font-family: 'Montserrat', sans-serif;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;min-height: 1.2em;display: inline-block;}
     @media (max-width: 768px) {.stats .stat-num {font-size: 2rem !important;}.stats i {font-size: 2rem !important;}}
 
-    /* Services */
-    .service-card {
-      background: rgba(20,20,20,.95);
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(201,169,97,.15);
-      border-radius: 20px;
-      padding: 2rem;
-      height: 100%;
-      transition: all 0.3s ease;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
-    }
-    .service-card .icon-box {
-      width: 70px;
-      height: 70px;
-      background: rgba(201,169,97,.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .service-card .icon-box i {
-      font-size: 2rem;
-      background: var(--grad1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* Countries */
-    .country-card {
+    /* Destination Cards */
+    .destination-card {
       background: rgba(20,20,20,.95);
       backdrop-filter: blur(16px);
       border: 1px solid rgba(201,169,97,.15);
@@ -147,7 +115,7 @@
       display: flex;
       flex-direction: column;
     }
-    .country-card:hover {
+    .destination-card:hover {
       transform: translateY(-10px);
       border-color: var(--gold);
       box-shadow: 0 15px 30px rgba(201,169,97,0.2);
@@ -171,6 +139,71 @@
     }
     .university-list li:last-child {
       border-bottom: none;
+    }
+
+    /* Program Cards */
+    .program-card {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+    .program-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+    }
+    .program-card .icon-box {
+      width: 70px;
+      height: 70px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .program-card .icon-box i {
+      font-size: 2rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Benefits */
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .benefit-item .icon-box {
+      width: 60px;
+      height: 60px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.5rem;
+      flex-shrink: 0;
+    }
+    .benefit-item .icon-box i {
+      font-size: 1.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .benefit-item h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .benefit-item p {
+      color: var(--muted);
+      margin-bottom: 0;
     }
 
     /* Process */
@@ -246,12 +279,14 @@
       margin-bottom: 0;
       font-size: 0.9rem;
     }
+
     /* FOOTER */
     footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
     footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
     footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
     footer a:hover{color:var(--gold)}
     footer .footer-logo img{height:100px;width:auto}
+
     /* Back to top */
     #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
     #backToTop.show{opacity:1;visibility:visible}
@@ -294,7 +329,8 @@
             <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="modules.html">IELTS Modules</a></li>
-              <li><a class="dropdown-item active" href="consultancy.html">Student Consultancy</a></li>
+              <li><a class="dropdown-item" href="consultancy.html">Student Consultancy</a></li>
+              <li><a class="dropdown-item active" href="study-abroad.html">Study Abroad</a></li>
               <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
             </ul>
           </li>
@@ -308,7 +344,7 @@
   </nav>
 
   <!-- HERO SECTION -->
-  <header class="hero" id="consultancy-hero">
+  <header class="hero" id="study-hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <span class="hero-dot gold"></span>
@@ -320,9 +356,9 @@
           <div class="d-flex justify-content-center mb-3">
             <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" style="height:100px;">
           </div>
-          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-globe"></i> Student Consultancy</div>
-          <h1 class="mb-3" data-aos="fade-up">Your pathway to global education</h1>
-          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Expert guidance for university admissions, visa applications, and scholarship opportunities. Let us help you achieve your study abroad dreams.</p>
+          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-globe"></i> Study Abroad</div>
+          <h1 class="mb-3" data-aos="fade-up">Your gateway to global education</h1>
+          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Unlock world-class education opportunities with our comprehensive study abroad services. From university selection to visa assistance, we guide you every step of the way.</p>
         </div>
       </div>
     </div>
@@ -336,84 +372,20 @@
       <div class="row text-center g-4 g-md-5">
         <div class="col-6 col-md-3" data-aos="fade-up"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-people-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="500" data-suffix="+">0</div><div class="text-muted small text-uppercase">Students Placed</div></div></div>
         <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-award-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="92" data-suffix="%">0%</div><div class="text-muted small text-uppercase">Success Rate</div></div></div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-globe text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="5">0</div><div class="text-muted small text-uppercase">Countries</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-globe text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="15">0</div><div class="text-muted small text-uppercase">Countries</div></div></div>
         <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-building text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="200" data-suffix="+">0</div><div class="text-muted small text-uppercase">University Partners</div></div></div>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES SECTION -->
-  <section id="services">
-    <div class="container">
-      <h2 class="title text-center" data-aos="fade-up">Our Consultancy Services</h2>
-      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Comprehensive support for your study abroad journey from application to arrival.</p>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4" data-aos="fade-up">
-          <div class="service-card">
-            <div class="icon-box">
-              <i class="bi bi-search"></i>
-            </div>
-            <h3>University Selection</h3>
-            <p>Personalized guidance to find the perfect university and program based on your academic profile, career goals, and preferences.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="service-card">
-            <div class="icon-box">
-              <i class="bi bi-file-earmark-text"></i>
-            </div>
-            <h3>Application Assistance</h3>
-            <p>Expert help with preparing and submitting applications, including personal statements, essays, and required documentation.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="service-card">
-            <div class="icon-box">
-              <i class="bi bi-passport"></i>
-            </div>
-            <h3>Visa Guidance</h3>
-            <p>Complete support for visa applications, including document preparation, interview preparation, and follow-up with authorities.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="service-card">
-            <div class="icon-box">
-              <i class="bi bi-cash-stack"></i>
-            </div>
-            <h3>Scholarship Assistance</h3>
-            <p>Help finding and applying for scholarships, grants, and financial aid to make your education more affordable.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-          <div class="service-card">
-            <div class="icon-box">
-              <i class="bi bi-house-door"></i>
-            </div>
-            <h3>Accommodation Support</h3>
-            <p>Assistance with finding and booking suitable accommodation, whether on-campus or off-campus housing.</p>
-          </div>
-        </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-          <div class="service-card">
-            <div class="icon-box">
-              <i class="bi bi-airplane"></i>
-            </div>
-            <h3>Pre-departure Orientation</h3>
-            <p>Comprehensive orientation to prepare you for life in a new country, including cultural adaptation and practical tips.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- COUNTRIES SECTION -->
-  <section id="countries">
+  <!-- DESTINATIONS SECTION -->
+  <section id="destinations">
     <div class="container">
       <h2 class="title text-center" data-aos="fade-up">Popular Study Destinations</h2>
-      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">We help students secure admissions in top universities across the globe.</p>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Explore top educational destinations around the world with our expert guidance.</p>
       <div class="row g-4">
         <div class="col-md-6 col-lg-4" data-aos="fade-up">
-          <div class="country-card">
+          <div class="destination-card">
             <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA" class="country-flag">
             <h3>United States</h3>
             <p>Home to world-renowned universities and diverse academic programs across all disciplines.</p>
@@ -426,7 +398,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="country-card">
+          <div class="destination-card">
             <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK" class="country-flag">
             <h3>United Kingdom</h3>
             <p>Rich academic heritage with modern teaching methods and strong industry connections.</p>
@@ -439,7 +411,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="country-card">
+          <div class="destination-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada" class="country-flag">
             <h3>Canada</h3>
             <p>High-quality education with welcoming immigration policies and post-study work opportunities.</p>
@@ -452,7 +424,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="country-card">
+          <div class="destination-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" alt="Australia" class="country-flag">
             <h3>Australia</h3>
             <p>Excellent quality of life with world-class universities and strong research programs.</p>
@@ -465,7 +437,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-          <div class="country-card">
+          <div class="destination-card">
             <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany" class="country-flag">
             <h3>Germany</h3>
             <p>Strong engineering and technical programs with many tuition-free options for international students.</p>
@@ -478,7 +450,7 @@
           </div>
         </div>
         <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-          <div class="country-card">
+          <div class="destination-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1280px-Flag_of_Europe.svg.png" alt="Europe" class="country-flag">
             <h3>Other European Countries</h3>
             <p>Expanding opportunities in countries like Netherlands, Sweden, France, and more.</p>
@@ -494,17 +466,149 @@
     </div>
   </section>
 
+  <!-- PROGRAMS SECTION -->
+  <section id="programs">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Study Programs</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Choose from a wide range of programs across various disciplines.</p>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-aos="fade-up">
+          <div class="program-card">
+            <div class="icon-box">
+              <i class="bi bi-cpu"></i>
+            </div>
+            <h3>Engineering & Technology</h3>
+            <p>Cutting-edge programs in computer science, AI, mechanical engineering, and more.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="program-card">
+            <div class="icon-box">
+              <i class="bi bi-briefcase"></i>
+            </div>
+            <h3>Business & Management</h3>
+            <p>Prestigious MBA programs and business degrees from top-ranked institutions.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="program-card">
+            <div class="icon-box">
+              <i class="bi bi-heart-pulse"></i>
+            </div>
+            <h3>Healthcare & Medicine</h3>
+            <p>World-class medical programs and healthcare degrees with practical training.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="program-card">
+            <div class="icon-box">
+              <i class="bi bi-palette"></i>
+            </div>
+            <h3>Arts & Design</h3>
+            <p>Creative programs in fine arts, design, architecture, and digital media.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="program-card">
+            <div class="icon-box">
+              <i class="bi bi-calculator"></i>
+            </div>
+            <h3>Finance & Economics</h3>
+            <p>Specialized programs in finance, economics, accounting, and business analytics.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+          <div class="program-card">
+            <div class="icon-box">
+              <i class="bi bi-globe-americas"></i>
+            </div>
+            <h3>Social Sciences</h3>
+            <p>Programs in psychology, sociology, international relations, and political science.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS SECTION -->
+  <section id="benefits">
+    <div class="container">
+      <h2 class="title text-center" data-aos="fade-up">Why Study Abroad With Us?</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Comprehensive support to make your study abroad journey seamless and successful.</p>
+      <div class="row">
+        <div class="col-lg-6" data-aos="fade-right">
+          <div class="benefit-item">
+            <div class="icon-box">
+              <i class="bi bi-search"></i>
+            </div>
+            <div>
+              <h4>University Matching</h4>
+              <p>Personalized guidance to find universities that match your academic profile, career goals, and budget.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="icon-box">
+              <i class="bi bi-file-earmark-text"></i>
+            </div>
+            <div>
+              <h4>Application Assistance</h4>
+              <p>Expert help with preparing and submitting applications, including personal statements and essays.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="icon-box">
+              <i class="bi bi-passport"></i>
+            </div>
+            <div>
+              <h4>Visa Guidance</h4>
+              <p>Complete support for visa applications, including document preparation and interview preparation.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="benefit-item">
+            <div class="icon-box">
+              <i class="bi bi-cash-stack"></i>
+            </div>
+            <div>
+              <h4>Scholarship Assistance</h4>
+              <p>Help finding and applying for scholarships, grants, and financial aid to make education affordable.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="icon-box">
+              <i class="bi bi-house-door"></i>
+            </div>
+            <div>
+              <h4>Accommodation Support</h4>
+              <p>Assistance with finding and booking suitable accommodation, whether on-campus or off-campus.</p>
+            </div>
+          </div>
+          <div class="benefit-item">
+            <div class="icon-box">
+              <i class="bi bi-airplane"></i>
+            </div>
+            <div>
+              <h4>Pre-departure Orientation</h4>
+              <p>Comprehensive orientation to prepare you for life in a new country, including cultural adaptation.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PROCESS SECTION -->
   <section id="process">
     <div class="container">
-      <h2 class="title text-center" data-aos="fade-up">Our Consultancy Process</h2>
+      <h2 class="title text-center" data-aos="fade-up">Our Process</h2>
       <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">A step-by-step approach to ensure your successful admission to your dream university.</p>
       <div class="row">
         <div class="col-lg-6" data-aos="fade-right">
           <div class="process-step">
             <div class="step-number">1</div>
             <h4>Initial Consultation</h4>
-            <p>Meet with our consultants to discuss your academic background, career goals, and preferences for studying abroad.</p>
+            <p>Meet with our consultants to discuss your academic background, career goals, and preferences.</p>
           </div>
           <div class="process-step">
             <div class="step-number">2</div>
@@ -514,14 +618,14 @@
           <div class="process-step">
             <div class="step-number">3</div>
             <h4>Application Preparation</h4>
-            <p>We guide you through preparing all necessary documents, including statements of purpose and recommendation letters.</p>
+            <p>We guide you through preparing all necessary documents, including statements of purpose.</p>
           </div>
         </div>
         <div class="col-lg-6" data-aos="fade-left">
           <div class="process-step">
             <div class="step-number">4</div>
             <h4>Application Submission</h4>
-            <p>We ensure your applications are submitted correctly and on time, following up with universities as needed.</p>
+            <p>We ensure your applications are submitted correctly and on time, following up with universities.</p>
           </div>
           <div class="process-step">
             <div class="step-number">5</div>
@@ -643,7 +747,7 @@
       requestAnimationFrame(animateTrail);
     }
     animateTrail();
-    document.querySelectorAll('a,button,.glass,.service-card,.country-card,.testimonial-card').forEach(el => {
+    document.querySelectorAll('a,button,.glass,.destination-card,.program-card,.testimonial-card').forEach(el => {
       el.addEventListener('mouseenter', () => cur.classList.add('cursor-grow'));
       el.addEventListener('mouseleave', () => cur.classList.remove('cursor-grow'));
     });
