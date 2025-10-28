@@ -37,10 +37,44 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
 
-    /* Navbar */
+    /* Navbar with Text Brand */
     .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
     .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
-    .navbar-brand img{height:40px;width:auto}
+    
+    /* Text Brand Styling */
+    .navbar-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-decoration: none;
+      padding: 0.25rem 0;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .navbar-brand:hover {
+      transform: translateY(-2px);
+      text-shadow: 0 4px 12px rgba(201, 169, 97, 0.3);
+    }
+    
+    .navbar-brand::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--grad1);
+      transition: width 0.3s ease;
+    }
+    
+    .navbar-brand:hover::after {
+      width: 100%;
+    }
+    
     .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
     .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
     .nav-link:hover:after{left:0;width:100%}
@@ -89,16 +123,117 @@
     .icon {font-size: 32px;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;margin-bottom: .5rem;transition: transform .4s ease;}
     .icon-box {width: 50px;height: 50px;background: rgba(201,169,97,.15);border-radius: 12px;display: flex;align-items: center;justify-content: center;flex-shrink: 0;transition: transform .4s ease;}
 
-    /* HERO */
+    /* HERO WITH PARALLAX SLIDESHOW */
     .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 100px}
-    .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;transform:scale(1.1)}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.85),rgba(10,10,10,.95))}
+    
+    /* Parallax Slideshow */
+    .hero-slideshow {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      overflow: hidden;
+    }
+    
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      opacity: 0;
+      transition: opacity 2s ease-in-out, transform 8s ease-out;
+      transform: scale(1.1);
+    }
+    
+    .hero-slide.active {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    /* Lighter overlay for better image visibility */
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(5,5,5,.6), rgba(10,10,10,.7));
+      z-index: -1;
+    }
+    
+    /* Gradient overlay for text readability */
+    .hero-gradient {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 0%, rgba(10,10,10,0.3) 50%, rgba(10,10,10,0.6) 100%);
+      z-index: -1;
+    }
+    
     .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
     .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
     .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
     .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
     .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
     .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
+
+    /* Hero Logo Styling - Vertical Layout */
+    .hero-logo-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      padding: 1.5rem;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(201, 169, 97, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s ease;
+    }
+    
+    .hero-logo-container:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(201, 169, 97, 0.2);
+      border-color: rgba(201, 169, 97, 0.5);
+    }
+    
+    .hero-logo-container::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: var(--grad1);
+      border-radius: 22px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .hero-logo-container:hover::before {
+      opacity: 0.3;
+    }
+    
+    .hero-logo {
+      height: 120px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      transition: transform 0.4s ease;
+    }
+    
+    .hero-logo-container:hover .hero-logo {
+      transform: scale(1.05);
+    }
+    
+    /* Logo glow effect */
+    @keyframes logoGlow {
+      0% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1); }
+      50% { filter: drop-shadow(0 4px 15px rgba(201, 169, 97, 0.4)) brightness(1.1); }
+      100% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1); }
+    }
+    
+    .hero-logo {
+      animation: logoGlow 4s ease-in-out infinite;
+    }
+
+    /* Hero Content Container */
+    .hero-content-container {
+      margin-top: 1rem;
+    }
 
     /* Hero Glass Metrics */
     .hero-glass-metrics {margin-top: 2rem;position: relative;z-index: 2;}
@@ -126,6 +261,32 @@
     .glass-metric-card .metric-label {font-size: .78rem;color: #cfd3d8;margin-top: 2px;letter-spacing: .3px;text-transform: uppercase;}
     @media (max-width: 768px) {.glass-metric-card {min-width: 140px;padding: .7rem 1rem;}.glass-metric-card .metric-value {font-size: 1.2rem;}.glass-metric-card .metric-label {font-size: .7rem;}}
     @media (max-width: 576px) {.hero-glass-metrics {gap: 1rem;}.glass-metric-card {flex: 1;min-width: auto;}}
+
+    /* Slide Indicators */
+    .slide-indicators {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 2;
+    }
+    
+    .slide-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .slide-indicator.active {
+      background: var(--gold);
+      transform: scale(1.3);
+      box-shadow: 0 0 10px rgba(201, 169, 97, 0.5);
+    }
 
     /* Stats */
     .stats {background: rgba(10,10,10,.98);border-top: 1px solid rgba(201,169,97,.15);border-bottom: 1px solid rgba(201,169,97,.15);}
@@ -267,11 +428,94 @@
       color: inherit !important;
     }
 
+    /* Course Cards for Pricing Section */
+    .course-card {
+      background: rgba(20,20,20,.95);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(201,169,97,.15);
+      border-radius: 20px;
+      padding: 2rem;
+      height: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .course-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--gold);
+      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+    }
+    .course-card .badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.8rem;
+    }
+    .course-card .course-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(201,169,97,.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .course-card .course-icon i {
+      font-size: 2.5rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .course-card .price {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+    .course-card .features {
+      list-style: none;
+      padding: 0;
+      margin: 1.5rem 0;
+    }
+    .course-card .features li {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.75rem;
+      color: var(--text);
+    }
+    .course-card .features li i {
+      color: var(--gold);
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
     /* RESPONSIVE */
     @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
-    @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
-    @media (max-width:768px){.hero{padding:120px Beth 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.stat .num{font-size:2rem}.card-mod{padding:1.2rem}.cta-banner{padding:2rem;text-align:center}}
-    @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill,.btn-ghost{font-size:.8rem;padding:6px 14px}.hero-metrics{flex-direction:column;align-items:center}.hero-metrics .metric{width:90%;justify-content:center;margin:6px 0}.stat .num{font-size:1.8rem}#backToTop{width:40px;height:40px;right:12px;bottom:12px}.popular-badge{font-size:.7rem;padding:3px 12px}}
+    @media (max-width:992px){
+      .navbar-brand {font-size: 1.3rem;}
+      .navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}
+      .nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}
+      .hero-logo {height: 100px;}
+    }
+    @media (max-width:768px){
+      .navbar-brand {font-size: 1.2rem;}
+      .hero{padding:120px Beth 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.stat .num{font-size:2rem}.card-mod{padding:1.2rem}.cta-banner{padding:2rem;text-align:center}
+      .hero-logo {height: 80px;}
+      .hero-logo-container {padding: 1rem;}
+    }
+    @media (max-width:576px){
+      .navbar-brand {font-size: 1.1rem;}
+      .hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill,.btn-ghost{font-size:.8rem;padding:6px 14px}.hero-metrics{flex-direction:column;align-items:center}.hero-metrics .metric{width:90%;justify-content:center;margin:6px 0}.stat .num{font-size:1.8rem}#backToTop{width:40px;height:40px;right:12px;bottom:12px}.popular-badge{font-size:.7rem;padding:3px 12px}
+      .hero-logo {height: 70px;}
+      .hero-logo-container {padding: 0.75rem;}
+    }
   </style>
 </head>
 <body>
@@ -287,9 +531,7 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="img/logo.png" alt="IELTS Masterclass Logo">
-      </a>
+      <a class="navbar-brand" href="#">IELTS Masterclass</a>
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -316,30 +558,58 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION WITH PARALLAX SLIDESHOW -->
   <header class="hero" id="home">
-    <div class="hero-bg"></div>
+    <!-- Parallax Slideshow Background -->
+    <div class="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1600&auto=format&fit=crop')"></div>
+      <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=1600&auto=format&fit=crop')"></div>
+    </div>
+    
+    <!-- Lighter Overlay -->
     <div class="hero-overlay"></div>
+    <div class="hero-gradient"></div>
+    
+    <!-- Slide Indicators -->
+    <div class="slide-indicators">
+      <span class="slide-indicator active" data-slide="0"></span>
+      <span class="slide-indicator" data-slide="1"></span>
+      <span class="slide-indicator" data-slide="2"></span>
+      <span class="slide-indicator" data-slide="3"></span>
+      <span class="slide-indicator" data-slide="4"></span>
+    </div>
+    
     <span class="hero-dot gold"></span>
     <span class="hero-dot red"></span>
 
     <div class="container position-relative">
       <div class="row align-items-center g-4">
         <div class="col-lg-10 mx-auto text-center">
-          <div class="d-flex justify-content-center mb-3">
-            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" style="height:100px;">
+          <!-- Logo Section - Top -->
+          <div class="hero-logo-section" data-aos="fade-down">
+            <div class="hero-logo-container">
+              <img src="img/logo.png" alt="IELTS Masterclass" class="hero-logo">
+              <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" class="hero-logo">
+            </div>
           </div>
-          <div class="badge-pill mb-3" data-aos="fade-down"><i class="bi bi-mortarboard"></i> IELTS Masterclass & Study Abroad</div>
-          <h1 class="mb-3" data-aos="fade-up">Your IELTS journey starts here</h1>
-          <p class="mb-4" data-aos="fade-up" data-aos-delay="80">Structured courses, flexible schedules, and realistic mock tests designed to help you hit your target band faster.</p>
-          <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5" data-aos="zoom-in">
-            <a href="#cta" class="btn btn-pill"><span class="me-1">Get started</span> <i class="bi bi-arrow-right"></i></a>
-            <a href="#trial" class="btn btn-ghost">Try a free class</a>
-          </div>
-          <div class="hero-glass-metrics d-flex flex-wrap justify-content-center gap-3" data-aos="fade-up" data-aos-delay="150">
-            <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-graph-up-arrow text-gold"></i><div><div class="metric-value">+1.5</div><div class="metric-label">Avg. Band Increase</div></div></div></div>
-            <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-clipboard-check text-gold"></i><div><div class="metric-value">500+</div><div class="metric-label">Mock Tests / mo</div></div></div></div>
-            <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-emoji-smile text-gold"></i><div><div class="metric-value">97%</div><div class="metric-label">Student Satisfaction</div></div></div></div>
+          
+          <!-- Content Section - Bottom -->
+          <div class="hero-content-container" data-aos="fade-up">
+            <div class="badge-pill mb-3"><i class="bi bi-mortarboard"></i> IELTS Masterclass & Study Abroad</div>
+            <h1 class="mb-3">Your IELTS journey starts here</h1>
+            <p class="mb-4">Structured courses, flexible schedules, and realistic mock tests designed to help you hit your target band faster.</p>
+            <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
+              <a href="#cta" class="btn btn-pill"><span class="me-1">Get started</span> <i class="bi bi-arrow-right"></i></a>
+              <a href="#trial" class="btn btn-ghost">Try a free class</a>
+            </div>
+            <div class="hero-glass-metrics d-flex flex-wrap justify-content-center gap-3">
+              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-graph-up-arrow text-gold"></i><div><div class="metric-value">+1.5</div><div class="metric-label">Avg. Band Increase</div></div></div></div>
+              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-clipboard-check text-gold"></i><div><div class="metric-value">500+</div><div class="metric-label">Mock Tests / mo</div></div></div></div>
+              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-emoji-smile text-gold"></i><div><div class="metric-value">97%</div><div class="metric-label">Student Satisfaction</div></div></div></div>
+            </div>
           </div>
         </div>
       </div>
@@ -577,19 +847,49 @@
   <!-- PRICING -->
   <section id="pricing">
     <div class="container">
-      <h2 class="title text-center" data-aos="fade-up">Choose your plan</h2>
-      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Flexible pricing for every learner. Start free, upgrade anytime.</p>
-      <div class="text-center mb-5" data-aos="fade-up" data-aos-delay="100">
-        <div class="d-inline-flex align-items-center gap-3 bg-glass p-2 rounded-pill">
-          <span class="text-white fw-medium">Monthly</span>
-          <label class="toggle-switch"><input type="checkbox" id="priceToggle"><span class="toggle-slider"></span></label>
-          <span class="text-white fw-medium">Yearly <span class="text-success small">(Save up to 33%)</span></span>
-        </div>
-      </div>
+      <h2 class="title text-center" data-aos="fade-up">Choose Your Course</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Select the perfect course based on your learning preference</p>
       <div class="row g-4 justify-content-center">
-        <div class="col-md-6 col-lg-4" data-aos="fade-up"><div class="glass p-4 h-100 d-flex flex-column card-mod"><div class="text-center mb-4"><h4 class="mb-1">Basic</h4><div class="price-display"><span class="price monthly">৳2,999</span><span class="price yearly d-none">৳29,999</span><span class="text-secondary small period">/month</span></div></div><ul class="list-unstyled mb-4 flex-grow-1"><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 20+ Video Lessons</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 50 Practice Sets</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Weekly Live Q&A</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> 1:1 Mentoring</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Full Mock Tests</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Band Score Report</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Priority Support</li></ul><a href="#cta" class="btn btn-ghost w-100 mt-auto">Get Started</a></div></div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100"><div class="glass p-4 h-100 d-flex flex-column position-relative card-mod border border-warning" style="border-image: var(--grad1) 1;"><div class="popular-badge">MOST POPULAR</div><div class="text-center mb-4"><h4 class="mb-1">Advanced</h4><div class="price-display"><span class="price monthly">৳5,999</span><span class="price yearly d-none">৳47,999</span><span class="text-secondary small period">/month</span></div><small class="text-success d-block mt-1 save-text">Save ৳24,000 if paid yearly</small></div><ul class="list-unstyled mb-4 flex-grow-1"><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 60+ Video Lessons</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 150 Practice Sets</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Daily Live Classes</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 2 Full Mock Tests/mo</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Band Score Report</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 1:1 Speaking Review</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-x-circle-fill text-danger me-2"></i> Priority Support</li></ul><a href="#cta" class="btn btn-pill w-100 mt-auto">Choose Advanced</a></div></div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200"><div class="glass p-4 h-100 d-flex flex-column card-mod"><div class="text-center mb-4"><h4 class="mb-1">Premium</h4><div class="price-display"><span class="price monthly">৳9,999</span><span class="price yearly d-none">৳83,999</span><span class="text-secondary small period">/month</span></div><small class="text-success d-block mt-1 save-text">Save ৳36,000 if paid yearly</small></div><ul class="list-unstyled mb-4 flex-grow-1"><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 100+ Video Lessons</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Unlimited Practice</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Daily Live + Recorded</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 4 Full Mock Tests/mo</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> Full Band Report + AI</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 1:1 Writing & Speaking</li><li class="mb-2 d-flex align-items-center"><i class="bi bi-check-circle-fill text-success me-2"></i> 24/7 Priority Support</li></ul><a href="#cta" class="btn btn-pill w-100 mt-auto">Go Premium</a></div></div>
+        <div class="col-lg-5" data-aos="fade-up">
+          <div class="course-card">
+            <span class="badge bg-warning text-dark">POPULAR</span>
+            <div class="course-icon">
+              <i class="bi bi-building"></i>
+            </div>
+            <h3>Offline Private Batch</h3>
+            <div class="price">৳500/month</div>
+            <p>Learn in a traditional classroom setting with personalized attention</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> Unlimited Mock Tests</li>
+              <li><i class="bi bi-check-circle-fill"></i> 10 Students per Batch</li>
+              <li><i class="bi bi-check-circle-fill"></i> Flexible Class Time</li>
+              <li><i class="bi bi-check-circle-fill"></i> Personalized Attention</li>
+              <li><i class="bi bi-check-circle-fill"></i> Study Materials Included</li>
+              <li><i class="bi bi-check-circle-fill"></i> Certificate of Completion</li>
+            </ul>
+            <a href="#cta" class="btn btn-pill w-100">Enroll Now</a>
+          </div>
+        </div>
+        <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
+          <div class="course-card">
+            <span class="badge bg-danger">BESTSELLER</span>
+            <div class="course-icon">
+              <i class="bi bi-laptop"></i>
+            </div>
+            <h3>Online Private Batch</h3>
+            <div class="price">৳2,800/month</div>
+            <p>Learn from the comfort of your home with live interactive classes</p>
+            <ul class="features">
+              <li><i class="bi bi-check-circle-fill"></i> 36 Live Classes</li>
+              <li><i class="bi bi-check-circle-fill"></i> Friday & Saturday: 9 PM</li>
+              <li><i class="bi bi-check-circle-fill"></i> Wednesday: 8 PM</li>
+              <li><i class="bi bi-check-circle-fill"></i> Recorded Sessions Available</li>
+              <li><i class="bi bi-check-circle-fill"></i> Online Study Materials</li>
+              <li><i class="bi bi-check-circle-fill"></i> Certificate of Completion</li>
+            </ul>
+            <a href="#cta" class="btn btn-pill w-100">Enroll Now</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -637,11 +937,6 @@
             </div>
             <h4 class="mb-3 text-center text-white">Register for Free Class</h4>
             <form id="trialForm" class="needs-validation" novalidate>
-              <!--<div class="mb-3"><label for="name" class="form-label small text-light">Full Name</label><input type="text" class="form-control form-control-lg trial-input" id="name" placeholder="John Doe" required><div class="invalid-feedback">Please enter your name.</div></div>
-              <div class="mb-3"><label for="email" class="form-label small text-light">Email Address</label><input type="email" class="form-control form-control-lg trial-input" id="email" placeholder="you@example.com" required><div class="invalid-feedback">Please enter a valid email.</div></div>
-              <div class="mb-3"><label for="phone" class="form-label small text-light">Phone (Optional)</label><input type="tel" class="form-control form-control-lg trial-input" id="phone" placeholder="+880 1XXX-XXXXXX"></div>
-              <div class="mb-3"><label for="target" class="form-label small text-light">Target Band</label><select class="form-select form-select-lg trial-input" id="target"><option value="">Select...</option><option>6.0</option><option>6.5</option><option>7.0</option><option>7.5</option><option>8.0+</option></select></div>-->
-
               <button type="submit" class="btn btn-pill w-100 mt-2 d-flex align-items-center justify-content-center gap-2"><i class="bi bi-sparkles"></i><span>Claim Free Class Now</span></button>
               <p class="text-center small text-muted mt-3 mb-0"><i class="bi bi-calendar-check"></i> Next class: <strong>Tomorrow, 7:00 PM</strong></p>
             </form>
@@ -751,6 +1046,44 @@
       });
     });
 
+    // Hero Parallax Slideshow
+    document.addEventListener('DOMContentLoaded', function() {
+      const slides = document.querySelectorAll('.hero-slide');
+      const indicators = document.querySelectorAll('.slide-indicator');
+      let currentSlide = 0;
+      
+      function showSlide(index) {
+        slides.forEach(slide => slide.classList.remove('active'));
+        indicators.forEach(indicator => indicator.classList.remove('active'));
+        
+        slides[index].classList.add('active');
+        indicators[index].classList.add('active');
+        currentSlide = index;
+      }
+      
+      function nextSlide() {
+        const newIndex = (currentSlide + 1) % slides.length;
+        showSlide(newIndex);
+      }
+      
+      // Auto-play slideshow
+      setInterval(nextSlide, 5000);
+      
+      // Indicator click events
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => showSlide(index));
+      });
+      
+      // Parallax effect on scroll
+      window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+        const parallax = document.querySelector('.hero-slideshow');
+        if (parallax) {
+          parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+    });
+
     // Journey step active
     const journeySteps = document.querySelectorAll('.journey-step');
     const observer = new IntersectionObserver((entries) => entries.forEach(entry => {
@@ -835,26 +1168,6 @@
     }, { threshold: 0.5 });
     if (consultancySection) consultancyObs.observe(consultancySection);
 
-    // Pricing Toggle
-    const toggle = document.getElementById('priceToggle');
-    const monthlyPrices = document.querySelectorAll('.price.monthly');
-    const yearlyPrices = document.querySelectorAll('.price.yearly');
-    const period = document.querySelectorAll('.period');
-    const saveTexts = document.querySelectorAll('.save-text');
-    toggle.addEventListener('change', function() {
-      if (this.checked) {
-        monthlyPrices.forEach(p => p.classList.add('d-none'));
-        yearlyPrices.forEach(p => p.classList.remove('d-none'));
-        period.forEach(p => p.textContent = '/year');
-        saveTexts.forEach(s => s.style.display = 'block');
-      } else {
-        monthlyPrices.forEach(p => p.classList.remove('d-none'));
-        yearlyPrices.forEach(p => p.classList.add('d-none'));
-        period.forEach(p => p.textContent = '/month');
-        saveTexts.forEach(s => s.style.display = 'none');
-      }
-    });
-
     // Trial Countdown
     function updateCountdown() {
       const now = new Date();
@@ -863,7 +1176,7 @@
       tomorrow.setHours(19, 0, 0, 0);
       const diff = tomorrow - now;
       if (diff <= 0) {
-        document.querySelectorAll('#countdown-hours, #countdown-minutes, #countdown-se(seconds').forEach(el => el.textContent = '00');
+        document.querySelectorAll('#countdown-hours, #countdown-minutes, #countdown-seconds').forEach(el => el.textContent = '00');
         return;
       }
       const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -891,6 +1204,3 @@
   </script>
 </body>
 </html>
-
-
-
