@@ -37,15 +37,63 @@
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
 
-    /* Navbar with Text Brand */
-    .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
-    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
+    /* Enhanced Navbar with Two Logos */
+    .navbar{background:rgba(5,5,5,.75)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:1.2rem 0;min-height: 100px;}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.8rem 0;min-height: 80px;}
+    
+    /* Logo Container */
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    
+    .logo-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .logo-item:hover {
+      transform: translateY(-3px);
+    }
+    
+    .logo-item img {
+      height: 60px;
+      width: auto;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      transition: all 0.3s ease;
+    }
+    
+    .logo-item:hover img {
+      filter: drop-shadow(0 6px 12px rgba(201, 169, 97, 0.4));
+      transform: scale(1.05);
+    }
+    
+    .logo-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+    }
+    
+    .navbar.scrolled .logo-item img {
+      height: 45px;
+    }
+    
+    .navbar.scrolled .logo-label {
+      font-size: 0.65rem;
+    }
     
     /* Text Brand Styling */
     .navbar-brand {
       font-family: 'Montserrat', sans-serif;
       font-weight: 800;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       background: var(--grad1);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -123,8 +171,8 @@
     .icon {font-size: 32px;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;margin-bottom: .5rem;transition: transform .4s ease;}
     .icon-box {width: 50px;height: 50px;background: rgba(201,169,97,.15);border-radius: 12px;display: flex;align-items: center;justify-content: center;flex-shrink: 0;transition: transform .4s ease;}
 
-    /* HERO WITH PARALLAX SLIDESHOW */
-    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:140px 0 100px}
+    /* HERO WITH PARALLAX SLIDESHOW AND SERVICE CARDS */
+    .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:160px 0 100px}
     
     /* Parallax Slideshow */
     .hero-slideshow {
@@ -173,66 +221,139 @@
     .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
     .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
 
-    /* Hero Logo Styling - Vertical Layout */
-    .hero-logo-container {
-      position: relative;
-      display: inline-block;
-      margin-bottom: 2.5rem;
-      padding: 1.5rem;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      border: 1px solid rgba(201, 169, 97, 0.3);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Enhanced Service Cards in Hero */
+    .hero-service-cards {
+      margin-top: 3rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+    
+    .hero-service-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(201, 169, 97, 0.2);
+      border-radius: 24px;
+      padding: 2.5rem;
+      text-align: center;
       transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
     
-    .hero-logo-container:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(201, 169, 97, 0.2);
-      border-color: rgba(201, 169, 97, 0.5);
-    }
-    
-    .hero-logo-container::before {
+    .hero-service-card::before {
       content: '';
       position: absolute;
-      inset: -2px;
+      inset: 0;
       background: var(--grad1);
-      border-radius: 22px;
-      z-index: -1;
       opacity: 0;
       transition: opacity 0.4s ease;
+      z-index: -1;
     }
     
-    .hero-logo-container:hover::before {
-      opacity: 0.3;
+    .hero-service-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: var(--gold);
+      box-shadow: 0 20px 50px rgba(201, 169, 97, 0.3);
     }
     
-    .hero-logo {
-      height: 120px;
-      width: auto;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-      transition: transform 0.4s ease;
+    .hero-service-card:hover::before {
+      opacity: 0.1;
     }
     
-    .hero-logo-container:hover .hero-logo {
-      transform: scale(1.05);
+    .hero-service-card .icon-box {
+      width: 100px;
+      height: 100px;
+      background: rgba(201, 169, 97, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: all 0.4s ease;
+      position: relative;
     }
     
-    /* Logo glow effect */
-    @keyframes logoGlow {
-      0% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1); }
-      50% { filter: drop-shadow(0 4px 15px rgba(201, 169, 97, 0.4)) brightness(1.1); }
-      100% { filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3)) brightness(1); }
+    .hero-service-card:hover .icon-box {
+      transform: scale(1.1) rotate(5deg);
+      background: rgba(201, 169, 97, 0.25);
+      box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
     }
     
-    .hero-logo {
-      animation: logoGlow 4s ease-in-out infinite;
+    .hero-service-card .icon-box i {
+      font-size: 3rem;
+      background: var(--grad1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    
+    .hero-service-card p {
+      font-size: 1rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    .hero-service-card .btn {
+      background: var(--grad1);
+      color: #111;
+      border: none;
+      border-radius: 999px;
+      padding: 12px 24px;
+      font-weight: 700;
+      font-size: 1rem;
+      box-shadow: 0 8px 20px rgba(201, 169, 97, 0.3);
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .hero-service-card .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 30px rgba(201, 169, 97, 0.4);
+      color: #111;
+    }
+    
+    /* Glow animation for service cards */
+    @keyframes cardGlow {
+      0% { box-shadow: 0 0 20px rgba(201, 169, 97, 0.2); }
+      50% { box-shadow: 0 0 30px rgba(201, 169, 97, 0.4); }
+      100% { box-shadow: 0 0 20px rgba(201, 169, 97, 0.2); }
+    }
+    
+    .hero-service-card {
+      animation: cardGlow 4s ease-in-out infinite;
+    }
+    
+    .hero-service-card:nth-child(2) {
+      animation-delay: 1s;
+    }
+    
+    .hero-service-card:nth-child(3) {
+      animation-delay: 2s;
+    }
+    
+    .hero-service-card:nth-child(4) {
+      animation-delay: 3s;
     }
 
     /* Hero Content Container */
     .hero-content-container {
-      margin-top: 1rem;
+      margin-top: 2rem;
     }
 
     /* Hero Glass Metrics */
@@ -373,61 +494,6 @@
     #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
     #backToTop.show{opacity:1;visibility:visible}
 
-    /* SERVICES */
-    .service-card {
-      transition: all 0.4s ease;
-      height: 100%;
-    }
-    .service-card:hover {
-      transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 20px 40px rgba(201,169,97,.2);
-    }
-    .service-card .icon-box {
-      width: 80px;
-      height: 80px;
-      background: rgba(201,169,97,.15);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.4s ease;
-    }
-    .service-card:hover .icon-box {
-      transform: scale(1.1);
-      background: rgba(201,169,97,.25);
-    }
-
-    /* Service Button Styles */
-    .service-btn {
-      color: #111 !important;
-      background: var(--grad1);
-      border: none;
-      border-radius: 999px;
-      padding: 8px 18px;
-      font-weight: 700;
-      font-size: .9rem;
-      box-shadow: 0 6px 18px rgba(201,169,97,.35);
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-
-    .service-btn:hover {
-      color: #111 !important;
-      background: var(--grad1);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(201,169,97,.4);
-    }
-
-    /* Prevent link color changes */
-    .service-card a {
-      color: inherit !important;
-    }
-
-    .service-card a:hover {
-      color: inherit !important;
-    }
-
     /* Course Cards for Pricing Section */
     .course-card {
       background: rgba(20,20,20,.95);
@@ -502,19 +568,22 @@
       .navbar-brand {font-size: 1.3rem;}
       .navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}
       .nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}
-      .hero-logo {height: 100px;}
+      .hero-service-cards {grid-template-columns: 1fr; gap: 1.5rem;}
     }
     @media (max-width:768px){
       .navbar-brand {font-size: 1.2rem;}
-      .hero{padding:120px Beth 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.stat .num{font-size:2rem}.card-mod{padding:1.2rem}.cta-banner{padding:2rem;text-align:center}
-      .hero-logo {height: 80px;}
-      .hero-logo-container {padding: 1rem;}
+      .logo-container {flex-direction: column; gap: 1rem;}
+      .hero{padding:140px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.stat .num{font-size:2rem}.card-mod{padding:1.2rem}.cta-banner{padding:2rem;text-align:center}
+      .hero-service-cards {grid-template-columns: 1fr; gap: 1.5rem;}
+      .hero-service-card {padding: 2rem;}
     }
     @media (max-width:576px){
       .navbar-brand {font-size: 1.1rem;}
       .hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill,.btn-ghost{font-size:.8rem;padding:6px 14px}.hero-metrics{flex-direction:column;align-items:center}.hero-metrics .metric{width:90%;justify-content:center;margin:6px 0}.stat .num{font-size:1.8rem}#backToTop{width:40px;height:40px;right:12px;bottom:12px}.popular-badge{font-size:.7rem;padding:3px 12px}
-      .hero-logo {height: 70px;}
-      .hero-logo-container {padding: 0.75rem;}
+      .hero-service-card {padding: 1.5rem;}
+      .hero-service-card .icon-box {width: 80px; height: 80px;}
+      .hero-service-card .icon-box i {font-size: 2.5rem;}
+      .hero-service-card h3 {font-size: 1.3rem;}
     }
   </style>
 </head>
@@ -528,10 +597,20 @@
     </div>
   </div>
 
-  <!-- Navbar -->
+  <!-- Enhanced Navbar with Two Logos -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">IELTS Masterclass</a>
+      <div class="logo-container">
+        <a href="#" class="logo-item">
+          <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass">
+          <span class="logo-label">Official Partner</span>
+        </a>
+        <a href="#" class="logo-item">
+          <img src="img/logo.png" alt="Your Institution">
+          <span class="logo-label">Your Institution</span>
+        </a>
+      </div>
+      
       <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -542,7 +621,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">IELTS Courses</a></li>
+              <li><a class="dropdown-item active" href="courses.html">IELTS Courses</a></li>
               <li><a class="dropdown-item" href="consultancy.html">Study Abroad</a></li>
               <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
               <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
@@ -558,7 +637,7 @@
     </div>
   </nav>
 
-  <!-- HERO SECTION WITH PARALLAX SLIDESHOW -->
+  <!-- HERO SECTION WITH PARALLAX SLIDESHOW AND SERVICE CARDS -->
   <header class="hero" id="home">
     <!-- Parallax Slideshow Background -->
     <div class="hero-slideshow">
@@ -588,15 +667,7 @@
     <div class="container position-relative">
       <div class="row align-items-center g-4">
         <div class="col-lg-10 mx-auto text-center">
-          <!-- Logo Section - Top -->
-          <div class="hero-logo-section" data-aos="fade-down">
-            <div class="hero-logo-container">
-              <img src="img/logo.png" alt="IELTS Masterclass" class="hero-logo">
-              <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" class="hero-logo">
-            </div>
-          </div>
-          
-          <!-- Content Section - Bottom -->
+          <!-- Content Section -->
           <div class="hero-content-container" data-aos="fade-up">
             <div class="badge-pill mb-3"><i class="bi bi-mortarboard"></i> IELTS Masterclass & Study Abroad</div>
             <h1 class="mb-3">Your IELTS journey starts here</h1>
@@ -611,76 +682,49 @@
               <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-emoji-smile text-gold"></i><div><div class="metric-value">97%</div><div class="metric-label">Student Satisfaction</div></div></div></div>
             </div>
           </div>
+          
+          <!-- Service Cards in Hero Section -->
+          <div class="hero-service-cards" data-aos="fade-up" data-aos-delay="200">
+            <div class="hero-service-card" data-aos="zoom-in" data-aos-delay="300">
+              <div class="icon-box">
+                <i class="bi bi-book-half"></i>
+              </div>
+              <h3>IELTS Courses</h3>
+              <p>Comprehensive IELTS preparation courses designed to help you achieve your target band score with expert guidance.</p>
+              <a href="#cta" class="btn">Explore Courses <i class="bi bi-arrow-right"></i></a>
+            </div>
+            
+            <div class="hero-service-card" data-aos="zoom-in" data-aos-delay="400">
+              <div class="icon-box">
+                <i class="bi bi-globe"></i>
+              </div>
+              <h3>Study Abroad</h3>
+              <p>Expert guidance for university admissions, visa applications, and scholarship opportunities to study abroad.</p>
+              <a href="#consultancy" class="btn">Learn More <i class="bi bi-arrow-right"></i></a>
+            </div>
+            
+            <div class="hero-service-card" data-aos="zoom-in" data-aos-delay="500">
+              <div class="icon-box">
+                <i class="bi bi-clipboard-check"></i>
+              </div>
+              <h3>Mock Tests</h3>
+              <p>Practice under real exam conditions with our authentic IELTS mock tests and detailed performance analysis.</p>
+              <a href="#mock" class="btn">Book Now <i class="bi bi-arrow-right"></i></a>
+            </div>
+            
+            <div class="hero-service-card" data-aos="zoom-in" data-aos-delay="600">
+              <div class="icon-box">
+                <i class="bi bi-calendar-check"></i>
+              </div>
+              <h3>IELTS Test</h3>
+              <p>Register for your official IELTS test through our authorized registration center with hassle-free process.</p>
+              <a href="#ielts-test" class="btn">Register Now <i class="bi bi-arrow-right"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </header>
-
-  <!-- SERVICES SECTION -->
-  <section id="services" class="py-5 position-relative overflow-hidden">
-    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px;height:800px;filter:blur(180px);opacity:.08;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;"></div>
-    <div class="container position-relative z-1">
-      <h2 class="title text-center mb-5" data-aos="fade-up">Our Services</h2>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-3" data-aos="fade-up">
-          <a href="courses.html" class="text-decoration-none">
-            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
-              <div class="icon-box mb-3">
-                <i class="bi bi-book-half text-gold fs-1"></i>
-              </div>
-              <h4 class="text-white mb-3">OUR COURSES</h4>
-              <p class="text-muted mb-4">Comprehensive IELTS preparation courses designed to help you achieve your target band score.</p>
-              <div class="mt-auto">
-                <span class="btn btn-pill service-btn">Explore Courses</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
-          <a href="consultancy.html" class="text-decoration-none">
-            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
-              <div class="icon-box mb-3">
-                <i class="bi bi-globe text-gold fs-1"></i>
-              </div>
-              <h4 class="text-white mb-3">Study Abroad</h4>
-              <p class="text-muted mb-4">Expert guidance for university admissions, visa applications, and scholarship opportunities.</p>
-              <div class="mt-auto">
-                <span class="btn btn-pill service-btn">Learn More</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
-          <a href="mock.html" class="text-decoration-none">
-            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
-              <div class="icon-box mb-3">
-                <i class="bi bi-clipboard-check text-gold fs-1"></i>
-              </div>
-              <h4 class="text-white mb-3">Book a Mock Test</h4>
-              <p class="text-muted mb-4">Practice under real exam conditions with our authentic IELTS mock tests.</p>
-              <div class="mt-auto">
-                <span class="btn btn-pill service-btn">Book Now</span>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
-          <a href="ielts-test.html" class="text-decoration-none">
-            <div class="glass h-100 d-flex flex-column align-items-center text-center p-4 rounded-4 service-card">
-              <div class="icon-box mb-3">
-                <i class="bi bi-calendar-check text-gold fs-1"></i>
-              </div>
-              <h4 class="text-white mb-3">Book Your IELTS Test</h4>
-              <p class="text-muted mb-4">Register for your official IELTS test through our authorized registration center.</p>
-              <div class="mt-auto">
-                <span class="btn btn-pill service-btn">Register Now</span>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- STATS SECTION -->
   <section class="stats py-5 position-relative overflow-hidden">
