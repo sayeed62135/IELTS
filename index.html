@@ -53,36 +53,86 @@
       flex-direction: column;
       align-items: center;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.4s ease;
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.12), 
+        rgba(255, 255, 255, 0.05));
+      backdrop-filter: blur(20px);
+      border: 2px solid rgba(201, 169, 97, 0.4);
+      border-radius: 20px;
+      padding: 16px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .logo-item::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, 
+        transparent, 
+        rgba(201, 169, 97, 0.1));
+      border-radius: 18px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    
+    .logo-item:hover::after {
+      opacity: 1;
     }
     
     .logo-item:hover {
       transform: translateY(-3px);
+      background: linear-gradient(135deg, 
+        rgba(255, 255, 255, 0.18), 
+        rgba(255, 255, 255, 0.08));
+      border-color: rgba(201, 169, 97, 0.6);
+      box-shadow: 0 15px 40px rgba(201, 169, 97, 0.2);
+    }
+    
+    /* Premium Logo Image Style - Universal */
+    .premium-logo {
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(201, 169, 97, 0.2);
+      filter: 
+        drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))
+        contrast(1.1);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 2;
+    }
+    
+    .premium-logo:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 2px rgba(201, 169, 97, 0.4);
     }
     
     .logo-item img {
       height: 60px;
       width: auto;
-      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
-      transition: all 0.3s ease;
     }
     
-    .logo-item:hover img {
-      filter: drop-shadow(0 6px 12px rgba(201, 169, 97, 0.4));
-      transform: scale(1.05);
+    .navbar.scrolled .logo-item img {
+      height: 45px;
+    }
+    
+    .navbar.scrolled .premium-logo {
+      padding: 12px;
     }
     
     .logo-label {
       font-size: 0.7rem;
       color: var(--muted);
-      margin-top: 0.25rem;
+      margin-top: 0.5rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       font-weight: 500;
-    }
-    
-    .navbar.scrolled .logo-item img {
-      height: 45px;
     }
     
     .navbar.scrolled .logo-label {
@@ -481,7 +531,27 @@
     footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
     footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
     footer a:hover{color:var(--gold)}
-    footer .footer-logo img{height:100px;width:auto}
+    
+    /* Footer Logo with Premium Style */
+    .footer-logo {
+      margin-bottom: 1.5rem;
+      display: inline-block;
+      transition: all 0.4s ease;
+    }
+    
+    .footer-logo:hover {
+      transform: translateY(-5px);
+    }
+    
+    .footer-logo img {
+      height: 100px;
+      width: auto;
+      transition: all 0.4s ease;
+    }
+    
+    .footer-logo:hover img {
+      transform: scale(1.05);
+    }
 
     /* CONSULTANCY */
     .consultancy-card {background: rgba(20,20,20,.95);backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);border-radius: 20px;padding: 2rem;transition: all .4s ease;height: 100%;display: flex;flex-direction: column;justify-content: space-between;}
@@ -576,6 +646,7 @@
       .hero{padding:140px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.stat .num{font-size:2rem}.card-mod{padding:1.2rem}.cta-banner{padding:2rem;text-align:center}
       .hero-service-cards {grid-template-columns: 1fr; gap: 1.5rem;}
       .hero-service-card {padding: 2rem;}
+      .footer-logo img {height: 80px;}
     }
     @media (max-width:576px){
       .navbar-brand {font-size: 1.1rem;}
@@ -584,6 +655,7 @@
       .hero-service-card .icon-box {width: 80px; height: 80px;}
       .hero-service-card .icon-box i {font-size: 2.5rem;}
       .hero-service-card h3 {font-size: 1.3rem;}
+      .footer-logo img {height: 70px;}
     }
   </style>
 </head>
@@ -602,11 +674,11 @@
     <div class="container">
       <div class="logo-container">
         <a href="#" class="logo-item">
-          <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass">
+          <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" class="premium-logo">
           <span class="logo-label">Official Partner</span>
         </a>
         <a href="#" class="logo-item">
-          <img src="img/logo.png" alt="Your Institution">
+          <img src="img/logo.png" alt="Your Institution" class="premium-logo">
           <span class="logo-label">Your Institution</span>
         </a>
       </div>
@@ -1036,8 +1108,8 @@
     <div class="container">
       <div class="row g-4">
         <div class="col-md-4">
-          <div class="footer-logo mb-3">
-            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" >
+          <div class="footer-logo">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass" class="premium-logo">
           </div>
           <h5>IELTS Masterclass</h5>
           <p class="text-secondary mb-3">Guiding students to top IELTS scores with expert mentors, flexible classes, and mock tests.</p>
