@@ -18,12 +18,20 @@
 
   <style>
     :root{
-      --gold:#c9a961;--gold2:#f6e8a6;--accent:#8b0000;
+      --red:#8B0000;--red2:#DC143C;--red3:#B22222;--accent:#8B0000;
       --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
       --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
-      --grad1:linear-gradient(135deg,#c9a961,#f6e8a6);
-      --grad2:linear-gradient(135deg,#8b0000,#c9184a);
+      --grad1:linear-gradient(135deg,#8B0000,#DC143C);
+      --grad2:linear-gradient(135deg,#8B0000,#B22222);
       --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
+      
+      /* Section-specific badge colors */
+      --badge-mock: #FF6B35; /* Orange for Mock Test */
+      --badge-consultancy: #4ECDC4; /* Teal for Consultancy */
+      --badge-pricing: #95E77E; /* Green for Pricing */
+      --badge-trial: #FFE66D; /* Yellow for Trial */
+      --badge-faq: #A8DADC; /* Light Blue for FAQ */
+      --badge-cta: #FF006E; /* Pink for CTA */
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
@@ -33,7 +41,7 @@
     .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
     .page-transition.hide{opacity:0;pointer-events:none}
     .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
-    .loader-ring{width:62px;height:62px;border:3px solid rgba(201,169,97,.25);border-top:3px solid var(--gold);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(139,0,0,.25);border-top:3px solid var(--red);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
 
@@ -41,7 +49,7 @@
     .navbar{
       background:rgba(5,5,5,.75)!important;
       backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(201,169,97,.08);
+      border-bottom:1px solid rgba(139,0,0,.08);
       transition:.4s;
       padding:1.2rem 0;
       min-height: 100px;
@@ -75,7 +83,7 @@
         rgba(255, 255, 255, 0.12), 
         rgba(255, 255, 255, 0.05));
       backdrop-filter: blur(20px);
-      border: 2px solid rgba(201, 169, 97, 0.4);
+      border: 2px solid rgba(139, 0, 0, 0.4);
       border-radius: 20px;
       padding: 16px 24px;
       position: relative;
@@ -88,7 +96,7 @@
       inset: 0;
       background: linear-gradient(135deg, 
         transparent, 
-        rgba(201, 169, 97, 0.1));
+        rgba(139, 0, 0, 0.1));
       border-radius: 18px;
       opacity: 0;
       transition: opacity 0.4s ease;
@@ -103,8 +111,8 @@
       background: linear-gradient(135deg, 
         rgba(255, 255, 255, 0.18), 
         rgba(255, 255, 255, 0.08));
-      border-color: rgba(201, 169, 97, 0.6);
-      box-shadow: 0 15px 40px rgba(201, 169, 97, 0.2);
+      border-color: rgba(139, 0, 0, 0.6);
+      box-shadow: 0 15px 40px rgba(139, 0, 0, 0.2);
     }
     
     /* Premium Logo Image Style */
@@ -114,7 +122,7 @@
       border-radius: 12px;
       box-shadow: 
         0 8px 32px rgba(0, 0, 0, 0.3),
-        0 0 0 1px rgba(201, 169, 97, 0.2);
+        0 0 0 1px rgba(139, 0, 0, 0.2);
       filter: 
         drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2))
         contrast(1.1);
@@ -127,7 +135,7 @@
       transform: translateY(-5px) scale(1.05);
       box-shadow: 
         0 15px 40px rgba(0, 0, 0, 0.4),
-        0 0 0 2px rgba(201, 169, 97, 0.4);
+        0 0 0 2px rgba(139, 0, 0, 0.4);
     }
     
     .logo-item img {
@@ -167,11 +175,11 @@
     .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
     .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
     .nav-link:hover:after{left:0;width:100%}
-    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
+    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(139,0,0,.12);border-radius:12px;padding:.75rem 0;margin:0}
     .dropdown-item{color:var(--text);font-size:.9rem;padding:.5rem 1.25rem}
-    .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)}
-    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem;transition:all .3s ease}
-    .btn-pill:hover{transform:translateY(-1px);color:#111!important}
+    .dropdown-item:hover{background:rgba(139,0,0,.1);color:var(--red)}
+    .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(139,0,0,.35);font-size:.9rem;transition:all .3s ease}
+    .btn-pill:hover{transform:translateY(-1px);color:#fff!important}
 
     /* Utilities */
     .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
@@ -186,20 +194,20 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(201,169,97,.08)) 0%, transparent 70%);
+      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(139,0,0,.08)) 0%, transparent 70%);
       opacity: 0;
       pointer-events: none;
       z-index: 0;
       animation: floatingGlow 22s ease-in-out infinite;
     }
-    #modules::before     { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
-    #consultancy::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
-    #journey::before     { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
-    #mock::before        { --glow-color: rgba(255,215,0,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
-    #pricing::before     { --glow-color: rgba(201,169,97,.07); opacity: 1; animation-duration: 26s; animation-delay: -8s; }
-    #trial::before       { --glow-color: rgba(201,24,74,.08); opacity: 1; animation-duration: 16s; animation-delay: -2s; }
-    #faq::before         { --glow-color: rgba(201,169,97,.06); opacity: 1; animation-duration: 28s; animation-delay: -10s; }
-    #cta::before         { --glow-color: rgba(220,20,60,.10); opacity: 1; animation-duration: 14s; animation-delay: -4s; }
+    #modules::before     { --glow-color: rgba(139,0,0,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
+    #consultancy::before { --glow-color: rgba(78,205,196,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
+    #journey::before     { --glow-color: rgba(139,0,0,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
+    #mock::before        { --glow-color: rgba(255,107,53,.09); opacity: 1; animation-duration: 18s; animation-delay: -5s; }
+    #pricing::before     { --glow-color: rgba(149,231,126,.07); opacity: 1; animation-duration: 26s; animation-delay: -8s; }
+    #trial::before       { --glow-color: rgba(255,230,109,.08); opacity: 1; animation-duration: 16s; animation-delay: -2s; }
+    #faq::before         { --glow-color: rgba(168,218,220,.06); opacity: 1; animation-duration: 28s; animation-delay: -10s; }
+    #cta::before         { --glow-color: rgba(255,0,110,.10); opacity: 1; animation-duration: 14s; animation-delay: -4s; }
     @keyframes floatingGlow {
       0%   { transform: translate(-5%, 10%) rotate(0deg); opacity: 0.6; }
       25%  { transform: translate(8%, -8%) rotate(90deg); opacity: 0.8; }
@@ -210,7 +218,7 @@
 
     /* ICON STYLES */
     .icon {font-size: 32px;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;margin-bottom: .5rem;transition: transform .4s ease;}
-    .icon-box {width: 50px;height: 50px;background: rgba(201,169,97,.15);border-radius: 12px;display: flex;align-items: center;justify-content: center;flex-shrink: 0;transition: transform .4s ease;}
+    .icon-box {width: 50px;height: 50px;background: rgba(139,0,0,.15);border-radius: 12px;display: flex;align-items: center;justify-content: center;flex-shrink: 0;transition: transform .4s ease;}
 
     /* HERO WITH PARALLAX SLIDESHOW AND SERVICE CARDS */
     .hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;padding:160px 0 100px}
@@ -256,9 +264,9 @@
     }
     
     .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
-    .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
-    .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
-    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
+    .hero-dot.red{background:radial-gradient(circle,var(--red),transparent 65%);right:-15%;top:-15%}
+    .hero-dot.accent{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
+    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(139,0,0,.28)}
     .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
     .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
 
@@ -273,7 +281,7 @@
     .hero-service-card {
       background: rgba(255, 255, 255, 0.08);
       backdrop-filter: blur(20px);
-      border: 2px solid rgba(201, 169, 97, 0.2);
+      border: 2px solid rgba(139, 0, 0, 0.2);
       border-radius: 24px;
       padding: 2.5rem;
       text-align: center;
@@ -299,8 +307,8 @@
     
     .hero-service-card:hover {
       transform: translateY(-10px) scale(1.02);
-      border-color: var(--gold);
-      box-shadow: 0 20px 50px rgba(201, 169, 97, 0.3);
+      border-color: var(--red);
+      box-shadow: 0 20px 50px rgba(139, 0, 0, 0.3);
     }
     
     .hero-service-card:hover::before {
@@ -310,7 +318,7 @@
     .hero-service-card .icon-box {
       width: 100px;
       height: 100px;
-      background: rgba(201, 169, 97, 0.15);
+      background: rgba(139, 0, 0, 0.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -322,8 +330,8 @@
     
     .hero-service-card:hover .icon-box {
       transform: scale(1.1) rotate(5deg);
-      background: rgba(201, 169, 97, 0.25);
-      box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
+      background: rgba(139, 0, 0, 0.25);
+      box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
     }
     
     .hero-service-card .icon-box i {
@@ -349,13 +357,13 @@
     
     .hero-service-card .btn {
       background: var(--grad1);
-      color: #111;
+      color: #fff;
       border: none;
       border-radius: 999px;
       padding: 12px 24px;
       font-weight: 700;
       font-size: 1rem;
-      box-shadow: 0 8px 20px rgba(201, 169, 97, 0.3);
+      box-shadow: 0 8px 20px rgba(139, 0, 0, 0.3);
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-flex;
@@ -365,15 +373,15 @@
     
     .hero-service-card .btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 30px rgba(201, 169, 97, 0.4);
-      color: #111;
+      box-shadow: 0 12px 30px rgba(139, 0, 0, 0.4);
+      color: #fff;
     }
     
     /* Glow animation for service cards */
     @keyframes cardGlow {
-      0% { box-shadow: 0 0 20px rgba(201, 169, 97, 0.2); }
-      50% { box-shadow: 0 0 30px rgba(201, 169, 97, 0.4); }
-      100% { box-shadow: 0 0 20px rgba(201, 169, 97, 0.2); }
+      0% { box-shadow: 0 0 20px rgba(139, 0, 0, 0.2); }
+      50% { box-shadow: 0 0 30px rgba(139, 0, 0, 0.4); }
+      100% { box-shadow: 0 0 20px rgba(139, 0, 0, 0.2); }
     }
     
     .hero-service-card {
@@ -418,7 +426,7 @@
       transition: opacity .4s ease; z-index: -1;
     }
     .glass-metric-card:hover::before { opacity: 0.1; }
-    .glass-metric-card:hover { transform: translateY(-6px); border-color: rgba(201, 169, 97, .4); box-shadow: 0 12px 30px rgba(201, 169, 97, .15); }
+    .glass-metric-card:hover { transform: translateY(-6px); border-color: rgba(139, 0, 0, .4); box-shadow: 0 12px 30px rgba(139, 0, 0, .15); }
     .glass-metric-card .metric-value {font-size: 1.4rem;font-weight: 800;font-family: 'Montserrat', sans-serif;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;line-height: 1;}
     .glass-metric-card .metric-label {font-size: .78rem;color: #cfd3d8;margin-top: 2px;letter-spacing: .3px;text-transform: uppercase;}
     @media (max-width: 768px) {.glass-metric-card {min-width: 140px;padding: .7rem 1rem;}.glass-metric-card .metric-value {font-size: 1.2rem;}.glass-metric-card .metric-label {font-size: .7rem;}}
@@ -445,83 +453,83 @@
     }
     
     .slide-indicator.active {
-      background: var(--gold);
+      background: var(--red);
       transform: scale(1.3);
-      box-shadow: 0 0 10px rgba(201, 169, 97, 0.5);
+      box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
     }
 
     /* Stats */
-    .stats {background: rgba(10,10,10,.98);border-top: 1px solid rgba(201,169,97,.15);border-bottom: 1px solid rgba(201,169,97,.15);}
+    .stats {background: rgba(10,10,10,.98);border-top: 1px solid rgba(139,0,0,.15);border-bottom: 1px solid rgba(139,0,0,.15);}
     .stats .stat-num {font-family: 'Montserrat', sans-serif;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;min-height: 1.2em;display: inline-block;}
     @media (max-width: 768px) {.stats .stat-num {font-size: 2rem !important;}.stats i {font-size: 2rem !important;}}
 
     /* MODULES */
     .card-mod{transition:.45s;overflow:hidden;padding:1.5rem;position:relative}
-    .card-mod .icon-bg{position:absolute;top:0;right:0;width:80px;height:80px;background:rgba(201,169,97,.08);border-radius:50%;transform:translate(30%,-30%);transition:transform .4s ease}
+    .card-mod .icon-bg{position:absolute;top:0;right:0;width:80px;height:80px;background:rgba(139,0,0,.08);border-radius:50%;transform:translate(30%,-30%);transition:transform .4s ease}
     .card-mod:hover .icon{transform:rotate(15deg) scale(1.15)}
     .card-mod:hover .icon-bg{transform:translate(20%,-40%) rotate(-20deg)}
     .card-mod:hover{transform:translateY(-8px)}
-    .card-mod .btn{background:var(--grad1);color:#111;border:none;border-radius:999px;font-weight:700;font-size:.85rem;padding:6px 14px}
+    .card-mod .btn{background:var(--grad1);color:#fff;border:none;border-radius:999px;font-weight:700;font-size:.85rem;padding:6px 14px}
 
     /* Student Journey */
     .journey-timeline {position: relative;padding-left: 50px;}
     .journey-step {position: relative;display: flex;align-items: flex-start;margin-bottom: 1.5rem;}
-    .step-circle {position: absolute;left: -50px;width: 46px;height: 46px;background: var(--grad1);border-radius: 50%;display: flex;align-items: center;justify-content: center;flex-shrink: 0;box-shadow: 0 8px 20px rgba(201,169,97,.3);z-index: 2;transition: all .4s ease;}
-    .step-number {color: #000;font-weight: 800;font-size: 1.1rem;font-family: 'Montserrat', sans-serif;}
-    .step-content {margin-left: 1rem;min-height: 80px;background: rgba(30,30,30,.9) !important;backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);box-shadow: 0 10px 30px rgba(0,0,0,.4);transition: all .4s ease;}
-    .step-connector {position: absolute;left: -27px;top: 46px;width: 2px;height: 60px;background: linear-gradient(to bottom, var(--gold), transparent);opacity: .6;}
-    .journey-step:hover .step-circle {transform: scale(1.15);box-shadow: 0 12px 30px rgba(201,169,97,.5);}
-    .journey-step:hover .step-content {border-color: var(--gold);transform: translateX(8px);box-shadow: 0 15px 40px rgba(201,169,Rectangle,97,.15);}
+    .step-circle {position: absolute;left: -50px;width: 46px;height: 46px;background: var(--grad1);border-radius: 50%;display: flex;align-items: center;justify-content: center;flex-shrink: 0;box-shadow: 0 8px 20px rgba(139,0,0,.3);z-index: 2;transition: all .4s ease;}
+    .step-number {color: #fff;font-weight: 800;font-size: 1.1rem;font-family: 'Montserrat', sans-serif;}
+    .step-content {margin-left: 1rem;min-height: 80px;background: rgba(30,30,30,.9) !important;backdrop-filter: blur(16px);border: 1px solid rgba(139,0,0,.15);box-shadow: 0 10px 30px rgba(0,0,0,.4);transition: all .4s ease;}
+    .step-connector {position: absolute;left: -27px;top: 46px;width: 2px;height: 60px;background: linear-gradient(to bottom, var(--red), transparent);opacity: .6;}
+    .journey-step:hover .step-circle {transform: scale(1.15);box-shadow: 0 12px 30px rgba(139,0,0,.5);}
+    .journey-step:hover .step-content {border-color: var(--red);transform: translateX(8px);box-shadow: 0 15px 40px rgba(139,0,0,.15);}
     .journey-step.active .step-circle {background: #fff;animation: pulse 2s infinite;}
-    @keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(201,169,97,.7); }70% { box-shadow: 0 0 0 12px rgba(201,169,97,0); }100% { box-shadow: 0 0 0 0 rgba(201,169,97,0); }}
+    @keyframes pulse {0% { box-shadow: 0 0 0 0 rgba(139,0,0,.7); }70% { box-shadow: 0 0 0 12px rgba(139,0,0,0); }100% { box-shadow: 0 0 0 0 rgba(139,0,0,0); }}
 
     /* Mock Test */
-    .mock-preview {background: rgba(20,20,20,.95) !important;backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);box-shadow: 0 20px 50px rgba(0,0,0,.6);}
+    .mock-preview {background: rgba(20,20,20,.95) !important;backdrop-filter: blur(16px);border: 1px solid rgba(139,0,0,.15);box-shadow: 0 20px 50px rgba(0,0,0,.6);}
     .mock-preview .mock-content {border: 1px solid rgba(255,255,255,.08);min-height: 220px;}
-    .mock-preview u {border-bottom: 2px dotted rgba(201,169,97,.5);color: transparent;}
+    .mock-preview u {border-bottom: 2px dotted rgba(139,0,0,.5);color: transparent;}
     .glass.d-flex:hover .icon-box {transform: rotate(-12deg) scale(1.1);}
     #mockTimer {font-family: 'Montserrat', sans-serif;font-weight: 700;letter-spacing: 1px;}
 
     .btn-ghost {background: transparent !important;color: #fff !important;border: 1.5px solid rgba(255, 255, 255, .4) !important;border-radius: 999px;padding: .6rem 1.2rem;font-weight: 600;font-size: .95rem;transition: all .35s ease;display: flex;align-items: center;justify-content: center;gap: .5rem;box-shadow: 0 4px 12px rgba(0,0,0,.3);}
-    .btn-ghost:hover {background: rgba(255, 255, 255, .1) !important;border-color: var(--gold) !important;color: var(--gold) !important;transform: translateY(-2px);box-shadow: 0 8px 20px rgba(201,169,97,.25);}
+    .btn-ghost:hover {background: rgba(255, 255, 255, .1) !important;border-color: var(--red) !important;color: var(--red) !important;transform: translateY(-2px);box-shadow: 0 8px 20px rgba(139,0,0,.25);}
     .btn-ghost i {font-size: 1.1rem;}
 
     /* PRICING */
     .price-display .price{font-size:2.2rem;font-weight:900;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-    .text-gold{color:var(--gold);text-decoration:none}
-    .text-gold:hover{text-decoration:underline}
+    .text-red{color:var(--red);text-decoration:none}
+    .text-red:hover{text-decoration:underline}
     .toggle-switch{position:relative;display:inline-block;width:56px;height:28px}
     .toggle-switch input{opacity:0;width:0;height:0}
     .toggle-slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:rgba(255,255,255,.1);transition:.4s;border-radius:34px}
     .toggle-slider:before{position:absolute;content:"";height:22px;width:22px;left:3px;bottom:3px;background:var(--bg2);transition:.4s;border-radius:50%}
     input:checked + .toggle-slider{background:var(--grad1)}
     input:checked + .toggle-slider:before{transform:translateX(28px)}
-    .popular-badge{position:absolute;top:30px;right:-5%;transform:rotate(45deg);background:var(--gold);color:#111;padding:4px 16px;border-radius:999px;font-size:.75rem;font-weight:700;z-index:2}
+    .popular-badge{position:absolute;top:30px;right:-5%;transform:rotate(45deg);background:var(--red);color:#fff;padding:4px 16px;border-radius:999px;font-size:.75rem;font-weight:700;z-index:2}
 
     /* Trial */
-    #trial .glass {background: rgba(20, 20, 20, 0.9);backdrop-filter: blur(20px);border: 1px solid rgba(201,169,97,.2);box-shadow: 0 20px 40px rgba(0,0,0,.5);}
+    #trial .glass {background: rgba(20, 20, 20, 0.9);backdrop-filter: blur(20px);border: 1px solid rgba(139,0,0,.2);box-shadow: 0 20px 40px rgba(0,0,0,.5);}
     #trial .badge {animation: pulse 2s infinite;}
     #trial .bg-dark.bg-opacity-70 {background-color: rgba(30,30,30,.9) !important;}
-    #trial .text-gold {color: var(--gold) !important;}
+    #trial .text-red {color: var(--red) !important;}
     #countdown-hours, #countdown-minutes, #countdown-seconds {min-width: 50px;font-family: 'Montserrat', sans-serif;}
 
     .text-muted {color: #f8f9fa !important;}
 
     /* FAQ */
     .faq .accordion-item{border:1px solid rgba(255,255,255,.08);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03);margin-bottom:12px}
-    .faq .accordion-button{background:transparent;color:#c9a961;font-weight:600;font-size:1rem;padding:1rem 1.25rem}
-    .faq .accordion-button:not(.collapsed){background:var(--grad1);color:#111}
+    .faq .accordion-button{background:transparent;color:#8B0000;font-weight:600;font-size:1rem;padding:1rem 1.25rem}
+    .faq .accordion-button:not(.collapsed){background:var(--grad1);color:#fff}
     .accordion-body {color: white !important;}
 
     /* CTA */
-    .cta-banner{border-radius:22px;background:linear-gradient(135deg,#8a1d1d,#5a1313);border:1px solid rgba(255,255,255,.06);padding:2.5rem}
-    .cta-banner .btn{background:#fff;color:#111;border:none;border-radius:999px;font-weight:800;padding:10px 24px;font-size:1rem}
+    .cta-banner{border-radius:22px;background:linear-gradient(135deg,#8B0000,#660000);border:1px solid rgba(255,255,255,.06);padding:2.5rem}
+    .cta-banner .btn{background:#fff;color:#8B0000;border:none;border-radius:999px;font-weight:800;padding:10px 24px;font-size:1rem}
 
     /* FOOTER */
-    footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
+    footer{background:var(--bg2);border-top:1px solid rgba(139,0,0,.12);padding:3rem 0 1.5rem}
     footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
     footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
-    footer a:hover{color:var(--gold)}
+    footer a:hover{color:var(--red)}
     
     /* Footer Logo with Premium Style */
     .footer-logo {
@@ -545,21 +553,21 @@
     }
 
     /* CONSULTANCY */
-    .consultancy-card {background: rgba(20,20,20,.95);backdrop-filter: blur(16px);border: 1px solid rgba(201,169,97,.15);border-radius: 20px;padding: 2rem;transition: all .4s ease;height: 100%;display: flex;flex-direction: column;justify-content: space-between;}
-    .consultancy-card:hover {transform: translateY(-10px);border-color: var(--gold);box-shadow: 0 20px 50px rgba(201,169,97,.2);}
+    .consultancy-card {background: rgba(20,20,20,.95);backdrop-filter: blur(16px);border: 1px solid rgba(139,0,0,.15);border-radius: 20px;padding: 2rem;transition: all .4s ease;height: 100%;display: flex;flex-direction: column;justify-content: space-between;}
+    .consultancy-card:hover {transform: translateY(-10px);border-color: var(--red);box-shadow: 0 20px 50px rgba(139,0,0,.2);}
     .country-flag {width: 60px;height: 40px;border-radius: 8px;margin-bottom: 1rem;}
     .university-grid {display: grid;grid-template-columns: 1fr 1fr;gap: .75rem;font-size: .9rem;}
     .university-grid li {padding: .4rem 0;border-bottom: 1px solid rgba(255,255,255,.05);}
 
     /* Back to top */
-    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#fff;box-shadow:0 6px 18px rgba(139,0,0,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
     #backToTop.show{opacity:1;visibility:visible}
 
     /* Course Cards for Pricing Section */
     .course-card {
       background: rgba(20,20,20,.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(201,169,97,.15);
+      border: 1px solid rgba(139,0,0,.15);
       border-radius: 20px;
       padding: 2rem;
       height: 100%;
@@ -569,8 +577,8 @@
     }
     .course-card:hover {
       transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+      border-color: var(--red);
+      box-shadow: 0 15px 30px rgba(139,0,0,0.2);
     }
     .course-card .badge {
       position: absolute;
@@ -584,7 +592,7 @@
     .course-card .course-icon {
       width: 80px;
       height: 80px;
-      background: rgba(201,169,97,.15);
+      background: rgba(139,0,0,.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -618,7 +626,7 @@
       color: var(--text);
     }
     .course-card .features li i {
-      color: var(--gold);
+      color: var(--red);
       margin-right: 0.75rem;
       font-size: 1.2rem;
     }
@@ -668,7 +676,7 @@
         right: 0;
         background: rgba(5,5,5,.95);
         backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(201,169,97,.08);
+        border-bottom: 1px solid rgba(139,0,0,.08);
         padding: 1rem;
       }
       
@@ -847,8 +855,8 @@
       <span class="slide-indicator" data-slide="4"></span>
     </div>
     
-    <span class="hero-dot gold"></span>
     <span class="hero-dot red"></span>
+    <span class="hero-dot accent"></span>
 
     <div class="container position-relative">
       <div class="row align-items-center g-4">
@@ -863,9 +871,9 @@
               <a href="#trial" class="btn btn-ghost">Try a free class</a>
             </div>
             <div class="hero-glass-metrics d-flex flex-wrap justify-content-center gap-3">
-              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-graph-up-arrow text-gold"></i><div><div class="metric-value">+1.5</div><div class="metric-label">Avg. Band Increase</div></div></div></div>
-              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-clipboard-check text-gold"></i><div><div class="metric-value">500+</div><div class="metric-label">Mock Tests / mo</div></div></div></div>
-              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-emoji-smile text-gold"></i><div><div class="metric-value">97%</div><div class="metric-label">Student Satisfaction</div></div></div></div>
+              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-graph-up-arrow text-red"></i><div><div class="metric-value">+1.5</div><div class="metric-label">Avg. Band Increase</div></div></div></div>
+              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-clipboard-check text-red"></i><div><div class="metric-value">500+</div><div class="metric-label">Mock Tests / mo</div></div></div></div>
+              <div class="glass-metric-card"><div class="d-flex align-items-center gap-2"><i class="bi bi-emoji-smile text-red"></i><div><div class="metric-value">97%</div><div class="metric-label">Student Satisfaction</div></div></div></div>
             </div>
           </div>
           
@@ -915,13 +923,13 @@
   <!-- STATS SECTION -->
   <section class="stats py-5 position-relative overflow-hidden">
     <div class="position-absolute inset-0" style="background: var(--grad-dark); opacity: .95;"></div>
-    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px; height:800px; filter: blur(180px); opacity: .08; background: radial-gradient(circle, var(--gold), transparent 70%); pointer-events: none;"></div>
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px; height:800px; filter: blur(180px); opacity: .08; background: radial-gradient(circle, var(--red), transparent 70%); pointer-events: none;"></div>
     <div class="container position-relative z-1">
       <div class="row text-center g-4 g-md-5">
-        <div class="col-6 col-md-3" data-aos="fade-up"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-trophy-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="98" data-suffix="%">0%</div><div class="text-muted small text-uppercase">Success Rate</div></div></div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-people-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="15000" data-suffix="+">0</div><div class="text-muted small text-uppercase">Students</div></div></div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-person-badge-fill text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="25">0</div><div class="text-muted small text-uppercase">Instructors</div></div></div>
-        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-graph-up-arrow text-gold fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="8.0">0.0</div><div class="text-muted small text-uppercase">Avg Band</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-trophy-fill text-red fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="98" data-suffix="%">0%</div><div class="text-muted small text-uppercase">Success Rate</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="100"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-people-fill text-red fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="15000" data-suffix="+">0</div><div class="text-muted small text-uppercase">Students</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="200"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-person-badge-fill text-red fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="25">0</div><div class="text-muted small text-uppercase">Instructors</div></div></div>
+        <div class="col-6 col-md-3" data-aos="fade-up" data-aos-delay="300"><div class="d-flex flex-column align-items-center"><div class="mb-3"><i class="bi bi-graph-up-arrow text-red fs-1"></i></div><div class="stat-num display-5 fw-bold text-white mb-1" data-target="8.0">0.0</div><div class="text-muted small text-uppercase">Avg Band</div></div></div>
       </div>
     </div>
   </section>
@@ -948,7 +956,7 @@
       <div class="row g-4">
         <div class="col-lg-4" data-aos="fade-up">
           <div class="consultancy-card text-center">
-            <i class="bi bi-people-fill text-gold fs-1 mb-3"></i>
+            <i class="bi bi-people-fill text-red fs-1 mb-3"></i>
             <h4 class="mb-3">Total Students Placed</h4>
             <div class="stat-num display-4 fw-bold text-white mb-2" data-target="500" data-suffix="+">0</div>
             <p class="text-muted">Students sent abroad since 2020</p>
@@ -956,7 +964,7 @@
         </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="consultancy-card text-center">
-            <i class="bi bi-award-fill text-gold fs-1 mb-3"></i>
+            <i class="bi bi-award-fill text-red fs-1 mb-3"></i>
             <h4 class="mb-3">Success Rate</h4>
             <div class="stat-num display-4 fw-bold text-white mb-2" data-target="92" data-suffix="%">0%</div>
             <p class="text-muted">Visa & Admission Approval</p>
@@ -964,7 +972,7 @@
         </div>
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
           <div class="consultancy-card text-center">
-            <i class="bi bi-graph-up-arrow text-gold fs-1 mb-3"></i>
+            <i class="bi bi-graph-up-arrow text-red fs-1 mb-3"></i>
             <h4 class="mb-3">Countries Served</h4>
             <div class="stat-num display-4 fw-bold text-white mb-2" data-target="5">0</div>
             <p class="text-muted">USA, UK, Canada, Australia, Germany</p>
@@ -1002,7 +1010,7 @@
 
   <!-- STUDENT JOURNEY -->
   <section id="journey" class="py-6 position-relative overflow-hidden">
-    <div class="position-absolute top-50 start-50 translate-middle" style="width:900px;height:900px;filter:blur(200px);opacity:.08;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;"></div>
+    <div class="position-absolute top-50 start-50 translate-middle" style="width:900px;height:900px;filter:blur(200px);opacity:.08;background:radial-gradient(circle,var(--red),transparent 70%);pointer-events:none;"></div>
     <div class="container position-relative z-1">
       <div class="row g-5 align-items-center">
         <div class="col-lg-5" data-aos="fade-right">
@@ -1027,21 +1035,20 @@
   </section>
 
   <!-- MOCK TEST -->
-  <section id="mock" class="py-5 position-relative overflow-hidden">
-    <div class="position-absolute top-50 start-50 translate-middle" style="width:800px;height:800px;filter:blur(180px);opacity:.1;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;"></div>
-    <div class="container position-relative z-1">
+  <section id="mock">
+    <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <span class="badge px-3 py-1 rounded-pill small" style="background: var(--badge-mock); color: white;">EXAM PREPARATION</span>
+      </div>
+      <h2 class="title text-center mb-3" data-aos="fade-up">Premium Mock Tests</h2>
+      <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Experience real exam conditions with our advanced simulation platform</p>
       <div class="row g-5 align-items-center">
         <div class="col-lg-6" data-aos="fade-right">
-          <div class="text-center text-lg-start mb-4">
-            <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill small">EXAM PREPARATION</span>
-            <h2 class="title mt-2 mb-3">Premium Mock Tests</h2>
-            <p class="text-muted lead">Experience real exam conditions with our advanced simulation platform</p>
-          </div>
           <div class="row g-3">
-            <div class="col-12" data-aos="fade-up" data-aos-delay="100"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-display text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Real Exam Interface</h5><p class="text-muted small mb-0">Authentic computer-delivered test experience</p></div></div></div>
-            <div class="col-12" data-aos="fade-up" data-aos-delay="200"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-clock-fill text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Timed Conditions</h5><p class="text-muted small mb-0">Practice under real exam time constraints</p></div></div></div>
-            <div class="col-12" data-aos="fade-up" data-aos-delay="300"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-graph-up-arrow text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Instant Analytics</h5><p class="text-muted small mb-0">Detailed performance breakdown and insights</p></div></div></div>
-            <div class="col-12" data-aos="fade-up" data-aos-delay="400"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-person-check-fill text-gold fs-3"></i></div><div><h5 class="mb-1 text-white">Expert Evaluation</h5><p class="text-muted small mb-0">Personalized feedback from certified trainers</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="100"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-display text-red fs-3"></i></div><div><h5 class="mb-1 text-white">Real Exam Interface</h5><p class="text-muted small mb-0">Authentic computer-delivered test experience</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="200"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-clock-fill text-red fs-3"></i></div><div><h5 class="mb-1 text-white">Timed Conditions</h5><p class="text-muted small mb-0">Practice under real exam time constraints</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="300"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-graph-up-arrow text-red fs-3"></i></div><div><h5 class="mb-1 text-white">Instant Analytics</h5><p class="text-muted small mb-0">Detailed performance breakdown and insights</p></div></div></div>
+            <div class="col-12" data-aos="fade-up" data-aos-delay="400"><div class="glass d-flex align-items-center p-3 rounded-4 shadow-sm"><div class="icon-box me-3"><i class="bi bi-person-check-fill text-red fs-3"></i></div><div><h5 class="mb-1 text-white">Expert Evaluation</h5><p class="text-muted small mb-0">Personalized feedback from certified trainers</p></div></div></div>
           </div>
           <div class="d-flex flex-column flex-sm-row gap-3 mt-4" data-aos="fade-up" data-aos-delay="500">
             <a href="#cta" class="btn btn-pill btn-lg d-flex align-items-center justify-content-center gap-2"><i class="bi bi-calendar-check"></i> Book Mock Test</a>
@@ -1065,7 +1072,7 @@
             </div>
             <div class="mt-3 text-center">
               <div class="progress" style="height:4px;">
-                <div class="progress-bar bg-warning" style="width:65%;"></div>
+                <div class="progress-bar" style="width:65%; background: var(--badge-mock);"></div>
               </div>
             </div>
           </div>
@@ -1082,7 +1089,7 @@
       <div class="row g-4 justify-content-center">
         <div class="col-lg-5" data-aos="fade-up">
           <div class="course-card">
-            <span class="badge bg-warning text-dark">POPULAR</span>
+            <span class="badge" style="background: var(--badge-pricing); color: #333;">POPULAR</span>
             <div class="course-icon">
               <i class="bi bi-building"></i>
             </div>
@@ -1101,7 +1108,7 @@
         </div>
         <div class="col-lg-5" data-aos="fade-up" data-aos-delay="100">
           <div class="course-card">
-            <span class="badge bg-danger">BESTSELLER</span>
+            <span class="badge" style="background: var(--badge-pricing); color: #333;">BESTSELLER</span>
             <div class="course-icon">
               <i class="bi bi-laptop"></i>
             </div>
@@ -1123,21 +1130,20 @@
   </section>
 
   <!-- FREE TRIAL -->
-  <section id="trial" class="py-5 position-relative overflow-hidden">
-    <div class="position-absolute top-50 start-50 translate-middle" style="width:600px;height:600px;filter:blur(120px);opacity:.12;background:radial-gradient(circle,var(--gold),transparent 70%);pointer-events:none;z-index:0;"></div>
-    <div class="container position-relative z-1">
+  <section id="trial">
+    <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <span class="badge px-3 py-1 rounded-pill small animate__animated animate__pulse animate__infinite" style="background: var(--badge-trial); color: #333; animation-duration:2s;">HURRY! LIMITED SEATS</span>
+      </div>
+      <h2 class="title text-center mb-3" data-aos="fade-up">Try a free class today</h2>
+      <p class="subtitle text-center mb-4" data-aos="fade-up" data-aos-delay="60">Join a live 60-minute demo class with our expert instructors. No commitment, no cost—just real IELTS learning.</p>
       <div class="row g-5 align-items-center">
         <div class="col-lg-6" data-aos="fade-right">
-          <div class="d-inline-flex align-items-center gap-2 mb-3">
-            <span class="badge bg-warning text-dark fw-bold px-3 py-1 rounded-pill animate__animated animate__pulse animate__infinite" style="animation-duration:2s;">HURRY! LIMITED SEATS</span>
-          </div>
-          <h2 class="title mb-3">Try a free class today</h2>
-          <p class="subtitle mb-4">Join a live 60-minute demo class with our expert instructors. No commitment, no cost—just real IELTS learning.</p>
           <div class="row g-3 mb-4">
-            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-clock-fill text-gold fs-4 me-2"></i><div><strong>60-minute</strong><br><small class="text-muted">Live session</small></div></div></div>
-            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-people-fill text-gold fs-4 me-2"></i><div><strong>Interactive</strong><br><small class="text-muted">15+ students</small></div></div></div>
-            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-award-fill text-gold fs-4 me-2"></i><div><strong>Certificate</strong><br><small class="text-muted">of participation</small></div></div></div>
-            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-headset text-gold fs-4 me-2"></i><div><strong>Doubt clearing</strong><br><small class="text-muted">after class</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-clock-fill text-red fs-4 me-2"></i><div><strong>60-minute</strong><br><small class="text-muted">Live session</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-people-fill text-red fs-4 me-2"></i><div><strong>Interactive</strong><br><small class="text-muted">15+ students</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-award-fill text-red fs-4 me-2"></i><div><strong>Certificate</strong><br><small class="text-muted">of participation</small></div></div></div>
+            <div class="col-6"><div class="d-flex align-items-center"><i class="bi bi-headset text-red fs-4 me-2"></i><div><strong>Doubt clearing</strong><br><small class="text-muted">after class</small></div></div></div>
           </div>
           <div class="d-flex flex-column flex-sm-row gap-2">
             <a href="#trial-form" class="btn btn-pill">Book Free Class Now</a>
@@ -1148,18 +1154,18 @@
           <div class="glass p-4 p-md-5 rounded-4 shadow-lg" id="trial-form" style="max-width: 440px; margin: 0 auto; position:relative;">
             <div class="text-center mb-3">
               <div class="d-inline-flex align-items-center gap-2 bg-dark bg-opacity-50 px-3 py-1 rounded-pill">
-                <i class="bi bi-person-fill text-warning"></i>
+                <i class="bi bi-person-fill" style="color: var(--badge-trial);"></i>
                 <span class="text-white fw-bold" id="seatsLeft">12</span>
                 <span class="text-muted">/ 20 seats left</span>
               </div>
             </div>
             <div class="text-center mb-4">
-              <p class="text-gold small mb-1">Next class starts in</p>
+              <p class="text-red small mb-1">Next class starts in</p>
               <div class="d-flex justify-content-center gap-2 gap-md-3">
                 <div class="text-center"><div class="bg-dark bg-opacity-70 text-white rounded p-2 px-3 fs-5 fw-bold" id="countdown-hours">00</div><small class="text-muted">Hours</small></div>
-                <span class="text-gold align-self-center fs-4">:</span>
+                <span class="text-red align-self-center fs-4">:</span>
                 <div class="text-center"><div class="bg-dark bg-opacity-70 text-white rounded p-2 px-3 fs-5 fw-bold" id="countdown-minutes">15</div><small class="text-muted">Minutes</small></div>
-                <span class="text-gold align-self-center fs-4">:</span>
+                <span class="text-red align-self-center fs-4">:</span>
                 <div class="text-center"><div class="bg-dark bg-opacity-70 text-white rounded p-2 px-3 fs-5 fw-bold" id="countdown-seconds">00</div><small class="text-muted">Seconds</small></div>
               </div>
             </div>
@@ -1177,6 +1183,9 @@
   <!-- FAQ -->
   <section id="faq" class="faq">
     <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <span class="badge px-3 py-1 rounded-pill small" style="background: var(--badge-faq); color: #333;">FREQUENTLY ASKED</span>
+      </div>
       <h2 class="title text-center" data-aos="fade-up">Frequently asked questions</h2>
       <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Everything you need to know about classes, schedules, and mock tests.</p>
       <div class="row justify-content-center">
@@ -1207,6 +1216,9 @@
   <!-- CTA -->
   <section id="cta">
     <div class="container">
+      <div class="text-center mb-4" data-aos="fade-up">
+        <span class="badge px-3 py-1 rounded-pill small" style="background: var(--badge-cta); color: white;">READY TO START?</span>
+      </div>
       <div class="cta-banner text-white text-center text-sm-start" data-aos="zoom-in">
         <h2 class="mb-2">Ready to boost your IELTS band score?</h2>
         <p class="mb-3">Join thousands of students who reached their goals with us.</p>
@@ -1231,7 +1243,7 @@
         <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
       </div>
       <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
-        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #c9a961;">SWADESH IT</a>.</span>
+        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #8B0000;">SWADESH IT</a>.</span>
       </div>
     </div>
   </footer>
@@ -1424,7 +1436,7 @@
         seats--;
         document.getElementById('seatsLeft').textContent = seats;
         if (seats <= 5) {
-          document.querySelector('.badge').classList.replace('bg-warning', 'bg-danger');
+          document.querySelector('.badge').style.background = 'var(--badge-cta)';
           document.querySelector('.badge').textContent = 'ALMOST FULL!';
         }
       }
