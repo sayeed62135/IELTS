@@ -20,30 +20,47 @@
     body{font-family:Inter,system-ui;background:var(--bg);color:var(--text);overflow-x:hidden}
     h1,h2,h3,h4{font-family:Montserrat,sans-serif;}
 
-    /* Navbar (same as blog.html) */
+    /* Navbar */
     .navbar{
       background:rgba(5,5,5,.75)!important;
       backdrop-filter:blur(20px);
       border-bottom:1px solid rgba(230,57,70,.15);
       transition:.4s;
-      padding:1.2rem 0;min-height:100px;
+      padding:1.2rem 0;
+      min-height:100px;
     }
-    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.8rem 0;min-height:80px;}
+    .navbar.scrolled{
+      background:rgba(5,5,5,.95)!important;
+      padding:.8rem 0;
+      min-height:80px;
+    }
     .navbar-desktop{display:flex;align-items:center;justify-content:space-between;width:100%}
     .navbar-mobile{display:none;}
     .logo-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;
       background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.05));
-      backdrop-filter:blur(20px);border:2px solid rgba(230,57,70,0.6);border-radius:20px;
-      padding:16px 24px;transition:.4s;}
-    .logo-item img{height:75px;width:auto;}
-    .navbar.scrolled .logo-item img{height:45px;}
-    .navbar.scrolled .logo-item{padding:4px 6px;}
+      backdrop-filter:blur(20px);border:2px solid rgba(230,57,70,0.6);
+      border-radius:20px;padding:16px 24px;transition:.4s;}
     .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
     .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
     .nav-link:hover:after{left:0;width:100%}
     .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;
       font-weight:700;box-shadow:0 6px 18px rgba(230,57,70,.4);transition:.3s}
     .btn-pill:hover{transform:translateY(-1px);color:#fff!important;box-shadow:0 8px 24px rgba(230,57,70,.5)}
+
+    /* Logo white background */
+    .premium-logo-bg {
+      background:white;
+      border-radius:12px;
+      padding:8px 14px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(230,57,70,0.3);
+      transition:all 0.4s ease;
+    }
+    .logo-item:hover .premium-logo-bg {
+      transform:translateY(-3px) scale(1.03);
+      box-shadow:0 12px 40px rgba(230,57,70,0.4);
+    }
+    .premium-logo{height:70px;width:auto;transition:all .4s ease;}
+    .navbar.scrolled .premium-logo{height:45px;}
 
     /* Hero */
     header.blog-header{min-height:55vh;display:flex;align-items:center;justify-content:center;text-align:center;
@@ -73,7 +90,8 @@
     .blog-card img{height:200px;width:100%;object-fit:cover;}
     .blog-card .card-body{padding:1rem;}
 
-    footer{background:var(--bg2);border-top:1px solid rgba(230,57,70,.2);padding:3rem 0 1.5rem;text-align:center;color:var(--muted);}
+    footer{background:var(--bg2);border-top:1px solid rgba(230,57,70,.2);
+      padding:3rem 0 1.5rem;text-align:center;color:var(--muted);}
     #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
       background:var(--grad1);color:#fff;opacity:0;visibility:hidden;transition:.35s;z-index:999;}
     #backToTop.show{opacity:1;visibility:visible;}
@@ -81,11 +99,15 @@
 </head>
 <body>
 
-  <!-- Navbar (FULL) -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
       <div class="navbar-desktop">
-        <a href="index.html" class="logo-item"><img src="img/logo.png" alt="IELTS Masterclass"></a>
+        <a href="index.html" class="logo-item">
+          <div class="premium-logo-bg">
+            <img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo">
+          </div>
+        </a>
         <div class="nav-center">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
@@ -105,7 +127,11 @@
             <li class="nav-item ms-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
           </ul>
         </div>
-        <a href="#" class="logo-item"><img src="img/BC-IELTS_Reg-Centre.png" alt="Partner"></a>
+        <a href="#" class="logo-item">
+          <div class="premium-logo-bg">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo">
+          </div>
+        </a>
       </div>
     </div>
   </nav>
@@ -180,12 +206,10 @@
     const btt=document.getElementById('backToTop');
     window.addEventListener('scroll',()=>btt.classList.toggle('show',window.scrollY>300));
     btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-
-    // Navbar shrink effect
     window.addEventListener('scroll',()=>document.querySelector('.navbar')
       .classList.toggle('scrolled',window.scrollY>50));
 
-    // Blog content loader
+    // Blog data
     const blogs={
       1:{title:"How to Score Band 8+ in IELTS Writing Task 2",subtitle:"Master your writing with structure, logic and style.",date:"Nov 10, 2025",read:"5 min read",author:"IELTS Mentor",img:"https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600",
       body:`<p>Achieving a Band 8+ in IELTS Writing Task 2 requires clarity, precision, and sophistication...</p>`},
