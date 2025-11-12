@@ -18,42 +18,68 @@
 
   <style>
     :root{
-      --gold:#c9a961;--gold2:#f6e8a6;--accent:#8b0000;
+      --red:#E63946;--red2:#FF6B6B;--red3:#FF1744;--accent:#E63946;
       --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
       --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
-      --grad1:linear-gradient(135deg,#c9a961,#f6e8a6);
-      --grad2:linear-gradient(135deg,#8b0000,#c9184a);
+      --grad1:linear-gradient(135deg,#E63946,#FF6B6B);
+      --grad2:linear-gradient(135deg,#E63946,#FF1744);
       --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
     }
     *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;cursor:none}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth}
     h1,h2,h3,h4,h5{font-family:Montserrat,sans-serif;letter-spacing:-.4px}
-
-    /* Custom Cursor */
-    .custom-cursor{width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9999;mix-blend-mode:difference;transition:.12s}
-    .cursor-trailer{width:40px;height:40px;border:1px solid rgba(201,169,97,.35);border-radius:50%;position:fixed;transform:translate(-50%,-50%);pointer-events:none;z-index:9998;transition:.35s cubic-bezier(.22,1,.36,1)}
-    .cursor-grow{transform:translate(-50%,-50%) scale(2);background:rgba(201,169,97,.25);border-color:transparent}
 
     /* Loader */
     .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
     .page-transition.hide{opacity:0;pointer-events:none}
     .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
-    .loader-ring{width:62px;height:62px;border:3px solid rgba(201,169,97,.25);border-top:3px solid var(--gold);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(230,57,70,.25);border-top:3px solid var(--red);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
     @keyframes spin{to{transform:rotate(360deg)}}
     @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
 
-    /* Navbar */
-    .navbar{background:rgba(5,5,5,.65)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(201,169,97,.08);transition:.4s;padding:.9rem 0}
-    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.55rem 0}
-    .navbar-brand img{height:40px;width:auto}
+    /* Navbar - Same as journey.html */
+    .navbar{
+      background:rgba(5,5,5,.75)!important;
+      backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(230,57,70,.15);
+      transition:.4s;
+      padding:1.2rem 0;
+      min-height: 100px;
+    }
+    .navbar.scrolled{
+      background:rgba(5,5,5,.95)!important;
+      padding:.8rem 0;
+      min-height: 80px;
+    }
+    .navbar-desktop {display: flex;align-items: center;justify-content: space-between;width: 100%;}
+    .navbar-mobile {display: none;}
+    .logo-item {
+      display: flex;flex-direction: column;align-items: center;text-decoration: none;transition: all 0.4s ease;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      backdrop-filter: blur(20px);border: 2px solid rgba(230,57,70,0.6);border-radius: 20px;padding: 16px 24px;position: relative;overflow: hidden;
+    }
+    .logo-item:hover {transform: translateY(-3px);background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.08));border-color: rgba(230,57,70,0.8);box-shadow: 0 15px 40px rgba(230,57,70,0.3);}
+    .premium-logo {background: white;padding: 0px;border-radius: 12px;box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(230,57,70,0.3);transition: all 0.4s ease;}
+    .premium-logo:hover {transform: translateY(-5px) scale(1.05);box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 0 2px rgba(230,57,70,0.5);}
+    .logo-item img {height: 75px;width: auto;}
+    .navbar.scrolled .logo-item img {height: 45px;}
+    .navbar.scrolled .logo-item {padding: 4px 6px;}
+    .logo-label {font-size: 0.7rem;color: var(--muted);margin-top: 0.5rem;text-transform: uppercase;letter-spacing: 0.5px;font-weight: 500;}
+    .navbar.scrolled .logo-label {font-size: 0rem;}
+    
+    /* Main Menu */
     .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
     .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
     .nav-link:hover:after{left:0;width:100%}
-    .dropdown-menu{background:rgba(10,10,10,.95);backdrop-filter:blur(16px);border:1px solid rgba(201,169,97,.12);border-radius:12px;padding:.75rem 0;margin:0}
-    .dropdown-item{color:var(--text);font-size:.9rem;padding:.5rem 1.25rem}
-    .dropdown-item:hover{background:rgba(201,169,97,.1);color:var(--gold)}
-    .btn-pill{background:var(--grad1);color:#111;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(201,169,97,.35);font-size:.9rem}
-    .btn-pill:hover{transform:translateY(-1px)}
+    
+    /* Dropdown Menu - Same as journey.html */
+    .dropdown-menu{background:#000;border:1px solid rgba(230,57,70,.15);border-radius:8px;padding:.5rem 0;margin-top:.5rem}
+    .dropdown-item{color:#fff;padding:8px 16px;transition:all .3s ease}
+    .dropdown-item:hover{background:#000;color:#E63946}
+    .dropdown-item.active{background:#0066ff;color:#fff}
+    
+    .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(230,57,70,.4);font-size:.9rem;transition:all .3s ease}
+    .btn-pill:hover{transform:translateY(-1px);color:#fff!important;box-shadow:0 8px 24px rgba(230,57,70,.5)}
 
     /* Utilities */
     .glass{background:linear-gradient(135deg,rgba(255,255,255,.06),rgba(255,255,255,.02));backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.08);border-radius:20px;box-shadow:var(--shadow)}
@@ -68,15 +94,15 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(201,169,97,.08)) 0%, transparent 70%);
+      background: radial-gradient(ellipse at bottom right, var(--glow-color, rgba(230,57,70,.08)) 0%, transparent 70%);
       opacity: 0;
       pointer-events: none;
       z-index: 0;
       animation: floatingGlow 22s ease-in-out infinite;
     }
-    #contact-hero::before { --glow-color: rgba(201,169,97,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
-    #contact-form::before { --glow-color: rgba(246,232,166,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
-    #info::before { --glow-color: rgba(201,169,97,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
+    #contact-hero::before { --glow-color: rgba(230,57,70,.09); opacity: 1; animation-duration: 20s; animation-delay: 0s; }
+    #contact-form::before { --glow-color: rgba(255,107,107,.08); opacity: 1; animation-duration: 24s; animation-delay: -6s; }
+    #info::before { --glow-color: rgba(230,57,70,.10); opacity: 1; animation-duration: 22s; animation-delay: -3s; }
     @keyframes floatingGlow {
       0%   { transform: translate(-5%, 10%) rotate(0deg); opacity: 0.6; }
       25%  { transform: translate(8%, -8%) rotate(90deg); opacity: 0.8; }
@@ -90,9 +116,9 @@
     .hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1740&q=80') center/cover no-repeat;transform:scale(1.1)}
     .hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(5,5,5,.85),rgba(10,10,10,.95))}
     .hero-dot{position:absolute;width:480px;height:480px;border-radius:50%;filter:blur(100px);opacity:.18;pointer-events:none}
-    .hero-dot.gold{background:radial-gradient(circle,var(--gold),transparent 65%);right:-15%;top:-15%}
-    .hero-dot.red{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
-    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(201,169,97,.28)}
+    .hero-dot.red{background:radial-gradient(circle,var(--red),transparent 65%);right:-15%;top:-15%}
+    .hero-dot.dark{background:radial-gradient(circle,var(--accent),transparent 65%);left:-15%;bottom:-15%}
+    .hero h1{font-size:3.2rem;font-weight:900;line-height:1.1;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 24px rgba(230,57,70,.28)}
     .hero p{font-size:1.1rem;color:#cfd3d8;max-width:640px;margin:0 auto}
     .badge-pill{border-radius:999px;padding:8px 14px;border:1px solid rgba(255,255,255,.12);display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.03);font-size:.85rem}
 
@@ -100,7 +126,7 @@
     .contact-form {
       background: rgba(20,20,20,.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(201,169,97,.15);
+      border: 1px solid rgba(230,57,70,.15);
       border-radius: 20px;
       padding: 2.5rem;
     }
@@ -112,9 +138,9 @@
     }
     .form-control:focus, .form-select:focus, .form-check-input:focus {
       background: rgba(255,255,255,0.08);
-      border-color: var(--gold);
+      border-color: var(--red);
       color: var(--text);
-      box-shadow: 0 0 0 0.2rem rgba(201,169,97,0.25);
+      box-shadow: 0 0 0 0.2rem rgba(230,57,70,0.25);
     }
     .form-label {
       color: var(--text);
@@ -132,7 +158,7 @@
     .info-card {
       background: rgba(20,20,20,.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(201,169,97,.15);
+      border: 1px solid rgba(230,57,70,.15);
       border-radius: 20px;
       padding: 2rem;
       height: 100%;
@@ -141,13 +167,13 @@
     }
     .info-card:hover {
       transform: translateY(-10px);
-      border-color: var(--gold);
-      box-shadow: 0 15px 30px rgba(201,169,97,0.2);
+      border-color: var(--red);
+      box-shadow: 0 15px 30px rgba(230,57,70,0.2);
     }
     .info-card .info-icon {
       width: 70px;
       height: 70px;
-      background: rgba(201,169,97,.15);
+      background: rgba(230,57,70,.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -174,7 +200,7 @@
     .map-container {
       background: rgba(20,20,20,.95);
       backdrop-filter: blur(16px);
-      border: 1px solid rgba(201,169,97,.15);
+      border: 1px solid rgba(230,57,70,.15);
       border-radius: 20px;
       overflow: hidden;
       height: 400px;
@@ -195,35 +221,42 @@
     .social-links a {
       width: 50px;
       height: 50px;
-      background: rgba(201,169,97,.15);
+      background: rgba(230,57,70,.15);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--gold);
+      color: var(--red);
       font-size: 1.5rem;
       transition: all 0.3s ease;
     }
     .social-links a:hover {
       background: var(--grad1);
-      color: #111;
+      color: #fff;
       transform: translateY(-5px);
     }
 
     /* FOOTER */
-    footer{background:var(--bg2);border-top:1px solid rgba(201,169,97,.12);padding:3rem 0 1.5rem}
+    footer{background:var(--bg2);border-top:1px solid rgba(230,57,70,.12);padding:3rem 0 1.5rem}
     footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
     footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
-    footer a:hover{color:var(--gold)}
+    footer a:hover{color:var(--red)}
     footer .footer-logo img{height:100px;width:auto}
 
     /* Back to top */
-    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#111;box-shadow:0 6px 18px rgba(201,169,97,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#fff;box-shadow:0 6px 18px rgba(230,57,70,.35);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.2rem}
     #backToTop.show{opacity:1;visibility:visible}
 
     /* RESPONSIVE */
     @media (max-width:1200px){.hero h1{font-size:2.8rem}.hero-dot{width:400px;height:400px}}
-    @media (max-width:992px){.navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}}
+    @media (max-width:992px){
+      .navbar-desktop{display:none}.navbar-mobile{display:flex;align-items:center;justify-content:space-between;width:100%}
+      .logo-group{display:flex;align-items:center;gap:.5rem}
+      .logo-item{padding:8px 12px}
+      .logo-item img{height:50px}
+      .navbar.scrolled .logo-item img{height:35px}
+      .navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}
+    }
     @media (max-width:768px){.hero{padding:120px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.contact-form {padding: 2rem;}}
     @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill{font-size:.8rem;padding:6px 14px}#backToTop{width:40px;height:40px;right:12px;bottom:12px}.contact-form {padding: 1.5rem;}}
   </style>
@@ -238,37 +271,60 @@
     </div>
   </div>
 
-  <!-- Cursor -->
-  <div class="custom-cursor"></div>
-  <div class="cursor-trailer"></div>
-
-  <!-- Navbar -->
+  <!-- Navbar - Same as journey.html -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="index.html">
-        <img src="img/logo.png" alt="IELTS Masterclass Logo">
-      </a>
-      <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="nav">
-        <ul class="navbar-nav ms-auto align-items-lg-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="courses.html">IELTS Courses</a></li>
-              <li><a class="dropdown-item" href="consultancy.html">Study Abroad</a></li>
-              <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
-              <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
-            </ul>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
-          <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
-          <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
-          <li class="nav-item ms-lg-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
-        </ul>
+      <div class="navbar-desktop">
+        <a href="index.html" class="logo-item"><img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo"></a>
+        <div class="nav-center">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="courses.html">IELTS Courses</a></li>
+                <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
+                <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
+            <li class="nav-item"><a class="nav-link" href="consultancy.html">Destination</a></li>
+            <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Our Blog</a></li>
+            <li class="nav-item ms-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+          </ul>
+        </div>
+        <a href="#" class="logo-item"><img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo"></a>
+      </div>
+      <div class="navbar-mobile">
+        <div class="logo-group">
+          <a href="index.html" class="logo-item"><img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo"></a>
+          <a href="#" class="logo-item"><img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="courses.html">IELTS Courses</a></li>
+                <li><a class="dropdown-item" href="consultancy.html">Study Abroad</a></li>
+                <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
+                <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
+            <li class="nav-item"><a class="nav-link" href="pricing.html">Pricing</a></li>
+            <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Our Blog</a></li>
+            <li class="nav-item"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+          </ul>
+        </div>
       </div>
     </div>
   </nav>
@@ -277,8 +333,8 @@
   <header class="hero" id="contact-hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
-    <span class="hero-dot gold"></span>
     <span class="hero-dot red"></span>
+    <span class="hero-dot dark"></span>
 
     <div class="container position-relative">
       <div class="row align-items-center g-4">
@@ -412,7 +468,7 @@
     </div>
   </section>
 
-   <!-- FOOTER -->
+  <!-- FOOTER -->
   <footer id="contact">
     <div class="container">
       <div class="row g-4">
@@ -428,7 +484,7 @@
         <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
       </div>
       <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
-        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #c9a961;">SWADESH IT</a>.</span>
+        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #E63946;">SWADESH IT</a>.</span>
       </div>
     </div>
   </footer>
@@ -462,21 +518,6 @@
     }
     window.addEventListener('load', () => setTimeout(hideLoader, 800));
     setTimeout(hideLoader, 4000); // Fallback
-
-    // Custom cursor
-    const cur = document.querySelector('.custom-cursor'), trail = document.querySelector('.cursor-trailer');
-    let mouseX = 0, mouseY = 0, trailX = 0, trailY = 0;
-    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; cur.style.left = mouseX + 'px'; cur.style.top = mouseY + 'px'; });
-    function animateTrail() {
-      trailX += (mouseX - trailX) * 0.15; trailY += (mouseY - trailY) * 0.15;
-      trail.style.left = trailX + 'px'; trail.style.top = trailY + 'px';
-      requestAnimationFrame(animateTrail);
-    }
-    animateTrail();
-    document.querySelectorAll('a,button,.glass,.contact-form,.info-card,.social-links a').forEach(el => {
-      el.addEventListener('mouseenter', () => cur.classList.add('cursor-grow'));
-      el.addEventListener('mouseleave', () => cur.classList.remove('cursor-grow'));
-    });
 
     // Form submission
     document.getElementById('contactForm').addEventListener('submit', function(e) {
