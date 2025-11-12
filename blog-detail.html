@@ -8,92 +8,57 @@
   <!-- Bootstrap & Fonts -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
   <style>
     :root{
-      --red:#E63946;--red2:#FF6B6B;--bg:#0a0a0a;--bg2:#050505;
-      --text:#f5f6f7;--muted:#9aa1aa;--grad1:linear-gradient(135deg,#E63946,#FF6B6B);
+      --red:#E63946;--grad1:linear-gradient(135deg,#E63946,#FF6B6B);
+      --bg:#0a0a0a;--bg2:#050505;--text:#f5f6f7;--muted:#9aa1aa;
     }
-    *{box-sizing:border-box;margin:0;padding:0}
     body{font-family:Inter,system-ui;background:var(--bg);color:var(--text);overflow-x:hidden}
-    h1,h2,h3,h4{font-family:Montserrat,sans-serif;}
+    h1,h2,h3{font-family:Montserrat,sans-serif;}
+    a{text-decoration:none}
 
-    /* Navbar */
-    .navbar{
-      background:rgba(5,5,5,.75)!important;
-      backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(230,57,70,.15);
-      transition:.4s;
-      padding:1.2rem 0;
-      min-height:100px;
-    }
-    .navbar.scrolled{
-      background:rgba(5,5,5,.95)!important;
-      padding:.8rem 0;
-      min-height:80px;
-    }
+    /* Navbar same as main site */
+    .navbar{background:rgba(5,5,5,.75)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(230,57,70,.15);transition:.4s;padding:1.2rem 0;min-height:100px;}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.8rem 0;min-height:80px;}
     .navbar-desktop{display:flex;align-items:center;justify-content:space-between;width:100%}
-    .navbar-mobile{display:none;}
-    .logo-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;
-      background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.05));
-      backdrop-filter:blur(20px);border:2px solid rgba(230,57,70,0.6);
-      border-radius:20px;padding:16px 24px;transition:.4s;}
-    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
+    .logo-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.05));backdrop-filter:blur(20px);border:2px solid rgba(230,57,70,0.6);border-radius:20px;padding:16px 24px;transition:.4s;}
+    .premium-logo-bg{background:white;border-radius:12px;padding:8px 14px;box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(230,57,70,0.3);transition:.4s;}
+    .logo-item:hover .premium-logo-bg{transform:translateY(-3px) scale(1.03);box-shadow:0 12px 40px rgba(230,57,70,0.4);}
+    .premium-logo{height:70px;width:auto;transition:.4s;}
+    .navbar.scrolled .premium-logo{height:45px;}
+    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;}
     .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
     .nav-link:hover:after{left:0;width:100%}
-    .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;
-      font-weight:700;box-shadow:0 6px 18px rgba(230,57,70,.4);transition:.3s}
+    .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(230,57,70,.4);transition:.3s}
     .btn-pill:hover{transform:translateY(-1px);color:#fff!important;box-shadow:0 8px 24px rgba(230,57,70,.5)}
 
-    /* Logo white background */
-    .premium-logo-bg {
-      background:white;
-      border-radius:12px;
-      padding:8px 14px;
-      box-shadow:0 8px 32px rgba(0,0,0,0.3),0 0 0 1px rgba(230,57,70,0.3);
-      transition:all 0.4s ease;
-    }
-    .logo-item:hover .premium-logo-bg {
-      transform:translateY(-3px) scale(1.03);
-      box-shadow:0 12px 40px rgba(230,57,70,0.4);
-    }
-    .premium-logo{height:70px;width:auto;transition:all .4s ease;}
-    .navbar.scrolled .premium-logo{height:45px;}
-
     /* Hero */
-    header.blog-header{min-height:55vh;display:flex;align-items:center;justify-content:center;text-align:center;
-      background:var(--bg2) url('https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600&auto=format&fit=crop') center/cover;
-      position:relative;overflow:hidden;}
-    header.blog-header::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.65);}
-    header .content{position:relative;z-index:2;max-width:800px;padding:0 1rem;}
-    header h1{font-size:2.8rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    header p{color:var(--muted);margin-top:10px;}
+    header.blog-hero{min-height:45vh;display:flex;align-items:center;justify-content:center;text-align:center;background:url('https://images.unsplash.com/photo-1522202176988-66273c2b034f?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;position:relative;}
+    header.blog-hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.65);}
+    header.blog-hero .content{position:relative;z-index:2;}
+    header.blog-hero h1{font-size:2.8rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
 
-    /* Blog content */
-    .blog-content{padding:90px 0;max-width:850px;margin:auto;}
-    .blog-meta{font-size:.9rem;color:var(--muted);margin-bottom:1rem;display:flex;gap:16px;}
-    .blog-meta i{color:var(--red);}
-    .blog-content img{width:100%;border-radius:16px;margin:30px 0;}
-    .blog-content h2{margin-top:2rem;font-size:1.8rem;}
-    .blog-content p{color:var(--muted);line-height:1.8;margin-top:1rem;}
-    blockquote{background:rgba(255,255,255,.05);border-left:4px solid var(--red);
-      padding:1rem 1.5rem;margin:1.5rem 0;font-style:italic;color:#eee;}
+    /* Blog Section */
+    .blog-section{padding:80px 0;max-width:850px;margin:auto;}
+    .featured-img img{width:100%;border-radius:18px;box-shadow:0 12px 30px rgba(0,0,0,.4);}
+    .blog-meta{margin:25px 0;color:var(--muted);display:flex;gap:22px;flex-wrap:wrap;font-size:.95rem;}
+    .blog-meta i{color:var(--red);margin-right:6px;}
+    .blog-title{font-size:2rem;font-weight:800;margin-top:10px;margin-bottom:20px;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .blog-desc p{color:var(--muted);line-height:1.8;margin-bottom:1rem;}
 
-    /* Related posts */
+    /* Related Posts */
     .related-posts{background:var(--bg2);padding:80px 0;}
-    .related-posts h3{text-align:center;margin-bottom:50px;
-      background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
-    .blog-card{border-radius:16px;overflow:hidden;transition:.4s;position:relative;background:rgba(255,255,255,.05);}
+    .related-posts h3{text-align:center;margin-bottom:50px;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+    .blog-card{border-radius:16px;overflow:hidden;transition:.4s;background:rgba(255,255,255,.05);}
     .blog-card:hover{transform:translateY(-5px);}
     .blog-card img{height:200px;width:100%;object-fit:cover;}
     .blog-card .card-body{padding:1rem;}
 
-    footer{background:var(--bg2);border-top:1px solid rgba(230,57,70,.2);
-      padding:3rem 0 1.5rem;text-align:center;color:var(--muted);}
-    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;
-      background:var(--grad1);color:#fff;opacity:0;visibility:hidden;transition:.35s;z-index:999;}
+    footer{background:var(--bg2);border-top:1px solid rgba(230,57,70,.2);padding:3rem 0 1.5rem;text-align:center;color:var(--muted);}
+    #backToTop{position:fixed;right:16px;bottom:16px;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#fff;opacity:0;visibility:hidden;transition:.35s;z-index:999;}
     #backToTop.show{opacity:1;visibility:visible;}
   </style>
 </head>
@@ -104,9 +69,7 @@
     <div class="container">
       <div class="navbar-desktop">
         <a href="index.html" class="logo-item">
-          <div class="premium-logo-bg">
-            <img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo">
-          </div>
+          <div class="premium-logo-bg"><img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo"></div>
         </a>
         <div class="nav-center">
           <ul class="navbar-nav">
@@ -128,64 +91,60 @@
           </ul>
         </div>
         <a href="#" class="logo-item">
-          <div class="premium-logo-bg">
-            <img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo">
-          </div>
+          <div class="premium-logo-bg"><img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo"></div>
         </a>
       </div>
     </div>
   </nav>
 
   <!-- Hero -->
-  <header class="blog-header">
+  <header class="blog-hero">
     <div class="content" data-aos="fade-up">
-      <h1 id="blogTitle">Blog Title Here</h1>
-      <p id="blogSubtitle">Expert insights and IELTS strategies.</p>
+      <h1 id="blogHeroTitle">Blog Details</h1>
     </div>
   </header>
 
-  <!-- Blog Detail -->
-  <section class="blog-content">
+  <!-- Blog Section -->
+  <section class="blog-section">
     <div class="container">
-      <div class="blog-meta">
-        <span><i class="bi bi-calendar"></i> <span id="blogDate">Nov 10, 2025</span></span>
-        <span><i class="bi bi-clock"></i> <span id="blogReadTime">5 min read</span></span>
-        <span><i class="bi bi-person"></i> <span id="blogAuthor">Admin</span></span>
+      <div class="featured-img" data-aos="fade-up">
+        <img id="blogImage" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600" alt="Blog Image">
       </div>
 
-      <img id="blogImage" src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600&auto=format&fit=crop" alt="Blog Image">
+      <div class="blog-meta" data-aos="fade-up" data-aos-delay="100">
+        <span><i class="bi bi-person"></i> <span id="blogAuthor">Admin</span></span>
+        <span><i class="bi bi-calendar"></i> <span id="blogDate">Nov 10, 2025</span></span>
+        <span><i class="bi bi-eye"></i> <span id="blogViews">1.2k reads</span></span>
+      </div>
 
-      <div id="blogBody"><p>Loading blog content...</p></div>
+      <h2 class="blog-title" id="blogTitle" data-aos="fade-up" data-aos-delay="150">How to Score Band 8+ in IELTS Writing</h2>
+      <div class="blog-desc" id="blogBody" data-aos="fade-up" data-aos-delay="200">
+        <p>Loading blog content...</p>
+      </div>
     </div>
   </section>
 
-  <!-- Related posts -->
+  <!-- Related Posts -->
   <section class="related-posts">
     <div class="container">
       <h3>Related Posts</h3>
       <div class="row g-4">
         <div class="col-md-4">
-          <a href="blog-detail.html?id=2" class="blog-card text-decoration-none text-light">
+          <a href="blog-detail.html?id=2" class="blog-card text-light">
             <img src="https://images.unsplash.com/photo-1522202176988-66273c2b034f?q=80&w=800" alt="">
-            <div class="card-body">
-              <h6>From Band 5.5 to 7.5: Riya’s Journey</h6>
-            </div>
+            <div class="card-body"><h6>From Band 5.5 to 7.5: Riya’s Journey</h6></div>
           </a>
         </div>
         <div class="col-md-4">
-          <a href="blog-detail.html?id=3" class="blog-card text-decoration-none text-light">
+          <a href="blog-detail.html?id=3" class="blog-card text-light">
             <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=800" alt="">
-            <div class="card-body">
-              <h6>Top 10 Phrases for IELTS Speaking</h6>
-            </div>
+            <div class="card-body"><h6>Top 10 Phrases for IELTS Speaking</h6></div>
           </a>
         </div>
         <div class="col-md-4">
-          <a href="blog-detail.html?id=1" class="blog-card text-decoration-none text-light">
+          <a href="blog-detail.html?id=1" class="blog-card text-light">
             <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800" alt="">
-            <div class="card-body">
-              <h6>How to Score Band 8+ in Writing Task 2</h6>
-            </div>
+            <div class="card-body"><h6>How to Score Band 8+ in Writing Task 2</h6></div>
           </a>
         </div>
       </div>
@@ -193,7 +152,7 @@
   </section>
 
   <footer>© 2025 IELTS Masterclass. Developed by 
-    <a href="https://sayeed62135.github.io/swadesh-it/" style="color:#E63946;text-decoration:none;">SWADESH IT</a>
+    <a href="https://sayeed62135.github.io/swadesh-it/" style="color:#E63946;">SWADESH IT</a>
   </footer>
 
   <button id="backToTop"><i class="bi bi-arrow-up"></i></button>
@@ -206,26 +165,44 @@
     const btt=document.getElementById('backToTop');
     window.addEventListener('scroll',()=>btt.classList.toggle('show',window.scrollY>300));
     btt.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-    window.addEventListener('scroll',()=>document.querySelector('.navbar')
-      .classList.toggle('scrolled',window.scrollY>50));
+    window.addEventListener('scroll',()=>document.querySelector('.navbar').classList.toggle('scrolled',window.scrollY>50));
 
     // Blog data
     const blogs={
-      1:{title:"How to Score Band 8+ in IELTS Writing Task 2",subtitle:"Master your writing with structure, logic and style.",date:"Nov 10, 2025",read:"5 min read",author:"IELTS Mentor",img:"https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600",
-      body:`<p>Achieving a Band 8+ in IELTS Writing Task 2 requires clarity, precision, and sophistication...</p>`},
-      2:{title:"From Band 5.5 to 7.5: Riya’s Journey with IELTS Masterclass",subtitle:"A real student success story that proves progress is possible.",date:"Nov 8, 2025",read:"4 min read",author:"Student Desk",img:"https://images.unsplash.com/photo-1522202176988-66273c2b034f?q=80&w=1600",
-      body:`<p>Riya began her IELTS journey with 5.5 and achieved 7.5 with consistent guidance...</p>`},
-      3:{title:"Top 10 Phrases to Boost Your IELTS Speaking Score",subtitle:"Sound like a native and impress examiners effortlessly.",date:"Nov 5, 2025",read:"6 min read",author:"Speaking Coach",img:"https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1600",
-      body:`<p>The IELTS Speaking test evaluates fluency, pronunciation, and vocabulary...</p>`}
+      1:{
+        title:"How to Score Band 8+ in IELTS Writing Task 2",
+        author:"IELTS Mentor",
+        date:"Nov 10, 2025",
+        views:"1.2k reads",
+        img:"https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1600",
+        body:`<p>Achieving Band 8+ in IELTS Writing Task 2 requires clear structure and strong argumentation...</p>
+              <p>Focus on coherence, lexical resource, and grammatical accuracy. Avoid informal language and use advanced connectors.</p>`
+      },
+      2:{
+        title:"From Band 5.5 to 7.5: Riya’s Journey",
+        author:"Student Desk",
+        date:"Nov 8, 2025",
+        views:"870 reads",
+        img:"https://images.unsplash.com/photo-1522202176988-66273c2b034f?q=80&w=1600",
+        body:`<p>Riya began her IELTS preparation with doubts but achieved 7.5 after 3 months of guided mentoring...</p>`
+      },
+      3:{
+        title:"Top 10 Phrases for IELTS Speaking",
+        author:"Speaking Coach",
+        date:"Nov 5, 2025",
+        views:"2k reads",
+        img:"https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=1600",
+        body:`<p>Use natural expressions like “To be honest” or “As far as I’m concerned” to sound more fluent...</p>`
+      }
     };
     const id=new URLSearchParams(window.location.search).get('id')||1;
     const blog=blogs[id];
     if(blog){
+      blogHeroTitle.textContent=blog.title;
       blogTitle.textContent=blog.title;
-      blogSubtitle.textContent=blog.subtitle;
-      blogDate.textContent=blog.date;
-      blogReadTime.textContent=blog.read;
       blogAuthor.textContent=blog.author;
+      blogDate.textContent=blog.date;
+      blogViews.textContent=blog.views;
       blogImage.src=blog.img;
       blogBody.innerHTML=blog.body;
     }
