@@ -1,4 +1,3 @@
-<!-- blog-detail.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,84 +5,241 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>How to Score Band 8+ in IELTS Writing Task 2 | IELTS Masterclass</title>
 
-  <!-- Same head as blog.html -->
+  <!-- SEO Meta -->
+  <meta name="description" content="Learn expert strategies to achieve Band 8+ in IELTS Writing Task 2 with clear structure, advanced vocabulary, and real examiner tips.">
+  <meta name="keywords" content="IELTS Writing, Band 8, Task 2, IELTS tips, IELTS Masterclass">
+  <meta name="author" content="Sarah Johnson">
+  <meta property="og:title" content="How to Score Band 8+ in IELTS Writing Task 2">
+  <meta property="og:description" content="Master the art of structuring arguments, using advanced vocabulary, and avoiding common mistakes to achieve a high band score.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1200">
+  <meta property="og:url" content="https://ieltspathway.com/blog-detail.html?id=1">
+  <meta property="og:type" content="article">
+
+  <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
+  <!-- AOS -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <!-- Highlight.js for code blocks -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
 
   <style>
-    /* Reuse all styles from blog.html + additional for detail page */
-    :root{--red:#E63946;--bg:#0a0a0a;--text:#f5f6f7;--muted:#9aa1aa;--grad1:linear-gradient(135deg,#E63946,#FF6B6B);}
-    body{font-family:Inter,system-ui;background:var(--bg);color:var(--text)}
-    .navbar{background:rgba(5,5,5,.75)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(230,57,70,.15);padding:1.2rem 0;transition:.4s}
-    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.8rem 0}
-    .logo-item img{height:75px}.navbar.scrolled .logo-item img{height:45px}
-    .nav-link{color:#fff!important;font-weight:500;position:relative}
+    :root{
+      --red:#E63946;--red2:#FF6B6B;--red3:#FF1744;--accent:#E63946;
+      --bg:#0a0a0a;--bg2:#050505;--card:rgba(255,255,255,.04);
+      --text:#f5f6f7;--muted:#9aa1aa;--shadow:0 14px 40px rgba(0,0,0,.45);
+      --grad1:linear-gradient(135deg,#E63946,#FF6B6B);
+      --grad2:linear-gradient(135deg,#E63946,#FF1744);
+      --grad-dark:linear-gradient(180deg,#0a0a0a,#050505);
+      --border:rgba(255,255,255,.08);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;scroll-behavior:smooth;line-height:1.7}
+    h1,h2,h3,h4,h5,h6{font-family:Montserrat,sans-serif;letter-spacing:-.4px;line-height:1.2}
+    a{color:var(--text);text-decoration:none;transition:.3s}
+    a:hover{color:var(--red)}
+
+    /* Loader */
+    .page-transition{position:fixed;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;z-index:10000;transition:opacity .8s ease}
+    .page-transition.hide{opacity:0;pointer-events:none}
+    .loader-logo{font-family:Montserrat;font-weight:900;font-size:2.4rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:pulse 1.6s infinite}
+    .loader-ring{width:62px;height:62px;border:3px solid rgba(230,57,70,.25);border-top:3px solid var(--red);border-radius:50%;margin:18px auto 0;animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes pulse{50%{transform:scale(1.06);opacity:.85}}
+
+    /* Navbar */
+    .navbar{background:rgba(5,5,5,.75)!important;backdrop-filter:blur(20px);border-bottom:1px solid rgba(230,57,70,.15);transition:.4s;padding:1.2rem 0;min-height:100px}
+    .navbar.scrolled{background:rgba(5,5,5,.95)!important;padding:.8rem 0;min-height:80px}
+    .navbar-desktop{display:flex;align-items:center;justify-content:space-between;width:100%}
+    .navbar-mobile{display:none}
+    .logo-item{display:flex;flex-direction:column;align-items:center;text-decoration:none;transition:all .4s ease;background:linear-gradient(135deg,rgba(255,255,255,.12),rgba(255,255,255,.05));backdrop-filter:blur(20px);border:2px solid rgba(230,57,70,.6);border-radius:20px;padding:16px 24px;position:relative;overflow:hidden}
+    .logo-item:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(255,255,255,.18),rgba(255,255,255,.08));border-color:rgba(230,57,70,.8);box-shadow:0 15px 40px rgba(230,57,70,.3)}
+    .premium-logo{background:white;padding:0;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,.3),0 0 0 1px rgba(230,57,70,.3);transition:all .4s ease}
+    .premium-logo:hover{transform:translateY(-5px) scale(1.05);box-shadow:0 15px 40px rgba(0,0,0,.4),0 0 0 2px rgba(230,57,70,.5)}
+    .logo-item img{height:75px;width:auto}
+    .navbar.scrolled .logo-item img{height:45px}
+    .navbar.scrolled .logo-item{padding:4px 6px}
+    .nav-link{color:#fff!important;font-weight:500;margin:0 8px;position:relative;font-size:.95rem}
     .nav-link:after{content:"";position:absolute;left:50%;bottom:-6px;height:2px;width:0;background:var(--grad1);transition:.35s}
     .nav-link:hover:after{left:0;width:100%}
-    .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(230,57,70,.4);transition:all .3s ease}
+    .btn-pill{background:var(--grad1);color:#fff;border:none;border-radius:999px;padding:8px 18px;font-weight:700;box-shadow:0 6px 18px rgba(230,57,70,.4);font-size:.9rem;transition:all .3s ease}
+    .btn-pill:hover{transform:translateY(-1px);color:#fff!important;box-shadow:0 8px 24px rgba(230,57,70,.5)}
 
-    /* Detail Page Styles */
-    .article-hero{min-height:70vh;background:var(--bg2);position:relative;overflow:hidden;padding:160px 0 100px;display:flex;align-items:center}
-    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,var(--red),transparent 70%);opacity:.08}
-    .article-hero img{width:100%;height:400px;object-fit:cover;border-radius:20px;box-shadow:0 20px 50px rgba(0,0,0,.6)}
-    .article-meta{font-size:.9rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
-    .article-meta i{color:var(--red)}
-    .article-content h2,.article-content h3{margin:2rem 0 1rem;font-weight:700}
-    .article-content p{line-height:1.8;font-size:1.05rem;margin-bottom:1.2rem}
-    .article-content ul{list-style:none;padding-left:0}
-    .article-content ul li{position:relative;padding-left:1.8rem;margin-bottom:.75rem}
-    .article-content ul li::before{content:"✓";position:absolute;left:0;color:var(--red);font-weight:bold}
-    .share-buttons{display:flex;gap:.75rem;margin:2rem 0}
-    .share-btn{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:var(--text);transition:.3s}
-    .share-btn:hover{background:var(--red);color:#fff;border-color:var(--red)}
+    /* Article Hero */
+    .article-hero{min-height:70vh;position:relative;overflow:hidden;display:flex;align-items:center;background:var(--bg2)}
+    .article-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,var(--red),transparent 70%);opacity:.08;pointer-events:none}
+    .article-hero .container{position:relative;z-index:2}
+    .article-hero img{width:100%;height:420px;object-fit:cover;border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.7);transition:transform .6s ease}
+    .article-hero img:hover{transform:scale(1.02)}
+    .article-meta{font-size:.95rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:1.2rem;margin:1.8rem 0;align-items:center}
+    .article-meta i{color:var(--red);margin-right:.4rem}
+    .author-avatar{width:48px;height:48px;border-radius:50%;object-fit:cover;border:2px solid var(--red)}
+
+    /* Article Content */
+    .article-content{line-height:1.8;font-size:1.05rem}
+    .article-content h2,.article-content h3{margin:2.2rem 0 1rem;font-weight:800;color:var(--text)}
+    .article-content h2{font-size:1.9rem;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+    .article-content h3{font-size:1.45rem}
+    .article-content p{margin-bottom:1.4rem;color:#cfd3d8}
+    .article-content ul{list-style:none;padding-left:0;margin:1.2rem 0}
+    .article-content ul li{position:relative;padding-left:2rem;margin-bottom:.9rem;font-size:1.02rem}
+    .article-content ul li::before{content:"check";position:absolute;left:0;color:var(--red);font-weight:900;font-family:"Bootstrap Icons"}
+    .article-content blockquote{background:rgba(230,57,70,.12);border-left:4px solid var(--red);padding:1.5rem;margin:2rem 0;border-radius:0 12px 12px 0;font-style:italic}
+    .article-content blockquote p{margin:0;color:#fff}
+    .article-content .tip-box{background:rgba(255,190,11,.12);border:1px solid rgba(255,190,11,.3);border-radius:16px;padding:1.5rem;margin:2rem 0;position:relative;overflow:hidden}
+    .article-content .tip-box::before{content:"Tip";position:absolute;top:12px;right:16px;font-weight:800;font-size:.8rem;color:var(--red);background:var(--bg2);padding:2px 8px;border-radius:999px}
+    .article-content img{max-width:100%;border-radius:16px;margin:2rem 0;box-shadow:0 15px 40px rgba(0,0,0,.5)}
+
+    /* Share & Tags */
+    .share-section{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:20px;padding:1.8rem;margin:2.5rem 0}
+    .share-buttons{display:flex;gap:.9rem;flex-wrap:wrap}
+    .share-btn{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);border:1px solid var(--border);color:var(--text);font-size:1.3rem;transition:all .35s ease}
+    .share-btn:hover{background:var(--red);color:#fff;border-color:var(--red);transform:translateY(-3px);box-shadow:0 8px 20px rgba(230,57,70,.4)}
+    .tags a{background:rgba(255,255,255,.06);color:var(--muted);padding:.4rem .9rem;border-radius:999px;font-size:.85rem;border:1px solid var(--border);transition:.3s}
+    .tags a:hover{background:var(--red);color:#fff;border-color:var(--red)}
+
+    /* Author Box */
+    .author-box{background:rgba(20,20,20,.95);backdrop-filter:blur(16px);border:1px solid var(--border);border-radius:20px;padding:1.8rem;display:flex;gap:1.2rem;align-items:center;margin:3rem 0}
+    .author-box img{width:80px;height:80px;border-radius:50%;border:3px solid var(--red)}
+    .author-box h6{margin:0;font-size:1.1rem}
+    .author-box p{font-size:.9rem;color:var(--muted);margin:.4rem 0 0}
 
     /* Related Posts */
-    .related-card{transition:.4s}
-    .related-card:hover{transform:translateY(-6px)}
-    .related-card img{height:160px;object-fit:cover;border-radius:16px}
+    .related-card{transition:all .45s ease;overflow:hidden;border-radius:20px;background:rgba(20,20,20,.95);backdrop-filter:blur(16px);border:1px solid var(--border)}
+    .related-card:hover{transform:translateY(-10px);box-shadow:0 20px 50px rgba(230,57,70,.3);border-color:var(--red)}
+    .related-card img{height:180px;object-fit:cover;border-radius:16px 16px 0 0}
+    .related-card .card-body{padding:1.4rem}
+    .related-card h6{font-size:1.1rem;margin-bottom:.6rem;line-height:1.3}
+    .related-card .meta{font-size:.8rem;color:var(--muted)}
 
+    /* Comments Section */
+    .comments-section{margin-top:4rem}
+    .comment-form{background:rgba(20,20,20,.95);border:1px solid var(--border);border-radius:20px;padding:2rem}
+    .comment-form textarea{width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:1rem;color:var(--text);resize:none;height:140px}
+    .comment-form textarea::placeholder{color:var(--muted)}
+    .comment-item{display:flex;gap:1.2rem;margin-top:1.8rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border)}
+    .comment-item:last-child{border-bottom:none;padding-bottom:0;margin-bottom:0}
+    .comment-item img{width:50px;height:50px;border-radius:50%;border:2px solid var(--red)}
+    .comment-item .content{flex:1}
+    .comment-item .name{font-weight:600;font-size:1rem}
+    .comment-item .date{font-size:.8rem;color:var(--muted);margin-bottom:.5rem}
+    .comment-item p{font-size:.95rem;margin:0}
+
+    /* CTA Banner */
+    .article-cta{background:linear-gradient(135deg,#E63946,#B91C1C);border-radius:24px;padding:2.5rem;text-align:center;color:#fff;margin:4rem 0}
+    .article-cta h3{font-size:1.8rem;margin-bottom:.8rem}
+    .article-cta p{margin-bottom:1.5rem;font-size:1.05rem}
+
+    /* Footer */
+    footer{background:var(--bg2);border-top:1px solid rgba(230,57,70,.15);padding:3rem 0 1.5rem}
+    footer h5{font-family:Montserrat;font-weight:800;background:var(--grad1);-webkit-background-clip:text;-webkit-text-fill-color:transparent;font-size:1.1rem}
+    footer a{color:var(--muted);text-decoration:none;font-size:.9rem}
+    footer a:hover{color:var(--red)}
+    .footer-logo img{height:100px;width:auto;transition:all .4s ease}
+    .footer-logo:hover img{transform:scale(1.05)}
+
+    /* Back to top */
+    #backToTop{position:fixed;right:16px;bottom:16px;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:var(--grad1);color:#fff;box-shadow:0 6px 18px rgba(230,57,70,.4);opacity:0;visibility:hidden;transition:.35s;z-index:999;font-size:1.3rem}
+    #backToTop.show{opacity:1;visibility:visible}
+
+    /* Responsive */
+    @media (max-width:992px){
+      .navbar-desktop{display:none}.navbar-mobile{display:flex;align-items:center;justify-content:space-between;width:100%}
+      .logo-group{display:flex;gap:.5rem}
+      .logo-item img{height:50px}.navbar.scrolled .logo-item img{height:35px}
+    }
     @media (max-width:768px){
-      .article-hero img{height:300px}
+      .article-hero img{height:320px}
+      .article-content h2{font-size:1.7rem}
+      .author-box{flex-direction:column;text-align:center}
+      .author-box img{width:70px;height:70px}
+      .related-card img{height:160px}
+    }
+    @media (max-width:576px){
+      .article-hero img{height:260px}
       .article-content h2{font-size:1.5rem}
+      .share-btn{width:42px;height:42px;font-size:1.1rem}
+      .logo-item img{height:40px}.navbar.scrolled .logo-item img{height:30px}
     }
   </style>
 </head>
 <body>
 
-  <!-- Loader & Navbar (Same as blog.html) -->
-  <div class="page-transition" id="preloader">...</div>
+  <!-- Loader -->
+  <div class="page-transition" id="preloader">
+    <div class="text-center">
+      <div class="loader-logo">IELTS Masterclass</div>
+      <div class="loader-ring"></div>
+    </div>
+  </div>
 
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <!-- Same navbar code as blog.html -->
     <div class="container">
       <div class="navbar-desktop">
         <a href="index.html" class="logo-item"><img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo"></a>
         <div class="nav-center">
           <ul class="navbar-nav">
             <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-            <li class="nav-item"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">About us</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Services</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="courses.html">IELTS Courses</a></li>
+                <li><a class="dropdown-item" href="mock.html">Mock Test</a></li>
+                <li><a class="dropdown-item" href="ielts-test.html">IELTS Test</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="journey.html">Student Journey</a></li>
+            <li class="nav-item"><a class="nav-link" href="consultancy.html">Destination</a></li>
+            <li class="nav-item"><a class="nav-link" href="trial.html">Free Class</a></li>
+            <li class="nav-item"><a class="nav-link active" href="blog.html">Our Blog</a></li>
+            <li class="nav-item ms-3"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
           </ul>
         </div>
         <a href="#" class="logo-item"><img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo"></a>
       </div>
-      <!-- Mobile navbar same as blog.html -->
+      <div class="navbar-mobile">
+        <div class="logo-group">
+          <a href="index.html" class="logo-item"><img src="img/logo.png" alt="IELTS Masterclass" class="premium-logo"></a>
+          <a href="#" class="logo-item"><img src="img/BC-IELTS_Reg-Centre.png" alt="Partner" class="premium-logo"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav" aria-controls="nav" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="index.html#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+            <li class="nav-item"><a class="btn btn-pill" href="contact.html">Get Started</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </nav>
 
   <!-- Article Hero -->
-  <header class="article-hero">
+  <header class="article-hero" data-aos="fade-up">
     <div class="container">
       <div class="row justify-content-center">
-        <div class="col-lg-10" data-aos="fade-up">
-          <span class="badge bg-red text-white px-3 py-1 rounded-pill small">IELTS WRITING</span>
-          <h1 class="my-4">How to Score Band 8+ in IELTS Writing Task 2</h1>
-          <div class="article-meta">
-            <span><i class="bi bi-person"></i> Sarah Johnson</span>
+        <div class="col-lg-10 text-center text-md-start">
+          <div class="badge bg-red text-white px-3 py-1 rounded-pill small mb-3">IELTS WRITING</div>
+          <h1 class="display-4 fw-bold mb-4">How to Score Band 8+ in IELTS Writing Task 2</h1>
+          <div class="article-meta justify-content-center justify-content-md-start">
+            <div class="d-flex align-items-center gap-2">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson" class="author-avatar">
+              <div>
+                <div class="fw-semibold">Sarah Johnson</div>
+                <div class="small text-muted">IELTS Examiner & Trainer</div>
+              </div>
+            </div>
             <span><i class="bi bi-calendar"></i> November 10, 2025</span>
-            <span><i class="bi bi-clock"></i> 5 min read</span>
+            <span><i class="bi bi-clock"></i> 7 min read</span>
             <span><i class="bi bi-chat-dots"></i> 24 Comments</span>
           </div>
         </div>
@@ -96,109 +252,233 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8">
-          <article class="glass p-4 p-md-5 rounded-4" data-aos="fade-up">
-            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" alt="IELTS Writing" class="mb-4">
+          <article class="glass p-4 p-md-5 rounded-4" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1200&auto=format&fit=crop" alt="IELTS Writing Task 2" class="img-fluid mb-4">
 
             <div class="article-content">
-              <p class="lead">Scoring Band 8 or above in IELTS Writing Task 2 requires more than just good English — it demands <strong>structure, coherence, and advanced vocabulary</strong> used naturally.</p>
+              <p class="lead">Scoring <strong>Band 8 or above</strong> in IELTS Writing Task 2 is not about perfect English — it's about <em>strategic writing</em> that meets examiner expectations in all four criteria: Task Response, Coherence, Lexical Resource, and Grammar.</p>
 
-              <h2>1. Understand the Question Fully</h2>
-              <p>Many students lose marks because they misinterpret the question. Always identify:</p>
+              <h2>1. Understand the Question Like an Examiner</h2>
+              <p>Most Band 6–7 candidates lose marks here. Always ask:</p>
               <ul>
-                <li>Question type (Opinion, Discussion, Problem-Solution, etc.)</li>
-                <li>Key instruction words (Discuss, Evaluate, To what extent)</li>
-                <li>All parts of the question</li>
+                <li><strong>What type</strong> is the question? (Opinion, Discussion, Advantages/Disadvantages, Problem-Solution)</li>
+                <li><strong>What are the keywords</strong>? Underline them.</li>
+                <li><strong>Are there two parts</strong>? Never ignore one.</li>
               </ul>
+              <blockquote>
+                <p>“A Band 8 response fully addresses all parts of the task with a well-developed position.” — <em>IELTS Public Band Descriptors</em></p>
+              </blockquote>
 
-              <h2>2. Plan Your Essay in 5 Minutes</h2>
-              <p>High-band essays are well-organized. Spend 5 minutes planning:</p>
-              <ul>
-                <li>Introduction: Paraphrase + thesis</li>
-                <li>Body 1: Main point + example</li>
-                <li>Body 2: Counterpoint or second idea</li>
-                <li>Conclusion: Summary + final thought</li>
-              </ul>
-
-              <h2>3. Use Advanced Vocabulary Naturally</h2>
-              <p>Avoid overusing complex words. Use collocations and topic-specific terms:</p>
-              <ul>
-                <li>Instead of "very important" → <em>crucial, paramount, pivotal</em></li>
-                <li>Instead of "many people" → <em>a significant proportion of the population</em></li>
-              </ul>
-
-              <h2>4. Vary Sentence Structures</h2>
-              <p>Mix simple, compound, and complex sentences. Use linking words smoothly:</p>
-              <ul>
-                <li>Addition: furthermore, in addition</li>
-                <li>Contrast: however, nevertheless</li>
-                <li>Cause/Effect: consequently, as a result</li>
-              </ul>
-
-              <h2>5. Write a Strong Conclusion</h2>
-              <p>Restate your position and add a final insight. Avoid new ideas.</p>
-
-              <div class="glass p-4 rounded-4 my-5" style="background:rgba(230,57,70,.1);border:1px solid rgba(230,57,70,.3)">
-                <p class="mb-0"><strong>Pro Tip:</strong> Practice writing one Task 2 essay daily and get feedback from a teacher or use our AI essay checker.</p>
+              <h2>2. Plan in 4 Minutes — Never Skip This</h2>
+              <p>High-band essays are <strong>organized from the first word</strong>. Use this structure:</p>
+              <div class="tip-box">
+                <p><strong>Introduction:</strong> Paraphrase question + clear thesis</p>
+                <p><strong>Body 1:</strong> Main idea + explanation + example</p>
+                <p><strong>Body 2:</strong> Second idea or counterargument</p>
+                <p><strong>Conclusion:</strong> Summarize + final insight</p>
               </div>
 
-              <div class="share-buttons">
-                <a href="#" class="share-btn"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="share-btn"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="share-btn"><i class="bi bi-linkedin"></i></a>
-                <a href="#" class="share-btn"><i class="bi bi-link-45deg"></i></a>
+              <h2>3. Use Band 8 Vocabulary Naturally</h2>
+              <p>Forget word lists. Use <strong>collocations</strong> and <strong>topic-specific terms</strong>:</p>
+              <ul>
+                <li><code>paramount importance</code> → not "very important"</li>
+                <li><code>exacerbate the issue</code> → not "make problem worse"</li>
+                <li><code>a multifaceted approach</code> → shows range</li>
+              </ul>
+
+              <h2>4. Master Cohesion & Paragraphing</h2>
+              <p>Link ideas smoothly:</p>
+              <ul>
+                <li><strong>Addition:</strong> moreover, furthermore</li>
+                <li><strong>Contrast:</strong> however, nevertheless, on the contrary</li>
+                <li><strong>Cause/Effect:</strong> consequently, as a result</li>
+              </ul>
+
+              <h2>5. Grammar: Variety + Accuracy</h2>
+              <p>Mix sentence types:</p>
+              <pre><code class="language-text">
+Although technology has revolutionized education, 
+many argue that traditional teaching methods remain essential.
+              </code></pre>
+
+              <div class="tip-box">
+                <p><strong>Pro Tip:</strong> Write <strong>one Task 2 essay daily</strong>. Get feedback from a trainer or use our <a href="mock.html">AI Essay Checker</a> for instant band score.</p>
+              </div>
+
+              <h2>Final Checklist Before Submission</h2>
+              <ul>
+                <li>Word count: 250+?</li>
+                <li>Clear position throughout?</li>
+                <li>Examples relevant?</li>
+                <li>No repetition of ideas?</li>
+                <li>Spelling & grammar checked?</li>
+              </ul>
+
+              <div class="share-section">
+                <h5 class="mb-3">Share this article</h5>
+                <div class="share-buttons">
+                  <a href="#" class="share-btn" title="Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="#" class="share-btn" title="Twitter"><i class="bi bi-twitter"></i></a>
+                  <a href="#" class="share-btn" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                  <a href="#" class="share-btn" title="Copy Link"><i class="bi bi-link-45deg"></i></a>
+                </div>
+                <div class="tags mt-3">
+                  <a href="#">IELTS Writing</a>
+                  <a href="#">Band 8</a>
+                  <a href="#">Task 2 Tips</a>
+                  <a href="#">Essay Structure</a>
+                </div>
               </div>
             </div>
           </article>
 
+          <!-- Author Box -->
+          <div class="author-box" data-aos="fade-up">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+            <div>
+              <h6>Sarah Johnson</h6>
+              <p>Former IELTS Examiner with 10+ years of experience. Trained over 5,000 students to achieve Band 7+.</p>
+              <a href="#" class="text-red small">View all posts →</a>
+            </div>
+          </div>
+
           <!-- Related Posts -->
           <div class="mt-5" data-aos="fade-up">
-            <h3 class="title mb-4">Related Articles</h3>
+            <h3 class="title mb-4">You Might Also Like</h3>
             <div class="row g-4">
               <div class="col-md-6">
                 <a href="blog-detail.html?id=3" class="text-decoration-none">
-                  <div class="related-card glass p-3 rounded-4 d-flex gap-3">
-                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=400" alt="">
-                    <div>
-                      <h6 class="mb-1">Top 10 Phrases for IELTS Speaking</h6>
-                      <small class="text-muted">Nov 5, 2025 • 6 min read</small>
+                  <div class="related-card">
+                    <img src="https://images.unsplash.com/photo-1580894732444-8ecded7900cd?q=80&w=800" alt="">
+                    <div class="card-body">
+                      <h6>Top 10 Phrases to Boost Your IELTS Speaking Score</h6>
+                      <p class="meta">Nov 5, 2025 • 6 min read</p>
                     </div>
                   </div>
                 </a>
               </div>
               <div class="col-md-6">
                 <a href="blog-detail.html?id=2" class="text-decoration-none">
-                  <div class="related-card glass p-3 rounded-4 d-flex gap-3">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2b034f?q=80&w=400" alt="">
-                    <div>
-                      <h6 class="mb-1">Riya’s Success Story: Band 5.5 to 7.5</h6>
-                      <small class="text-muted">Nov 8, 2025 • 4 min read</small>
+                  <div class="related-card">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2b034f?q=80&w=800" alt="">
+                    <div class="card-body">
+                      <h6>From Band 5.5 to 7.5: Riya’s Journey</h6>
+                      <p class="meta">Nov 8, 2025 • 4 min read</p>
                     </div>
                   </div>
                 </a>
               </div>
             </div>
           </div>
+
+          <!-- Comments Section -->
+          <div class="comments-section" data-aos="fade-up">
+            <h3 class="title mb-4">Comments (24)</h3>
+            <div class="comment-form">
+              <h5>Leave a Comment</h5>
+              <form>
+                <div class="row g-3 mb-3">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control bg-transparent text-white border-secondary" placeholder="Your Name">
+                  </div>
+                  <div class="col-md-6">
+                    <input type="email" class="form-control bg-transparent text-white border-secondary" placeholder="Your Email">
+                  </div>
+                </div>
+                <textarea placeholder="Write your comment..."></textarea>
+                <button type="submit" class="btn btn-pill mt-3">Post Comment</button>
+              </form>
+            </div>
+
+            <div class="comment-item">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John">
+              <div class="content">
+                <div class="name">John D.</div>
+                <div class="date">2 days ago</div>
+                <p>Amazing tips! The planning part really helped me improve from 6.5 to 7.5. Thank you!</p>
+              </div>
+            </div>
+            <div class="comment-item">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya">
+              <div class="content">
+                <div class="name">Priya Sharma</div>
+                <div class="date">1 week ago</div>
+                <p>Can you share a sample Band 9 essay? That would be super helpful!</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="article-cta" data-aos="fade-up">
+            <h3>Ready to Achieve Band 8+?</h3>
+            <p>Join our structured IELTS courses with live feedback and unlimited mock tests.</p>
+            <a href="courses.html" class="btn btn-pill btn-light">Explore Courses <i class="bi bi-arrow-right"></i></a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer (Same as blog.html) -->
-  <footer>...</footer>
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="footer-logo mb-3">
+            <img src="img/BC-IELTS_Reg-Centre.png" alt="IELTS Masterclass">
+          </div>
+          <h5>IELTS Masterclass</h5>
+          <p class="text-secondary mb-3">Guiding students to top IELTS scores with expert mentors, flexible classes, and mock tests.</p>
+        </div>
+        <div class="col-md-3"><h5>Explore</h5><ul class="list-unstyled"><li><a href="blog.html">Blog</a></li><li><a href="courses.html">Courses</a></li><li><a href="mock.html">Mock Test</a></li></ul></div>
+        <div class="col-md-3"><h5>Support</h5><ul class="list-unstyled"><li><a href="contact.html">Contact Us</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+        <div class="col-md-2"><h5>Contact</h5><ul class="list-unstyled"><li><a href="mailto:hello@ieltspathway.com">hello@ieltspathway.com</a></li><li><span class="text-secondary">+880 1234-567890</span></li></ul></div>
+      </div>
+      <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
+        © 2025 IELTS Masterclass. All rights reserved. <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #E63946;">SWADESH IT</a>.</span>
+      </div>
+    </div>
+  </footer>
 
-  <button id="backToTop">↑</button>
+  <!-- Back to top -->
+  <button id="backToTop" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
 
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
   <script>
-    AOS.init();
-    // Same JS as blog.html for navbar, loader, back-to-top
-    window.addEventListener('scroll', () => document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50));
+    AOS.init({duration:1000,once:true,offset:80,easing:'ease-out-quart'});
+
+    // Navbar
+    window.addEventListener('scroll', () => {
+      document.querySelector('.navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Back to top
     const btt = document.getElementById('backToTop');
     window.addEventListener('scroll', () => btt.classList.toggle('show', window.scrollY > 300));
     btt.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
-    function hideLoader() { const l = document.getElementById('preloader'); if(l){l.classList.add('hide');setTimeout(()=>l.style.display='none',800);} }
-    window.addEventListener('load', () => setTimeout(hideLoader, 800)); setTimeout(hideLoader, 4000);
+
+    // Preloader
+    function hideLoader() {
+      const loader = document.getElementById('preloader');
+      if (loader) {
+        loader.classList.add('hide');
+        setTimeout(() => loader.style.display = 'none', 800);
+      }
+    }
+    window.addEventListener('load', () => setTimeout(hideLoader, 800));
+    setTimeout(hideLoader, 4000);
+
+    // Copy link
+    document.querySelector('.share-btn[title="Copy Link"]').addEventListener('click', function(e) {
+      e.preventDefault();
+      navigator.clipboard.writeText(window.location.href);
+      this.innerHTML = '<i class="bi bi-check-lg"></i>';
+      setTimeout(() => this.innerHTML = '<i class="bi bi-link-45deg"></i>', 2000);
+    });
   </script>
 </body>
 </html>
