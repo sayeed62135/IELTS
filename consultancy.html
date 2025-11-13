@@ -154,6 +154,64 @@
     .stats .stat-num {font-family: 'Montserrat', sans-serif;background: var(--grad1);-webkit-background-clip: text;-webkit-text-fill-color: transparent;min-height: 1.2em;display: inline-block;}
     @media (max-width: 768px) {.stats .stat-num {font-size: 2rem !important;}.stats i {font-size: 2rem !important;}}
 
+    /* Tab Navigation */
+    .destinations-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .destinations-tab {
+      padding: 12px 24px;
+      margin: 0 5px;
+      background: transparent;
+      border: none;
+      border-radius: 10px 10px 0 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .destinations-tab:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.05);
+    }
+    
+    .destinations-tab.active {
+      color: #fff;
+      background: var(--grad1);
+      box-shadow: 0 5px 15px rgba(230,57,70,0.3);
+    }
+    
+    .destinations-tab.active::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--grad1);
+    }
+    
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Destination Cards */
     .destination-card {
       background: rgba(20,20,20,.95);
@@ -350,6 +408,8 @@
       .logo-item img{height:50px}
       .navbar.scrolled .logo-item img{height:35px}
       .navbar-nav{backdrop-filter:blur(10px);background:rgba(5,5,5,.9);padding:1rem;border-radius:12px;margin-top:1rem}.nav-link{margin:8px 0}.hero h1{font-size:2.5rem}.title{font-size:2.4rem}section{padding:70px 0}
+      .destinations-tabs { overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch; }
+      .destinations-tab { display: inline-block; margin-bottom: 0; }
     }
     @media (max-width:768px){.hero{padding:120px 0 80px}.hero h1{font-size:2.2rem}.title{font-size:2.1rem}.process-step {padding-left: 60px;}.process-step .step-number {width: 40px;height: 40px;font-size: 1rem;}}
     @media (max-width:576px){.hero h1{font-size:1.9rem}.title{font-size:1.8rem}.badge-pill{font-size:.75rem;padding:6px 10px}.btn-pill{font-size:.8rem;padding:6px 14px}#backToTop{width:40px;height:40px;right:12px;bottom:12px}}
@@ -466,83 +526,206 @@
     <div class="container">
       <h2 class="title text-center" data-aos="fade-up">Popular Study Destinations</h2>
       <p class="subtitle text-center" data-aos="fade-up" data-aos-delay="60">Explore top educational destinations around the world with our expert guidance.</p>
-      <div class="row g-4">
-        <div class="col-md-6 col-lg-4" data-aos="fade-up">
-          <div class="destination-card">
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA" class="country-flag">
-            <h3>United States</h3>
-            <p>Home to world-renowned universities and diverse academic programs across all disciplines.</p>
-            <ul class="university-list">
-              <li>University of Illinois at Urbana-Champaign</li>
-              <li>Northeastern University</li>
-              <li>Arizona State University</li>
-              <li>And 150+ more institutions</li>
-            </ul>
+      
+      <!-- Tab Navigation -->
+      <div class="destinations-tabs" data-aos="fade-up" data-aos-delay="100">
+        <button class="destinations-tab active" data-tab="all">All Countries</button>
+        <button class="destinations-tab" data-tab="usa">USA</button>
+        <button class="destinations-tab" data-tab="uk">UK</button>
+        <button class="destinations-tab" data-tab="canada">Canada</button>
+        <button class="destinations-tab" data-tab="australia">Australia</button>
+        <button class="destinations-tab" data-tab="germany">Germany</button>
+        <button class="destinations-tab" data-tab="europe">Europe</button>
+      </div>
+      
+      <!-- Tab Content -->
+      <div class="tab-content active" id="all-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA" class="country-flag">
+              <h3>United States</h3>
+              <p>Home to world-renowned universities and diverse academic programs across all disciplines.</p>
+              <ul class="university-list">
+                <li>University of Illinois at Urbana-Champaign</li>
+                <li>Northeastern University</li>
+                <li>Arizona State University</li>
+                <li>And 150+ more institutions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK" class="country-flag">
+              <h3>United Kingdom</h3>
+              <p>Rich academic heritage with modern teaching methods and strong industry connections.</p>
+              <ul class="university-list">
+                <li>Imperial College London</li>
+                <li>University College London</li>
+                <li>University of Edinburgh</li>
+                <li>And 120+ more institutions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada" class="country-flag">
+              <h3>Canada</h3>
+              <p>High-quality education with welcoming immigration policies and post-study work opportunities.</p>
+              <ul class="university-list">
+                <li>University of Toronto</li>
+                <li>University of British Columbia</li>
+                <li>McGill University</li>
+                <li>And 100+ more institutions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" alt="Australia" class="country-flag">
+              <h3>Australia</h3>
+              <p>Excellent quality of life with world-class universities and strong research programs.</p>
+              <ul class="university-list">
+                <li>University of Melbourne</li>
+                <li>University of Sydney</li>
+                <li>Australian National University</li>
+                <li>And 80+ more institutions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany" class="country-flag">
+              <h3>Germany</h3>
+              <p>Strong engineering and technical programs with many tuition-free options for international students.</p>
+              <ul class="university-list">
+                <li>Technical University of Munich</li>
+                <li>LMU Munich</li>
+                <li>Heidelberg University</li>
+                <li>And 50+ more institutions</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1280px-Flag_of_Europe.svg.png" alt="Europe" class="country-flag">
+              <h3>Other European Countries</h3>
+              <p>Expanding opportunities in countries like Netherlands, Sweden, France, and more.</p>
+              <ul class="university-list">
+                <li>Various institutions across Europe</li>
+                <li>English-taught programs</li>
+                <li>Affordable tuition options</li>
+                <li>Rich cultural experiences</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
-          <div class="destination-card">
-            <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK" class="country-flag">
-            <h3>United Kingdom</h3>
-            <p>Rich academic heritage with modern teaching methods and strong industry connections.</p>
-            <ul class="university-list">
-              <li>Imperial College London</li>
-              <li>University College London</li>
-              <li>University of Edinburgh</li>
-              <li>And 120+ more institutions</li>
-            </ul>
+      </div>
+      
+      <div class="tab-content" id="usa-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="USA" class="country-flag">
+              <h3>United States</h3>
+              <p>Home to world-renowned universities and diverse academic programs across all disciplines.</p>
+              <ul class="university-list">
+                <li>University of Illinois at Urbana-Champaign</li>
+                <li>Northeastern University</li>
+                <li>Arizona State University</li>
+                <li>And 150+ more institutions</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
-          <div class="destination-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada" class="country-flag">
-            <h3>Canada</h3>
-            <p>High-quality education with welcoming immigration policies and post-study work opportunities.</p>
-            <ul class="university-list">
-              <li>University of Toronto</li>
-              <li>University of British Columbia</li>
-              <li>McGill University</li>
-              <li>And 100+ more institutions</li>
-            </ul>
+      </div>
+      
+      <div class="tab-content" id="uk-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK" class="country-flag">
+              <h3>United Kingdom</h3>
+              <p>Rich academic heritage with modern teaching methods and strong industry connections.</p>
+              <ul class="university-list">
+                <li>Imperial College London</li>
+                <li>University College London</li>
+                <li>University of Edinburgh</li>
+                <li>And 120+ more institutions</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-          <div class="destination-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" alt="Australia" class="country-flag">
-            <h3>Australia</h3>
-            <p>Excellent quality of life with world-class universities and strong research programs.</p>
-            <ul class="university-list">
-              <li>University of Melbourne</li>
-              <li>University of Sydney</li>
-              <li>Australian National University</li>
-              <li>And 80+ more institutions</li>
-            </ul>
+      </div>
+      
+      <div class="tab-content" id="canada-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/d/d9/Flag_of_Canada_%28Pantone%29.svg" alt="Canada" class="country-flag">
+              <h3>Canada</h3>
+              <p>High-quality education with welcoming immigration policies and post-study work opportunities.</p>
+              <ul class="university-list">
+                <li>University of Toronto</li>
+                <li>University of British Columbia</li>
+                <li>McGill University</li>
+                <li>And 100+ more institutions</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
-          <div class="destination-card">
-            <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany" class="country-flag">
-            <h3>Germany</h3>
-            <p>Strong engineering and technical programs with many tuition-free options for international students.</p>
-            <ul class="university-list">
-              <li>Technical University of Munich</li>
-              <li>LMU Munich</li>
-              <li>Heidelberg University</li>
-              <li>And 50+ more institutions</li>
-            </ul>
+      </div>
+      
+      <div class="tab-content" id="australia-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/8/88/Flag_of_Australia_%28converted%29.svg" alt="Australia" class="country-flag">
+              <h3>Australia</h3>
+              <p>Excellent quality of life with world-class universities and strong research programs.</p>
+              <ul class="university-list">
+                <li>University of Melbourne</li>
+                <li>University of Sydney</li>
+                <li>Australian National University</li>
+                <li>And 80+ more institutions</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
-          <div class="destination-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1280px-Flag_of_Europe.svg.png" alt="Europe" class="country-flag">
-            <h3>Other European Countries</h3>
-            <p>Expanding opportunities in countries like Netherlands, Sweden, France, and more.</p>
-            <ul class="university-list">
-              <li>Various institutions across Europe</li>
-              <li>English-taught programs</li>
-              <li>Affordable tuition options</li>
-              <li>Rich cultural experiences</li>
-            </ul>
+      </div>
+      
+      <div class="tab-content" id="germany-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg" alt="Germany" class="country-flag">
+              <h3>Germany</h3>
+              <p>Strong engineering and technical programs with many tuition-free options for international students.</p>
+              <ul class="university-list">
+                <li>Technical University of Munich</li>
+                <li>LMU Munich</li>
+                <li>Heidelberg University</li>
+                <li>And 50+ more institutions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="europe-tab">
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4" data-aos="fade-up">
+            <div class="destination-card">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/1280px-Flag_of_Europe.svg.png" alt="Europe" class="country-flag">
+              <h3>Other European Countries</h3>
+              <p>Expanding opportunities in countries like Netherlands, Sweden, France, and more.</p>
+              <ul class="university-list">
+                <li>Various institutions across Europe</li>
+                <li>English-taught programs</li>
+                <li>Affordable tuition options</li>
+                <li>Rich cultural experiences</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -761,7 +944,7 @@
         </div>
       </div>
       <div class="border-top border-opacity-10 mt-4 pt-3 text-center text-secondary small">
-        © 2025 IELTS Masterclass. All rights reserved. 
+        ©️ 2025 IELTS Masterclass. All rights reserved. 
         <span class="ms-2">Developed by <a href="https://sayeed62135.github.io/swadesh-it/" style="color: #E63946;">SWADESH IT</a>.</span>
       </div>
     </div>
@@ -834,6 +1017,27 @@
     }
     window.addEventListener('load', runCounter);
     window.addEventListener('scroll', runCounter);
+
+    // Tab functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const tabs = document.querySelectorAll('.destinations-tab');
+      const tabContents = document.querySelectorAll('.tab-content');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          // Remove active class from all tabs and contents
+          tabs.forEach(t => t.classList.remove('active'));
+          tabContents.forEach(content => content.classList.remove('active'));
+          
+          // Add active class to clicked tab
+          tab.classList.add('active');
+          
+          // Show corresponding content
+          const tabId = tab.getAttribute('data-tab');
+          document.getElementById(`${tabId}-tab`).classList.add('active');
+        });
+      });
+    });
 
     // Smooth scroll
     document.querySelectorAll('a[href^="#"]').forEach(a => {
